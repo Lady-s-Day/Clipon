@@ -9,8 +9,13 @@ export default function App() {
   useEffect(() => {
     (async () => {
       try {
-        const { data: response } = await axios.get("http://localhost:9000/");
-        // const response = await axios.get("/");
+        // need proxy setting in package.json to use axios
+        // const { data: response } = await axios.get(
+        //   "https://a688-27-91-167-204.ngrok.io/"
+        // );
+        const response = await fetch(
+          "https://a688-27-91-167-204.ngrok.io/"
+        ).then((res) => res.json());
         console.log(response);
         setState(response);
       } catch (err) {

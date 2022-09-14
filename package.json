@@ -16,6 +16,7 @@
     "expo-status-bar": "~1.4.0",
     "expo-updates": "~0.14.5",
     "install": "^0.13.0",
+    "ngrok": "^4.3.3",
     "npx": "^10.2.2",
     "react": "18.0.0",
     "react-dom": "^18.0.0",
