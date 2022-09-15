@@ -3,8 +3,13 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Tabs from "./components/Tabs";
 import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Home from "./components/Home";
+import Search from "./components/Search";
+import Clinic from "./components/Clinic";
 
 export default function App() {
+  const Stack = createNativeStackNavigator();
   // const [state, setState] = useState("");
 
   // useEffect(() => {
@@ -27,7 +32,28 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Tabs />
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Tabs"
+          component={Tabs}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Search"
+          component={Search}
+          options={{ headerTitleAlign: "center", title: "クリニックを検索" }}
+        />
+        <Stack.Screen
+          name="Clinic"
+          component={Clinic}
+          options={{ headerTitleAlign: "center" }}
+        />
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{ headerTitleAlign: "center" }}
+        />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
