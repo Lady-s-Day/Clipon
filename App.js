@@ -7,6 +7,10 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from "./components/Home";
 import Search from "./components/Search";
 import Clinic from "./components/Clinic";
+import Camera from "./components/Camera";
+// import "expo-dev-client";
+// import LoginAndroid from "./components/LoginAndroid";
+
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -55,7 +59,18 @@ export default function App() {
         />
       </Stack.Navigator>
     </NavigationContainer>
-  );
+
+
+    // return (
+    //   <View style={styles.container}>
+    //     {/* <LoginAndroid /> */}
+    //     <Text>Open up App.js to start working on your app!</Text>
+    //     {/* <Text>{state.apple}</Text> */}
+    //     <Camera />
+    //     <StatusBar style="auto" />
+    //   </View>
+    // );
+  )
 }
 
 const styles = StyleSheet.create({
