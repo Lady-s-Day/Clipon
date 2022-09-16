@@ -22,7 +22,7 @@ const CameraComponent = () => {
   if (!permission.granted) {
     // Camera permissions are not granted yet
     return (
-      <View style={styles.container}>
+      <View style={{ flex: 1 }}>
         <Text style={{ textAlign: "center" }}>
           We need your permission to show the camera
         </Text>
