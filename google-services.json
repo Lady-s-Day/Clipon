@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "842723940344",
+    "project_id": "clipon-871e1",
+    "storage_bucket": "clipon-871e1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:842723940344:android:dd7a8f11c799df5cb2e80d",
+        "android_client_info": {
+          "package_name": "com.ladysday.clipon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "842723940344-f531scaohiasf8p0evolbgfg6umsbu91.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ladysday.clipon",
+            "certificate_hash": "423baecfa24ce220ae606b063b0bc14b92d504a0"
+          }
+        },
+        {
+          "client_id": "842723940344-hg5lm2g703lp2f9899qi6dl0tp226uo0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ladysday.clipon",
+            "certificate_hash": "193d4187d703dcfb69f3d5e76c9ca13c933426ae"
+          }
+        },
+        {
+          "client_id": "842723940344-jrjtrlkbl0t5uosmvjuajgi4a218puv9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEZArtxDmP1DGIC-Ma2pCjUePdWD4pufg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "842723940344-jrjtrlkbl0t5uosmvjuajgi4a218puv9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
