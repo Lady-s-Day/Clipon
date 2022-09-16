@@ -2,8 +2,9 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import 'expo-dev-client';
-import LoginAndroid from "./components/LoginAndroid";
+import Camera from "./components/Camera";
+// import "expo-dev-client";
+// import LoginAndroid from "./components/LoginAndroid";
 
 export default function App() {
   const [state, setState] = useState("");
@@ -28,9 +29,10 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <LoginAndroid />
+      {/* <LoginAndroid /> */}
       <Text>Open up App.js to start working on your app!</Text>
-      <Text>{state.apple}</Text>
+      {/* <Text>{state.apple}</Text> */}
+      <Camera />
       <StatusBar style="auto" />
     </View>
   );
