@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React, { useState, useEffect, useContext } from "react";
+import { StyleSheet, Text, View, Button } from "react-native";
 import {
   GoogleSignin,
   GoogleSigninButton,
 } from "@react-native-google-signin/google-signin";
 import "expo-dev-client";
 import auth from "@react-native-firebase/auth";
+import { UserContext } from "../context/UserContext";
 
 function LoginAndroid() {
   // Set an initializing state whilst Firebase connects
   const [initializing, setInitializing] = useState(true);
-  const [user, setUser] = useState();
+  const { user, setUser } = useContext(UserContext);
   GoogleSignin.configure({
     webClientId:
       "842723940344-jrjtrlkbl0t5uosmvjuajgi4a218puv9.apps.googleusercontent.com",
@@ -47,6 +48,16 @@ function LoginAndroid() {
       });
   };
 
+  const signOut = async () => {
+    try {
+      await GoogleSignin.revokeAccess();
+      await auth().signOut();
+      setUser(null);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   if (initializing) return null;
 
   if (!user) {
@@ -61,22 +72,23 @@ function LoginAndroid() {
   }
   return (
     <View style={styles.container}>
-      <View style={{marginTop:100, alignItems:'center'}}>
+      <View style={{ marginTop: 100, alignItems: "center" }}>
         <Text style={styles.text}>Welcome, {user.displayName}</Text>
+        <Button title="Sign Out" onPress={signOut} />
       </View>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
   },
   text: {
     fontSize: 23,
-  }
-})
+  },
+});
 
 export default LoginAndroid;

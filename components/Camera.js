@@ -13,6 +13,7 @@ const CameraComponent = () => {
   const [permission, requestPermission] = Camera.useCameraPermissions();
   const [camera, setCamera] = useState(null);
   const [picture, setPicture] = useState();
+  const [type, setType] = useState(Camera.Constants.Type.back);
 
   if (!permission) {
     // Camera permissions are still loading
@@ -54,6 +55,7 @@ const CameraComponent = () => {
       <View style={{ flex: 1 }}>
         {!picture ? (
           <Camera
+            type={type}
             style={{ flex: 1 }}
             ref={(ref) => {
               // console.log("ref:::::", ref);

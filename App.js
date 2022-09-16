@@ -2,9 +2,9 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Camera from "./components/Camera";
-// import "expo-dev-client";
-// import LoginAndroid from "./components/LoginAndroid";
+// import Camera from "./components/Camera";
+import "expo-dev-client";
+import RootStack from "./components/RootStack";
 
 export default function App() {
   const [state, setState] = useState("");
@@ -19,7 +19,7 @@ export default function App() {
         // const response = await fetch(
         //   "https://4057-27-91-167-204.ngrok.io/"
         // ).then((res) => res.json());
-        console.log(response);
+        // console.log(response);
         setState(response);
       } catch (err) {
         console.error("Error starting app!", err);
@@ -29,10 +29,10 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      {/* <LoginAndroid /> */}
+      <RootStack />
       <Text>Open up App.js to start working on your app!</Text>
       {/* <Text>{state.apple}</Text> */}
-      <Camera />
+      {/* <Camera /> */}
       <StatusBar style="auto" />
     </View>
   );
