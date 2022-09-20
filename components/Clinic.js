@@ -1,32 +1,53 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { View, Text, Image, StyleSheet, ScrollView } from "react-native";
 import { Card, Icon } from "@rneui/themed";
+import axios from "axios";
 
-function Clinic() {
+function Clinic({ route, navigation }) {
+  const [selectedClinic, setSelectedClinic] = useState()
   const [reviews, setReviews] = useState([
     { name: "aaa", department: "bbb", inside: "ccc", details: "ddd" },
     { name: "aaa", department: "bbb", inside: "ccc", details: "ddd" },
     { name: "aaa", department: "bbb", inside: "ccc", details: "ddd" }
   ])
+  const { id } = route.params;
 
+  useEffect(() => {
+    (async () => {
+      try {
+        const { data: clinic } = await axios.get(`https://1a9d-2405-6580-a6a0-2700-8425-cd59-a741-ca6a.ngrok.io/clinics/${id}`);
+        setSelectedClinic(clinic[0])
+      } catch (err) {
+        console.error(err);
+      }
+    })();
+  }, []);
 
   return (
-    <View>
-      <View style={{ position: "relative", alignItems: "center", marginTop: 10 }}>
-        <Image
-          style={{ width: "100%", height: 100 }}
-          resizeMode="contain"
-          source={{ uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZ8Tf1Fa2Zlf-oyBCoxt7eVGdeC-kepuNIlA&usqp=CAU" }}
-        />
-        <Text>Clinic Title</Text>
-        <Icon
-          raised
-          name="favorite"
-          color='#f50'
-          onPress={() => console.log('favorite!')} />
-      </View>
+    <>
+      {selectedClinic &&
+        <>
+          {selectedClinic.image && <Image
+            style={{ width: "100%", height: 100, backgroundColor: "#fff" }}
+            resizeMode="cover"
+            source={{ uri: selectedClinic.image }} />}
+          <View style={styles.container}>
+            <View style={{ flex: 3 }} >
+              <Text style={{ fontWeight: "bold", fontSize: 16 }}>{selectedClinic.clinic_name}</Text>
+              <Text>{selectedClinic.url}</Text>
+            </View>
+            <View style={{ flex: 1 }} >
+              <Icon name="favorite-outline" color='#f50'
+                onPress={() => console.log('favorite!')} />
+              <Icon
+              name="add"
+              color='black'
+              onPress={() => navigation.navigate('CreateReview')} />
+          </View>
+          </View>
+        </>
+      }
       <ScrollView>
-        {/* review area */}
         {reviews.length && reviews.map((review, index) => {
           return (
             <Card key={index}>
@@ -38,14 +59,16 @@ function Clinic() {
           )
         })}
       </ScrollView>
-    </View>
+    </>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    flexDirection: "row",
+    padding: 20,
+    backgroundColor: "#fff"
   },
 });
 

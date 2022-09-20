@@ -4,7 +4,7 @@ import {
   GoogleSignin,
   GoogleSigninButton,
 } from "@react-native-google-signin/google-signin";
-import "expo-dev-client";
+// import "expo-dev-client";
 import auth from "@react-native-firebase/auth";
 
 function LoginAndroid() {

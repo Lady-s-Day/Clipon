@@ -1,13 +1,21 @@
 import { useEffect, useState } from "react";
 import { View, Text, Image, ScrollView, TouchableOpacity, StyleSheet } from "react-native";
 import { Card, Icon, Button } from "@rneui/themed";
+import axios from "axios";
 
 function Home({ navigation }) {
-  const [clinics, setClinics] = useState([{ name: "aaa" }, { name: "bbb" }, { name: "ccc" }])
+  const [clinics, setClinics] = useState([])
 
   useEffect(() => {
-    //fetch clinics
-  }, [])
+    (async () => {
+      try {
+        const { data: response } = await axios.get("https://1a9d-2405-6580-a6a0-2700-8425-cd59-a741-ca6a.ngrok.io/clinics");
+        setClinics(response)
+      } catch (err) {
+        console.error(err);
+      }
+    })();
+  }, []);
 
   return (
     <View>
@@ -15,26 +23,30 @@ function Home({ navigation }) {
         style={styles.findIcon}
         name="search"
         onPress={() => navigation.navigate('Search')} />
-        <ScrollView>
-        {clinics.length && clinics.map((clinic, index) => {
+      <ScrollView style={styles.scrollArea}>
+        {clinics.map((clinic, index) => {
             return (
               <TouchableOpacity
                 key={index}
-                onPress={() => navigation.navigate('Clinic')}>
+                onPress={() => navigation.navigate('Clinic', {
+                  id: clinic.id
+                })}>
                 <Card>
-                <Card.Title>{clinic.name}</Card.Title>
-                  <View style={{ position: "relative", alignItems: "center" }}>
                 <Image
-                  style={{ width: "100%", height: 100 }}
-                  resizeMode="contain"
-                  source={{ uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZ8Tf1Fa2Zlf-oyBCoxt7eVGdeC-kepuNIlA&usqp=CAU" }}
+                    style={{ width: "100%", height: 100, marginBottom: 10 }}
+                    resizeMode="cover"
+                    source={{ uri: clinic.image }}
                 />
-                    <Text>Clinic info</Text>
-                <Icon
-                  raised
-                  name="favorite"
-                  color='#f50'
-                  onPress={() => console.log('favorite!')} />
+                  <View style={{ flex: 1, flexDirection: 'row' }}>
+                    <View style={{ flex: 3 }}>
+                      <Text style={{ fontWeight: "bold", fontSize: 16 }}>{clinic.clinic_name}</Text>
+                      <View>
+                        <Text>{clinic.url}</Text>
+                      </View>
+                    </View>
+                    <View style={{ flex: 1 }}>
+                      <Icon name="favorite-outline" color="#f50" onPress={() => console.log('favorite!')} />
+                    </View>
                   </View>
               </Card>
               </TouchableOpacity>
@@ -49,6 +61,9 @@ const styles = StyleSheet.create({
   findIcon: {
     marginTop: 14,
   },
+  scrollArea: {
+    marginBottom: 50
+  }
 });
 
 
