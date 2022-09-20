@@ -15,7 +15,7 @@ function Clinic({ route, navigation }) {
   useEffect(() => {
     (async () => {
       try {
-        const { data: clinic } = await axios.get(`https://1a9d-2405-6580-a6a0-2700-8425-cd59-a741-ca6a.ngrok.io/clinics/${id}`);
+        const { data: clinic } = await axios.get(`https://c4d7-2405-6580-a6a0-2700-d5e6-d4af-b054-1482.ngrok.i/clinics/${id}`);
         setSelectedClinic(clinic[0])
       } catch (err) {
         console.error(err);
@@ -27,13 +27,13 @@ function Clinic({ route, navigation }) {
     <>
       {selectedClinic &&
         <>
-          {selectedClinic.image && <Image
+        <Image
             style={{ width: "100%", height: 100, backgroundColor: "#fff" }}
             resizeMode="cover"
-            source={{ uri: selectedClinic.image }} />}
+          source={{ uri: selectedClinic.image }} />
           <View style={styles.container}>
             <View style={{ flex: 3 }} >
-              <Text style={{ fontWeight: "bold", fontSize: 16 }}>{selectedClinic.clinic_name}</Text>
+            <Text style={{ fontWeight: "bold", fontSize: 16 }}>{selectedClinic.clinic_name}</Text>
               <Text>{selectedClinic.url}</Text>
             </View>
             <View style={{ flex: 1 }} >

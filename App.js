@@ -44,6 +44,11 @@ export default function App() {
           component={Home}
           options={{ headerTitleAlign: "center" }}
         />
+        <Stack.Screen
+          name="Camera"
+          component={Camera}
+          options={{ headerTitleAlign: "center", title: "認証" }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
 
