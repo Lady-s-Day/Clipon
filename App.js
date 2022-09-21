@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Tabs from "./components/Tabs";
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "./components/Home";
 import Search from "./components/Search";
 import Clinic from "./components/Clinic";
@@ -12,8 +12,8 @@ import CreateReview from "./components/CrateReview";
 // import "expo-dev-client";
 // import LoginAndroid from "./components/LoginAndroid";
 
-
 export default function App() {
+
   const Stack = createNativeStackNavigator(); 
 
   return (
@@ -63,6 +63,7 @@ export default function App() {
     //   </View>
     // );
   )
+
 }
 
 const styles = StyleSheet.create({
