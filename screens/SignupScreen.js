@@ -25,7 +25,7 @@ export const SignupScreen = ({ navigation }) => {
     const { email, password } = values;
 
     createUserWithEmailAndPassword(auth, email, password)
-    .then(res => console.log(res))
+    // .then(res => console.log(res))
     .catch(error =>
       setErrorState(error.message)
     );

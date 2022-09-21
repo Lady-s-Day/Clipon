@@ -17,7 +17,7 @@ export const LoginScreen = ({ navigation }) => {
   const handleLogin = values => {
     const { email, password } = values;
     signInWithEmailAndPassword(auth, email, password)
-    .then(res => console.log(res))
+    // .then(res => console.log(res))
     .catch(error =>
       setErrorState(error.message)
     );
