@@ -1,5 +1,5 @@
-import React, { useContext, useState } from "react";
-import { Text, StyleSheet, Button } from "react-native";
+import React, { useContext, useEffect, useState } from "react";
+import { Text, StyleSheet } from "react-native";
 import { Formik } from "formik";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
@@ -7,7 +7,7 @@ import {
   View,
   TextInput,
   Logo,
-  Button as CButton,
+  Button,
   FormErrorMessage,
 } from "../components/login_components";
 import { Images, Colors } from "../config";
@@ -18,9 +18,9 @@ import { AuthenticatedUserContext } from "../providers";
 import { usernameValidationSchema } from "../utils";
 import { ENDPOINT } from "../endpoint";
 
-import { signOut } from 'firebase/auth';
+import { signOut } from "firebase/auth";
 
-import { auth } from '../config';
+import { auth } from "../config";
 
 export const UsernameScreen = () => {
   const [errorState, setErrorState] = useState("");
@@ -28,17 +28,24 @@ export const UsernameScreen = () => {
   const { user, setUser } = useContext(AuthenticatedUserContext);
 
   console.log("UsernameScreen user email ", user.email);
-  console.log("UsernameScreen username   ", username);
+
+  useEffect(() => {
+    console.log("UsernameScreen username   ", username);
+  }, [username]);
 
   const handleUsernameRegister = async (values) => {
     console.log("######## register button pressed #############");
-    
-    const { uName } = values;
+
+    const { username: uName } = values;
+
+    console.log(uName);
+
     try {
-      const { data: response } = await axios.post(
-        `${ENDPOINT}/username?uid=${user.uid}&&username=${uName}`
-      );
-      setUsername(response.username);
+      // const { data: response } = await axios.post(
+      //   `${ENDPOINT}/username?uid=${user.uid}&&username=${uName}`
+      // );
+      // setUsername(response.username);
+      setUsername(uName);
     } catch (err) {
       console.log("Error registering username", err);
       setErrorState(err.message);
@@ -46,7 +53,7 @@ export const UsernameScreen = () => {
   };
 
   const handleLogout = () => {
-    signOut(auth).catch(error => console.log('Error logging out: ', error));
+    signOut(auth).catch((error) => console.log("Error logging out: ", error));
   };
 
   return (
@@ -62,7 +69,7 @@ export const UsernameScreen = () => {
             initialValues={{
               username: "",
             }}
-            validationSchema={usernameValidationSchema}
+            // validationSchema={usernameValidationSchema}
             onSubmit={(values) => handleUsernameRegister(values)}
           >
             {({
@@ -96,13 +103,18 @@ export const UsernameScreen = () => {
                   <FormErrorMessage error={errorState} visible={true} />
                 ) : null}
                 {/* Register button */}
-                <CButton style={styles.button} onPress={handleSubmit}>
+                <Button style={styles.button} onPress={handleSubmit}>
                   <Text style={styles.buttonText}>登録</Text>
-                </CButton>
+                </Button>
               </>
             )}
           </Formik>
-          <Button title='Sign Out' onPress={handleLogout} />
+          <Button
+            style={styles.borderlessButtonContainer}
+            borderless
+            title={"Sign Out"}
+            onPress={handleLogout}
+          />
         </KeyboardAwareScrollView>
       </View>
     </>

@@ -15,6 +15,7 @@ export const LoginScreen = ({ navigation }) => {
     useTogglePasswordVisibility();
 
   const handleLogin = values => {
+    console.log("Login Button ############################")
     const { email, password } = values;
     signInWithEmailAndPassword(auth, email, password)
     // .then(res => console.log(res))
