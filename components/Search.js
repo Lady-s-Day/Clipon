@@ -47,7 +47,9 @@ function Search({ navigation }) {
       />
       <Button
         radius={5}
+        color="warning"
         style={styles.searchButton}
+        buttonStyle={{ backgroundColor: 'rgb(212, 91, 18)' }}
         onPress={() => navigation.goBack()}>
         検索
       </Button>
@@ -63,7 +65,7 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
   searchButton: {
-    margin: 5
+    margin: 5,
   }
 });
 
