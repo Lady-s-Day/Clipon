@@ -13,8 +13,7 @@ import CreateReview from "./components/CrateReview";
 // import LoginAndroid from "./components/LoginAndroid";
 
 export default function App() {
-
-  const Stack = createNativeStackNavigator(); 
+  const Stack = createNativeStackNavigator();
 
   return (
     <NavigationContainer>
@@ -51,26 +50,25 @@ export default function App() {
         />
       </Stack.Navigator>
     </NavigationContainer>
-
-
-    // return (
-    //   <View style={styles.container}>
-    //     {/* <LoginAndroid /> */}
-    //     <Text>Open up App.js to start working on your app!</Text>
-    //     {/* <Text>{state.apple}</Text> */}
-    //     <Camera />
-    //     <StatusBar style="auto" />
-    //   </View>
-    // );
-  )
-
+  );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
+//////////////////////////////////////////////////////////////////////////
+
+// import React from 'react';
+// import { SafeAreaProvider } from 'react-native-safe-area-context';
+
+// import { RootNavigator } from './navigation/RootNavigator';
+// import { AuthenticatedUserProvider } from './providers';
+
+// const App = () => {
+//   return (
+//     <AuthenticatedUserProvider>
+//       <SafeAreaProvider>
+//         <RootNavigator />
+//       </SafeAreaProvider>
+//     </AuthenticatedUserProvider>
+//   );
+// };
+
+// export default App;

@@ -1,0 +1,1 @@
+export const ENDPOINT = "https://cdde-217-138-252-199.ngrok.io";
