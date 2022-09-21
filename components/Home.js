@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { View, Text, Image, ScrollView, TouchableOpacity, StyleSheet } from "react-native";
 import { Card, Icon, Button } from "@rneui/themed";
 import axios from "axios";
+import { ENDPOINT } from '../endpoint'
 
 function Home({ navigation }) {
   const [clinics, setClinics] = useState([])
@@ -9,7 +10,7 @@ function Home({ navigation }) {
   useEffect(() => {
     (async () => {
       try {
-        const { data: response } = await axios.get("https://1a9d-2405-6580-a6a0-2700-8425-cd59-a741-ca6a.ngrok.io/clinics");
+        const { data: response } = await axios.get(`${ENDPOINT}/clinics`);
         setClinics(response)
       } catch (err) {
         console.error(err);

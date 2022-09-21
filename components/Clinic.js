@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { View, Text, Image, StyleSheet, ScrollView } from "react-native";
 import { Card, Icon } from "@rneui/themed";
 import axios from "axios";
+import { ENDPOINT } from "../endpoint"
 
 function Clinic({ route, navigation }) {
   const [selectedClinic, setSelectedClinic] = useState()
@@ -15,7 +16,7 @@ function Clinic({ route, navigation }) {
   useEffect(() => {
     (async () => {
       try {
-        const { data: clinic } = await axios.get(`https://c4d7-2405-6580-a6a0-2700-d5e6-d4af-b054-1482.ngrok.i/clinics/${id}`);
+        const { data: clinic } = await axios.get(`${ENDPOINT}/clinics/${id}`);
         setSelectedClinic(clinic[0])
       } catch (err) {
         console.error(err);

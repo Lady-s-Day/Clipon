@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Text, StyleSheet } from "react-native";
+import { Text, StyleSheet, Button } from "react-native";
 import { Formik } from "formik";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
@@ -7,7 +7,7 @@ import {
   View,
   TextInput,
   Logo,
-  Button,
+  Button as CButton,
   FormErrorMessage,
 } from "../components/login_components";
 import { Images, Colors } from "../config";
@@ -17,6 +17,10 @@ import { UsernameContext } from "../providers/UsernameProvider";
 import { AuthenticatedUserContext } from "../providers";
 import { usernameValidationSchema } from "../utils";
 import { ENDPOINT } from "../endpoint";
+
+import { signOut } from 'firebase/auth';
+
+import { auth } from '../config';
 
 export const UsernameScreen = () => {
   const [errorState, setErrorState] = useState("");
@@ -39,6 +43,10 @@ export const UsernameScreen = () => {
       console.log("Error registering username", err);
       setErrorState(err.message);
     }
+  };
+
+  const handleLogout = () => {
+    signOut(auth).catch(error => console.log('Error logging out: ', error));
   };
 
   return (
@@ -88,12 +96,13 @@ export const UsernameScreen = () => {
                   <FormErrorMessage error={errorState} visible={true} />
                 ) : null}
                 {/* Register button */}
-                <Button style={styles.button} onPress={handleSubmit}>
+                <CButton style={styles.button} onPress={handleSubmit}>
                   <Text style={styles.buttonText}>登録</Text>
-                </Button>
+                </CButton>
               </>
             )}
           </Formik>
+          <Button title='Sign Out' onPress={handleLogout} />
         </KeyboardAwareScrollView>
       </View>
     </>
