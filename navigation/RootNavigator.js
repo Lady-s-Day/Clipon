@@ -26,7 +26,7 @@ export const RootNavigator = () => {
       }
     );
 
-    console.log("RootNavigator, line29 ", user.email);
+    // console.log("RootNavigator, line29 ", user.email);
 
     // unsubscribe auth listener on unmount
     return unsubscribeAuthStateChanged;
