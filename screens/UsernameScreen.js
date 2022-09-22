@@ -58,6 +58,7 @@ export const UsernameScreen = () => {
 
   const handleLogout = () => {
     signOut(auth).catch((error) => console.log("Error logging out: ", error));
+    setUsername(null);
   };
 
   return (
