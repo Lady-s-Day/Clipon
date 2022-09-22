@@ -141,8 +141,8 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   screenTitle: {
-    fontSize: 32,
-    fontWeight: '700',
+    fontSize: 23,
+    fontWeight: '500',
     color: Colors.black,
     paddingTop: 20
   },
