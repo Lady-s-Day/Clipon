@@ -1,3 +1,4 @@
+import React, { useContext } from "react";
 import { Divider } from "@rneui/themed";
 import { Icon, Button } from "@rneui/themed";
 import { View, Text, StyleSheet } from "react-native";
@@ -5,10 +6,13 @@ import { View, Text, StyleSheet } from "react-native";
 import { signOut } from "firebase/auth";
 import { Button as CButton } from "./login_components/Button";
 import { auth } from "../config";
+import { UsernameContext } from "../providers/UsernameProvider";
 
 function MyPage({ navigation }) {
+  const { username, setUsername } = useContext(UsernameContext);
   const handleLogout = () => {
     signOut(auth).catch((error) => console.log("Error logging out: ", error));
+    setUsername(null);
   };
 
   return (
