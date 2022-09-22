@@ -1,1 +1,1 @@
-export const ENDPOINT = "https://7e38-27-91-167-204.ngrok.io";
+export const ENDPOINT = "https://clipon-backend-production.herokuapp.com";

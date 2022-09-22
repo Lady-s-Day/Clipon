@@ -43,12 +43,13 @@ export const UsernameScreen = () => {
     try {
       await axios.put(
         // `${ENDPOINT}/username?uid=${user.uid}&&username=${uName}`
-        `${ENDPOINT}/username`, {
-        uid: user.uid,
-        username: uName
-      });
+        `${ENDPOINT}/username`,
+        {
+          uid: user.uid,
+          username: uName,
+        }
+      );
       setUsername(uName);
-
     } catch (err) {
       console.log("Error registering username", err);
       setErrorState(err.message);
@@ -132,6 +133,9 @@ const styles = StyleSheet.create({
   },
   logoContainer: {
     alignItems: "center",
+    // resizeMode: "stretch",
+    // height: 100,
+    // width: 200,
   },
   screenTitle: {
     fontSize: 25,
