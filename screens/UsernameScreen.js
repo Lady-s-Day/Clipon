@@ -41,11 +41,14 @@ export const UsernameScreen = () => {
     console.log(uName);
 
     try {
-      // const { data: response } = await axios.post(
-      //   `${ENDPOINT}/username?uid=${user.uid}&&username=${uName}`
-      // );
-      // setUsername(response.username);
+      await axios.put(
+        // `${ENDPOINT}/username?uid=${user.uid}&&username=${uName}`
+        `${ENDPOINT}/username`, {
+        uid: user.uid,
+        username: uName
+      });
       setUsername(uName);
+
     } catch (err) {
       console.log("Error registering username", err);
       setErrorState(err.message);

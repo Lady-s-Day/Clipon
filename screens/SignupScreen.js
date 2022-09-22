@@ -8,6 +8,8 @@ import { View, TextInput, Logo, Button, FormErrorMessage } from '../components/l
 import { Images, Colors, auth } from '../config';
 import { useTogglePasswordVisibility } from '../hooks';
 import { signupValidationSchema } from '../utils';
+import axios from 'axios';
+import { ENDPOINT } from "../endpoint";
 
 export const SignupScreen = ({ navigation }) => {
   const [errorState, setErrorState] = useState('');
@@ -25,10 +27,20 @@ export const SignupScreen = ({ navigation }) => {
     const { email, password } = values;
 
     createUserWithEmailAndPassword(auth, email, password)
-    // .then(res => console.log(res))
-    .catch(error =>
-      setErrorState(error.message)
-    );
+
+      .then((res) => {
+        console.log(res.user.uid)
+        axios.post(`${ENDPOINT}/signup`, {
+          uid: res.user.uid
+        }).then(res => {
+          // console.log(res)
+        }).catch(err => {
+          console.log(err, "err")
+        })
+      })
+      .catch(error =>
+        setErrorState(error.message)
+      );
   };
 
   return (
