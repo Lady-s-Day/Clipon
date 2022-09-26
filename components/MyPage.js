@@ -2,13 +2,14 @@ import React, { useContext } from "react";
 import { Divider } from "@rneui/themed";
 import { Icon, Button } from "@rneui/themed";
 import { View, Text, StyleSheet } from "react-native";
-
+import { AuthenticatedUserContext } from "../providers";
 import { signOut } from "firebase/auth";
 import { Button as CButton } from "./login_components/Button";
 import { auth } from "../config";
 import { UsernameContext } from "../providers/UsernameProvider";
 
 function MyPage({ navigation }) {
+  const { user, setUser } = useContext(AuthenticatedUserContext);
   const { username, setUsername } = useContext(UsernameContext);
   const handleLogout = () => {
     signOut(auth).catch((error) => console.log("Error logging out: ", error));
@@ -19,11 +20,11 @@ function MyPage({ navigation }) {
     <View style={styles.container}>
       <Icon raised name="person" color="black" />
       <Text style={{ fontWeight: "bold", fontSize: 16, padding: 5 }}>
-        ユーザー名:
+        ユーザー名: {username}
       </Text>
       <Divider />
       <Text style={{ fontWeight: "bold", fontSize: 16, padding: 5 }}>
-        メールアドレス:
+        メールアドレス: {user.email}
       </Text>
       <Divider />
       <View style={{ marginTop: 20 }}>

@@ -6,23 +6,21 @@ import { ENDPOINT } from "../endpoint"
 
 function Clinic({ route, navigation }) {
   const [selectedClinic, setSelectedClinic] = useState()
-  const [reviews, setReviews] = useState([
-    { name: "aaa", department: "bbb", inside: "ccc", details: "ddd" },
-    { name: "aaa", department: "bbb", inside: "ccc", details: "ddd" },
-    { name: "aaa", department: "bbb", inside: "ccc", details: "ddd" }
-  ])
+  const [reviews, setReviews] = useState([])
   const { id } = route.params;
 
   useEffect(() => {
     (async () => {
       try {
         const { data: clinic } = await axios.get(`${ENDPOINT}/clinics/${id}`);
-        setSelectedClinic(clinic[0])
+        setSelectedClinic(clinic[0]);
+        const data = await axios.get(`${ENDPOINT}/reviews/${id}`);
+        setReviews(data.data);
       } catch (err) {
         console.error(err);
       }
     })();
-  }, []);
+  }, [reviews]);
 
   return (
     <>
@@ -43,19 +41,19 @@ function Clinic({ route, navigation }) {
               <Icon
               name="add"
               color='black'
-              onPress={() => navigation.navigate('CreateReview')} />
+              onPress={() => navigation.navigate('CreateReview', {
+                id: id
+              })} />
           </View>
           </View>
         </>
       }
       <ScrollView>
-        {reviews.length && reviews.map((review, index) => {
+        {reviews && reviews.map((review, index) => {
           return (
             <Card key={index}>
-              <Text>名前：</Text>
-              <Text>診療科目：</Text>
-              <Text>院内の様子：</Text>
-              <Text>診察：</Text>
+              <Text style={styles.text}>{review.text}</Text>
+              <Text>{review.date}</Text>
             </Card>
           )
         })}
@@ -69,8 +67,13 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     padding: 20,
-    backgroundColor: "#fff"
+    backgroundColor: "#fff",
   },
+  text: {
+    fontSize: 14,
+    fontWeight: "bold",
+    marginBottom: 10
+  }
 });
 
 export default Clinic;

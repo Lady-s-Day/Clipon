@@ -7,21 +7,25 @@ import SaveList from './SaveList';
 function Tabs() {
   const Tab = createBottomTabNavigator();
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={() => ({
+        tabBarActiveTintColor: 'tomato',
+        tabBarInactiveTintColor: 'gray',
+      })}>
       <Tab.Screen
-        name="Home"
+        name="ホーム"
         component={Home}
-        options={{ headerTitleAlign: "center", tabBarIcon: () => <Icon name='home' /> }}
+        options={{ headerTitleAlign: "center", tabBarIcon: ({ color }) => <Icon name='home' color={color} /> }}
       />
       <Tab.Screen
-        name="SaveList"
+        name="お気に入り"
         component={SaveList}
-        options={{ title: "Save", headerTitleAlign: "center", tabBarIcon: () => <Icon name='favorite' /> }}
+        options={{ headerTitleAlign: "center", tabBarIcon: ({ color }) => <Icon name='favorite' color={color} /> }}
       />
       <Tab.Screen
-        name="MyPage"
+        name="マイページ"
         component={MyPage}
-        options={{ headerTitleAlign: "center", tabBarIcon: () => <Icon name='person' /> }} />
+        options={{ headerTitleAlign: "center", tabBarIcon: ({ color }) => <Icon name='person' color={color} /> }} />
     </Tab.Navigator>
   )
 }
