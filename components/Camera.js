@@ -14,6 +14,12 @@ const CameraComponent = () => {
   const [camera, setCamera] = useState(null);
   const [picture, setPicture] = useState();
 
+  useEffect(() => {
+    if (picture) {
+      cloudVision();
+    }
+  }, [picture]);
+
   if (!permission) {
     // Camera permissions are still loading
     return <View />;
@@ -48,6 +54,39 @@ const CameraComponent = () => {
       setPicture(image.uri);
     }
   };
+
+  // =================================================================
+
+  function cloudVision() {
+    function main() {
+      // [START vision_quickstart]
+      async function quickstart() {
+        // Imports the Google Cloud client library
+        const vision = require("@google-cloud/vision");
+
+        // Creates a client
+        const client = new vision.ImageAnnotatorClient();
+
+        // Performs label detection on the image file
+        const [result] = await client.documentTextDetection(picture);
+        const labels = result.fullTextAnnotation.text;
+        // console.log("Labels:");
+        console.log(labels);
+        // labels.forEach((label) => console.log(label.description));
+      }
+      quickstart();
+      // [END vision_quickstart]
+    }
+
+    process.on("unhandledRejection", (err) => {
+      console.error(err.message);
+      process.exitCode = 1;
+    });
+
+    main(...process.argv.slice(2));
+  }
+
+  // ================================================================
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
