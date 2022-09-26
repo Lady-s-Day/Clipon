@@ -10,6 +10,7 @@ import { LoadingIndicator } from "../components/login_components";
 import { UsernameContext } from "../providers/UsernameProvider";
 import { UsernameStack } from "./UsernameStack";
 import axios from "axios";
+import { ENDPOINT } from "../endpoint";
 
 export const RootNavigator = () => {
   const { user, setUser } = useContext(AuthenticatedUserContext);
@@ -33,21 +34,20 @@ export const RootNavigator = () => {
   }, [user]);
 
   useEffect(() => {
-    console.log("RootNavigator, username ", username);
-  }, [username]);
-
-  // useEffect(() => {
-  //   if (!username) {
-  //     (async () => {
-  //       try {
-  //         const { data: response } = await axios.get(`/username/${user.uid}`);
-  //         setUsername(response.username);
-  //       } catch (err) {
-  //         console.log("Error getting username", err);
-  //       }
-  //     })();
-  //   }
-  // }, [username]);
+    console.log("RootNavigator, username ", username, user);
+    if (!username && user) {
+      (async () => {
+        setIsLoading(true)
+        try {
+          const { data: response } = await axios.get(`${ENDPOINT}/username/${user.uid}`);
+          setUsername(response[0].user_name);
+          setIsLoading(false);
+        } catch (err) {
+          console.log("Error getting username", err);
+        }
+      })();
+    }
+  }, [username, user]);
 
   if (isLoading) {
     return <LoadingIndicator />;
@@ -59,3 +59,4 @@ export const RootNavigator = () => {
     </NavigationContainer>
   );
 };
+

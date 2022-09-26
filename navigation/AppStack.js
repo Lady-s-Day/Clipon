@@ -9,7 +9,7 @@ const Stack = createStackNavigator();
 export const AppStack = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Main" component={Main} />
+      <Stack.Screen name="Main" component={Main} options={{ headerShown: false }} />
     </Stack.Navigator>
   );
 };
