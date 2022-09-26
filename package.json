@@ -9,7 +9,9 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@expo/ngrok": "github:expo/ngrok",
     "@expo/webpack-config": "^0.17.2",
+    "@google-cloud/vision": "^3.0.0",
     "@react-native-async-storage/async-storage": "~1.17.3",
     "@react-native-firebase/app": "^15.4.0",
     "@react-native-firebase/auth": "^15.4.0",
@@ -33,6 +35,7 @@
     "expo-updates": "~0.14.5",
     "firebase": "9.6.11",
     "formik": "2.1.4",
+    "fs": "^0.0.1-security",
     "install": "^0.13.0",
     "ngrok": "^4.3.3",
     "npx": "^10.2.2",
