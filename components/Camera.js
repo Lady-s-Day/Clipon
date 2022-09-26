@@ -16,11 +16,11 @@ const CameraComponent = () => {
   const [picture, setPicture] = useState();
   const [string, setString] = useState("");
 
-  useEffect(() => {
-    if (picture) {
-      cloudVision();
-    }
-  }, [picture]);
+  // useEffect(() => {
+  //   if (picture) {
+  //     cloudVision();
+  //   }
+  // }, [picture]);
 
   if (!permission) {
     // Camera permissions are still loading
@@ -84,7 +84,7 @@ const CameraComponent = () => {
       }
     );
     const resJson = await response.json();
-    console.log(resJson);
+    console.log(resJson.responses[0].textAnnotations[0].description);
 
     setString({
       ocrText: resJson.responses[0].textAnnotations[0].description,
