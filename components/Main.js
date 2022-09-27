@@ -21,7 +21,7 @@ export default function Main() {
         <Stack.Screen
           name="Tabs"
           component={Tabs}
-          options={{ headerShown: false }}
+        options={{ title: "ホーム", headerShown: false }}
         />
         <Stack.Screen
           name="Search"
