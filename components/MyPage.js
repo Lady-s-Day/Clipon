@@ -45,7 +45,7 @@ function MyPage({ navigation }) {
         <Button
           radius={5}
           buttonStyle={{ backgroundColor: Colors.red }}
-          onPress={() => navigation.navigate("Camera")}
+          onPress={() => navigation.navigate("ClinicName")}
         >
           認証する
         </Button>

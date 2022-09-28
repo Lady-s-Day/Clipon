@@ -1,59 +1,31 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Text, StyleSheet } from "react-native";
 import { Formik } from "formik";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { View, TextInput, Button, FormErrorMessage } from "./login_components";
+import { Colors } from "../config";
+import { set } from "react-native-reanimated";
 
-import {
-  View,
-  TextInput,
-  Logo,
-  Button,
-  FormErrorMessage,
-} from "../components/login_components";
-import { Images, Colors } from "../config";
-import { loginValidationSchema } from "../utils";
-import axios from "axios";
-import { UsernameContext } from "../providers/UsernameProvider";
-import { AuthenticatedUserContext } from "../providers";
-import { usernameValidationSchema } from "../utils";
-import { ENDPOINT } from "../endpoint";
-
-import { signOut } from "firebase/auth";
-
-import { auth } from "../config";
-
-export const UsernameScreen = () => {
+const ClinicName = ({ navigation }) => {
   const [errorState, setErrorState] = useState("");
-  const { username, setUsername } = useContext(UsernameContext);
-  const { user, setUser } = useContext(AuthenticatedUserContext);
+  const [clinicName, setClinicName] = useState("");
 
-  const handleUsernameRegister = async (values) => {
-    console.log("######## register button pressed #############");
+  const handleClinicNameRegister = (values) => {
+    const { clinicName: cName } = values;
+    setClinicName(cName);
 
-    const { username: uName } = values;
+    // values.clinicName = "";
+  };
 
-    console.log(uName);
-
-    try {
-      await axios.put(
-        // `${ENDPOINT}/username?uid=${user.uid}&&username=${uName}`
-        `${ENDPOINT}/username`,
-        {
-          uid: user.uid,
-          username: uName,
-        }
-      );
-      setUsername(uName);
-    } catch (err) {
-      console.log("Error registering username", err);
-      setErrorState(err.message);
+  useEffect(() => {
+    if (clinicName) {
+      navigation.navigate("Camera", {
+        clinicName: clinicName,
+      });
     }
-  };
+  }, [clinicName]);
 
-  const handleLogout = () => {
-    signOut(auth).catch((error) => console.log("Error logging out: ", error));
-    setUsername(null);
-  };
+  // const handleGoBack = () => {navigation.goBack()};
 
   return (
     <>
@@ -61,15 +33,14 @@ export const UsernameScreen = () => {
         <KeyboardAwareScrollView enableOnAndroid={true}>
           {/* LogoContainer: consits app logo and screen title */}
           <View style={styles.logoContainer}>
-            <Logo uri={Images.logo} />
-            <Text style={styles.screenTitle}>Set Your Username!</Text>
+            <Text style={styles.screenTitle}>病院名を入力</Text>
           </View>
           <Formik
             initialValues={{
-              username: "",
+              clinicName: "",
             }}
-            // validationSchema={usernameValidationSchema}
-            onSubmit={(values) => handleUsernameRegister(values)}
+            // validationSchema={clinicNameValidationSchema}
+            onSubmit={(values) => handleClinicNameRegister(values)}
           >
             {({
               values,
@@ -82,20 +53,20 @@ export const UsernameScreen = () => {
               <>
                 {/* Input fields */}
                 <TextInput
-                  name="username"
-                  leftIconName="account"
-                  placeholder="Enter username"
+                  name="clinicName"
+                  leftIconName="hospital-building"
+                  placeholder="病院名"
                   autoCapitalize="none"
                   keyboardType="default"
-                  textContentType="username"
+                  textContentType="clinicName"
                   autoFocus={true}
                   value={values.uName}
-                  onChangeText={handleChange("username")}
-                  onBlur={handleBlur("username")}
+                  onChangeText={handleChange("clinicName")}
+                  onBlur={handleBlur("clinicName")}
                 />
                 <FormErrorMessage
-                  error={errors.username}
-                  visible={touched.username}
+                  error={errors.clinicName}
+                  visible={touched.clinicName}
                 />
                 {/* Display Screen Error Mesages */}
                 {errorState !== "" ? (
@@ -108,12 +79,12 @@ export const UsernameScreen = () => {
               </>
             )}
           </Formik>
-          <Button
+          {/* <Button
             style={styles.borderlessButtonContainer}
             borderless
-            title={"Sign Out"}
-            onPress={handleLogout}
-          />
+            title={"戻る"}
+            onPress={handleGoBack}
+          /> */}
         </KeyboardAwareScrollView>
       </View>
     </>
@@ -169,3 +140,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
+
+export default ClinicName;

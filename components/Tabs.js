@@ -1,3 +1,4 @@
+
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Icon } from "@rneui/themed";
 import Home from "./Home";
@@ -10,6 +11,7 @@ function Tabs() {
   return (
     <Tab.Navigator
       screenOptions={() => ({
+
         tabBarActiveTintColor: Colors.red,
         tabBarInactiveTintColor: Colors.navy,
       })}

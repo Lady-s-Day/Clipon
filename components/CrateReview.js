@@ -1,5 +1,4 @@
 import { useState, useContext } from "react";
-import { Divider } from "@rneui/themed";
 import { View, Text, StyleSheet } from "react-native";
 import { Input, Button } from "@rneui/themed";
 import axios from 'axios';

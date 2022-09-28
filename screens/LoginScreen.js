@@ -152,14 +152,15 @@ const styles = StyleSheet.create({
   footerText: {
     fontSize: 14,
     fontWeight: "700",
-    color: Colors.orange,
+    // color: Colors.orange,
+    color: "#fc1c1c",
   },
   button: {
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
     marginTop: 8,
-    backgroundColor: Colors.orange,
+    backgroundColor: Colors.themeColor,
     padding: 10,
     borderRadius: 8,
   },
