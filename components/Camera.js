@@ -112,7 +112,6 @@ const CameraComponent = ({ route, navigation }) => {
     }
 
     if (string.includes(hospName) && count >= keyWords.length * 0.7) {
-
       (async () => {
         try {
           await axios.post(`${ENDPOINT}/approved`, {
@@ -125,7 +124,9 @@ const CameraComponent = ({ route, navigation }) => {
       })();
       setApprove(true);
     }
-
+    navigation.navigate("Approval", {
+      approval: approve,
+    });
   }
 
   return (
