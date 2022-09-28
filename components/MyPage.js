@@ -5,7 +5,7 @@ import { View, Text, StyleSheet } from "react-native";
 import { AuthenticatedUserContext } from "../providers";
 import { signOut } from "firebase/auth";
 import { Button as CButton } from "./login_components/Button";
-import { auth } from "../config";
+import { auth, Colors } from "../config";
 import { UsernameContext } from "../providers/UsernameProvider";
 
 function MyPage({ navigation }) {
@@ -30,8 +30,9 @@ function MyPage({ navigation }) {
       <View style={{ marginTop: 20 }}>
         <Button
           radius={5}
-          buttonStyle={{ backgroundColor: "rgb(212, 91, 18)" }}
-          onPress={() => navigation.navigate("Camera")}
+          buttonStyle={{ backgroundColor: Colors.themeColor }}
+          // buttonStyle={{ backgroundColor: "tomato" }}
+          onPress={() => navigation.navigate("ClinicName")}
         >
           認証する
         </Button>

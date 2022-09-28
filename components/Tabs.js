@@ -3,13 +3,14 @@ import { Icon } from '@rneui/themed';
 import Home from './Home';
 import MyPage from './MyPage';
 import SaveList from './SaveList';
+import { Colors } from '../config'
 
 function Tabs() {
   const Tab = createBottomTabNavigator();
   return (
     <Tab.Navigator
       screenOptions={() => ({
-        tabBarActiveTintColor: 'tomato',
+        tabBarActiveTintColor: Colors.themeColor,
         tabBarInactiveTintColor: 'gray',
       })}>
       <Tab.Screen

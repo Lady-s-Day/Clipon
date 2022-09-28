@@ -27,20 +27,17 @@ export const RootNavigator = () => {
       }
     );
 
-    // console.log("RootNavigator, line29 ", user.email);
-
     // unsubscribe auth listener on unmount
     return unsubscribeAuthStateChanged;
   }, [user]);
 
   useEffect(() => {
-    console.log("RootNavigator, username ", username, user);
     if (!username && user) {
       (async () => {
         setIsLoading(true)
         try {
           const { data: response } = await axios.get(`${ENDPOINT}/username/${user.uid}`);
-          setUsername(response[0].user_name);
+          setUsername(response[0]?.user_name);
           setIsLoading(false);
         } catch (err) {
           console.log("Error getting username", err);

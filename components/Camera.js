@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Camera } from "expo-camera";
 import {
   Button,
@@ -9,18 +9,27 @@ import {
   Image,
 } from "react-native";
 import Environment from "../config/environments";
+import { AuthenticatedUserContext } from "../providers";
+import axios from "axios";
+import { ENDPOINT } from "../endpoint";
 
-const CameraComponent = () => {
+const CameraComponent = ({ route, navigation }) => {
   const [permission, requestPermission] = Camera.useCameraPermissions();
   const [camera, setCamera] = useState(null);
   const [picture, setPicture] = useState();
-  const [string, setString] = useState("");
+  const [string, setString] = useState();
+  const [approve, setApprove] = useState(false);
+  const { user, setUser } = useContext(AuthenticatedUserContext);
 
-  // useEffect(() => {
-  //   if (picture) {
-  //     cloudVision();
-  //   }
-  // }, [picture]);
+  useEffect(() => {
+    console.log(approve);
+  }, [approve]);
+
+  useEffect(() => {
+    if (string) {
+      checkReceipt();
+    }
+  }, [string]);
 
   if (!permission) {
     // Camera permissions are still loading
@@ -84,12 +93,57 @@ const CameraComponent = () => {
       }
     );
     const resJson = await response.json();
-    console.log(resJson.responses[0].textAnnotations[0].description);
 
-    setString({
-      ocrText: resJson.responses[0].textAnnotations[0].description,
-    });
+    setString(resJson.responses[0].textAnnotations[0].description);
   };
+
+  function checkReceipt() {
+    const { clinicName: hospName } = route.params;
+    // console.log(hospName);
+    // const newHospApprove = {
+    //   ...approve,
+    // };
+    // newHospApprove[hospName] = "pending";
+    // setApprove(newHospApprove);
+
+    const keyWords = [
+      "婦人科",
+      "受診日",
+      "初診",
+      "再診",
+      "患者",
+      "区分",
+      "保険",
+      "領収書",
+      "診療明細書",
+      "投薬",
+      "受診料",
+    ];
+    let count = 0;
+    for (const keyWord of keyWords) {
+      if (string.includes(keyWord)) {
+        count++;
+      }
+    }
+
+    if (string.includes(hospName) && count >= keyWords.length * 0.7) {
+      // newHospApprove[hospName] = "approve";
+
+      (async () => {
+        try {
+          await axios.post(`${ENDPOINT}/approved`, {
+            clinic_name: hospName,
+            uid: user.uid,
+          });
+        } catch (err) {
+          console.error("Error posing into approved clinics", err);
+        }
+      })();
+      setApprove(true);
+    }
+
+    // navigation.navigate("Approval");
+  }
 
   // =================================================================
 
