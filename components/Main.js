@@ -9,7 +9,11 @@ import Search from "./Search";
 import Clinic from "./Clinic";
 import Camera from "./Camera";
 import CreateReview from "./CrateReview";
+<<<<<<< HEAD
 import ClinicName from "./ClinicName";
+=======
+import { Colors } from "../config";
+>>>>>>> 6dfb3e3d3b8529f3c1fddf015d804c87bf6406c7
 // import "expo-dev-client";
 // import LoginAndroid from "./components/LoginAndroid";
 
