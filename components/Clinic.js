@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react";
 import { View, Text, Image, StyleSheet, ScrollView } from "react-native";
-import { Card, Icon } from "@rneui/themed";
+import { Card, Icon, Badge, Button } from "@rneui/themed";
 import axios from "axios";
-import { ENDPOINT } from "../endpoint"
+import { ENDPOINT } from "../endpoint";
+import { format, parseISO } from 'date-fns';
 
 function Clinic({ route, navigation }) {
   const [selectedClinic, setSelectedClinic] = useState()
   const [reviews, setReviews] = useState([])
   const { id } = route.params;
+  const formatDate = 'yyyy-MM-dd HH:mm';
 
   useEffect(() => {
     (async () => {
@@ -53,7 +55,14 @@ function Clinic({ route, navigation }) {
           return (
             <Card key={index}>
               <Text style={styles.text}>{review.text}</Text>
-              <Text>{review.date}</Text>
+              <View style={{ marginTop: 5 }}>
+                <Text>{review.user_name}
+                  {review.approved && <Badge
+                    status="error"
+                    value={"Approved"}
+                  />}</Text>
+              </View>
+              <Text>{format(parseISO(review.date), formatDate)}</Text>
             </Card>
           )
         })}
