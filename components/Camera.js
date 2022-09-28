@@ -48,15 +48,6 @@ const CameraComponent = ({ route, navigation }) => {
     );
   }
 
-  // const takePicture = async () => {
-  //   if (this.cameraRef) {
-  //     // 撮影
-  //     let photo = await this.cameraRef.current.takePictureAsync({
-  //       base64: true,
-  //     });
-  //   }
-  // };
-
   const takePicture = async () => {
     if (camera) {
       const image = await camera.takePictureAsync({
@@ -99,12 +90,6 @@ const CameraComponent = ({ route, navigation }) => {
 
   function checkReceipt() {
     const { clinicName: hospName } = route.params;
-    // console.log(hospName);
-    // const newHospApprove = {
-    //   ...approve,
-    // };
-    // newHospApprove[hospName] = "pending";
-    // setApprove(newHospApprove);
 
     const keyWords = [
       "婦人科",
@@ -127,7 +112,6 @@ const CameraComponent = ({ route, navigation }) => {
     }
 
     if (string.includes(hospName) && count >= keyWords.length * 0.7) {
-      // newHospApprove[hospName] = "approve";
 
       (async () => {
         try {
@@ -142,41 +126,7 @@ const CameraComponent = ({ route, navigation }) => {
       setApprove(true);
     }
 
-    // navigation.navigate("Approval");
   }
-
-  // =================================================================
-
-  // function cloudVision() {
-  //   function main() {
-  //     // [START vision_quickstart]
-  //     async function quickstart() {
-  //       // Imports the Google Cloud client library
-  //       const vision = require("@google-cloud/vision");
-
-  //       // Creates a client
-  //       const client = new vision.ImageAnnotatorClient();
-
-  //       // Performs label detection on the image file
-  //       const [result] = await client.documentTextDetection(picture);
-  //       const labels = result.fullTextAnnotation.text;
-  //       // console.log("Labels:");
-  //       console.log(labels);
-  //       // labels.forEach((label) => console.log(label.description));
-  //     }
-  //     quickstart();
-  //     // [END vision_quickstart]
-  //   }
-
-  //   process.on("unhandledRejection", (err) => {
-  //     console.error(err.message);
-  //     process.exitCode = 1;
-  //   });
-
-  //   main(...process.argv.slice(2));
-  // }
-
-  // ================================================================
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
