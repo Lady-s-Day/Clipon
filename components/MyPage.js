@@ -5,7 +5,7 @@ import { View, Text, StyleSheet } from "react-native";
 import { AuthenticatedUserContext } from "../providers";
 import { signOut } from "firebase/auth";
 import { Button as CButton } from "./login_components/Button";
-import { auth } from "../config";
+import { auth, Colors } from "../config";
 import { UsernameContext } from "../providers/UsernameProvider";
 
 function MyPage({ navigation }) {
@@ -18,19 +18,33 @@ function MyPage({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Icon raised name="person" color="black" />
-      <Text style={{ fontWeight: "bold", fontSize: 16, padding: 5 }}>
+      <Icon raised name="person" color={Colors.navy} />
+      <Text
+        style={{
+          fontWeight: "bold",
+          fontSize: 16,
+          padding: 5,
+          color: Colors.navy,
+        }}
+      >
         ユーザー名: {username}
       </Text>
       <Divider />
-      <Text style={{ fontWeight: "bold", fontSize: 16, padding: 5 }}>
+      <Text
+        style={{
+          fontWeight: "bold",
+          fontSize: 16,
+          padding: 5,
+          color: Colors.navy,
+        }}
+      >
         メールアドレス: {user.email}
       </Text>
       <Divider />
       <View style={{ marginTop: 20 }}>
         <Button
           radius={5}
-          buttonStyle={{ backgroundColor: "rgb(212, 91, 18)" }}
+          buttonStyle={{ backgroundColor: Colors.red }}
           onPress={() => navigation.navigate("Camera")}
         >
           認証する
@@ -50,12 +64,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
-    backgroundColor: "#fff",
+    backgroundColor: Colors.light,
+    color: Colors.navy,
   },
   borderlessButtonContainer: {
     marginTop: 16,
     alignItems: "center",
     justifyContent: "center",
+    color: Colors.navy,
   },
 });
 
