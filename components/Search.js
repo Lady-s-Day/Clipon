@@ -71,7 +71,7 @@ function Search({ navigation }) {
   };
 
   return (
-    <>
+    <View style={{ flex: 1, backgroundColor: Colors.light }}>
       <View style={styles.container}>
         <DropDownPicker
           style={styles.dropDown}
@@ -98,6 +98,7 @@ function Search({ navigation }) {
           style={styles.searchButton}
           buttonStyle={{ backgroundColor: Colors.red }}
           onPress={searchClinics}
+          titleStyle={{ fontSize: 20, fontWeight: "700" }}
         >
           検索
         </Button>
@@ -166,7 +167,7 @@ function Search({ navigation }) {
             })}
         </ScrollView>
       </View>
-    </>
+    </View>
   );
 }
 
