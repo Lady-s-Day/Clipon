@@ -49,9 +49,11 @@ function CreateReview({ route, navigation: { goBack } }) {
         onChangeText={setText}
       />
       <Button
+        radius={5}
         style={styles.addButton}
         buttonStyle={{ backgroundColor: Colors.red }}
         onPress={addReview}
+        titleStyle={{ fontSize: 18, fontWeight: "700" }}
       >
         レビューを追加
       </Button>

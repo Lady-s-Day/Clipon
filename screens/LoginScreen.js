@@ -37,7 +37,7 @@ export const LoginScreen = ({ navigation }) => {
           {/* LogoContainer: consits app logo and screen title */}
           <View style={styles.logoContainer}>
             <Logo uri={Images.logo} />
-            <Text style={styles.screenTitle}>Welcome back!</Text>
+            <Text style={styles.screenTitle}>おかえりなさい！</Text>
           </View>
           <Formik
             initialValues={{
@@ -60,7 +60,7 @@ export const LoginScreen = ({ navigation }) => {
                 <TextInput
                   name="email"
                   leftIconName="email"
-                  placeholder="Enter email"
+                  placeholder="メールアドレス"
                   autoCapitalize="none"
                   keyboardType="email-address"
                   textContentType="emailAddress"
@@ -76,7 +76,7 @@ export const LoginScreen = ({ navigation }) => {
                 <TextInput
                   name="password"
                   leftIconName="key-variant"
-                  placeholder="Enter password"
+                  placeholder="パスワード"
                   autoCapitalize="none"
                   autoCorrect={false}
                   secureTextEntry={passwordVisibility}
@@ -97,22 +97,36 @@ export const LoginScreen = ({ navigation }) => {
                 ) : null}
                 {/* Login button */}
                 <Button style={styles.button} onPress={handleSubmit}>
-                  <Text style={styles.buttonText}>Login</Text>
+                  <Text style={styles.buttonText}>ログイン</Text>
                 </Button>
               </>
             )}
           </Formik>
           {/* Button to navigate to SignupScreen to create a new account */}
+          <Text
+            style={{
+              marginTop: 20,
+              alignSelf: "center",
+              fontSize: 16,
+              color: Colors.navy,
+            }}
+          >
+            初めてのご利用の場合は
+          </Text>
           <Button
-            style={styles.borderlessButtonContainer}
+            style={{
+              marginTop: 5,
+              alignItems: "center",
+              justifyContent: "center",
+            }}
             borderless
-            title={"Create a new account?"}
+            title={"アカウントを作成してください"}
             onPress={() => navigation.navigate("Signup")}
           />
           <Button
             style={styles.borderlessButtonContainer}
             borderless
-            title={"Forgot Password"}
+            title={"パスワードを忘れた場合"}
             onPress={() => navigation.navigate("ForgotPassword")}
           />
         </KeyboardAwareScrollView>
@@ -170,7 +184,7 @@ const styles = StyleSheet.create({
     fontWeight: "700",
   },
   borderlessButtonContainer: {
-    marginTop: 16,
+    marginTop: 20,
     alignItems: "center",
     justifyContent: "center",
   },

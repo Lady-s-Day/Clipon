@@ -62,7 +62,7 @@ export const UsernameScreen = () => {
           {/* LogoContainer: consits app logo and screen title */}
           <View style={styles.logoContainer}>
             <Logo uri={Images.logo} />
-            <Text style={styles.screenTitle}>Set Your Username!</Text>
+            <Text style={styles.screenTitle}>ユーザー名の設定</Text>
           </View>
           <Formik
             initialValues={{
@@ -84,7 +84,7 @@ export const UsernameScreen = () => {
                 <TextInput
                   name="username"
                   leftIconName="account"
-                  placeholder="Enter username"
+                  placeholder="ユーザ名"
                   autoCapitalize="none"
                   keyboardType="default"
                   textContentType="username"
@@ -111,7 +111,7 @@ export const UsernameScreen = () => {
           <Button
             style={styles.borderlessButtonContainer}
             borderless
-            title={"Sign Out"}
+            title={"サインアウト"}
             onPress={handleLogout}
           />
         </KeyboardAwareScrollView>
@@ -133,10 +133,11 @@ const styles = StyleSheet.create({
     // width: 200,
   },
   screenTitle: {
-    fontSize: 25,
+    fontSize: 23,
     fontWeight: "500",
     color: Colors.navy,
     paddingTop: 20,
+    marginBottom: 10,
   },
   footer: {
     backgroundColor: Colors.white,

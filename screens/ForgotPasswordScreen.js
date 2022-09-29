@@ -29,7 +29,7 @@ export const ForgotPasswordScreen = ({ navigation }) => {
   return (
     <View isSafe style={styles.container}>
       <View style={styles.innerContainer}>
-        <Text style={styles.screenTitle}>Reset your password</Text>
+        <Text style={styles.screenTitle}>パスワードをリセットします</Text>
       </View>
       <Formik
         initialValues={{ email: "" }}
@@ -49,7 +49,7 @@ export const ForgotPasswordScreen = ({ navigation }) => {
             <TextInput
               name="email"
               leftIconName="email"
-              placeholder="Enter email"
+              placeholder="メールアドレス"
               autoCapitalize="none"
               keyboardType="email-address"
               textContentType="emailAddress"
@@ -64,7 +64,7 @@ export const ForgotPasswordScreen = ({ navigation }) => {
             ) : null}
             {/* Password Reset Send Email  button */}
             <Button style={styles.button} onPress={handleSubmit}>
-              <Text style={styles.buttonText}>Send Reset Email</Text>
+              <Text style={styles.buttonText}>送信</Text>
             </Button>
           </>
         )}
@@ -73,7 +73,7 @@ export const ForgotPasswordScreen = ({ navigation }) => {
       <Button
         style={styles.borderlessButtonContainer}
         borderless
-        title={"Go back to Login"}
+        title={"ログイン画面へ戻る"}
         onPress={() => navigation.navigate("Login")}
       />
     </View>
@@ -90,10 +90,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   screenTitle: {
-    fontSize: 32,
+    fontSize: 25,
     fontWeight: "700",
     color: Colors.navy,
     paddingTop: 20,
+    marginTop: 20,
+    marginBottom: 20,
+    marginLeft: 5,
   },
   button: {
     width: "100%",
@@ -110,7 +113,7 @@ const styles = StyleSheet.create({
     fontWeight: "700",
   },
   borderlessButtonContainer: {
-    marginTop: 16,
+    marginTop: 20,
     alignItems: "center",
     justifyContent: "center",
   },
