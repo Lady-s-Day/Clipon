@@ -4,7 +4,6 @@ import { Button } from "@rneui/themed";
 
 export const Approval = ({ route, navigation }) => {
   const { approval: approval } = route.params;
-  console.log(`${approval}でした`);
 
   if (approval === true) {
     return (

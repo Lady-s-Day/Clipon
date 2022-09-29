@@ -123,7 +123,7 @@ export const UsernameScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.light,
     paddingHorizontal: 12,
   },
   logoContainer: {
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
   screenTitle: {
     fontSize: 25,
     fontWeight: "500",
-    color: Colors.black,
+    color: Colors.navy,
     paddingTop: 20,
   },
   footer: {
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
   footerText: {
     fontSize: 14,
     fontWeight: "700",
-    color: Colors.orange,
+    color: Colors.red,
   },
   button: {
     width: "100%",
