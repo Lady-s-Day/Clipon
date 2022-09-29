@@ -11,6 +11,7 @@ import Camera from "./Camera";
 import CreateReview from "./CrateReview";
 import ClinicName from "./ClinicName";
 import { Colors } from "../config";
+import { CheckedContext } from "../providers/CheckedProvider";
 // import "expo-dev-client";
 // import LoginAndroid from "./components/LoginAndroid";
 

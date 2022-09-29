@@ -7,7 +7,7 @@ import {
   ScrollView,
   Linking,
 } from "react-native";
-import { Card, Icon } from "@rneui/themed";
+import { Card, Icon, Badge } from "@rneui/themed";
 import axios from "axios";
 import { ENDPOINT } from "../endpoint";
 import Hyperlink from "react-native-hyperlink";
