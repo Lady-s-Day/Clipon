@@ -1,18 +1,24 @@
-import React, { useState } from 'react';
-import { Text, StyleSheet } from 'react-native';
-import { Formik } from 'formik';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import React, { useState } from "react";
+import { Text, StyleSheet } from "react-native";
+import { Formik } from "formik";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
-import { View, TextInput, Logo, Button, FormErrorMessage } from '../components/login_components';
-import { Images, Colors, auth } from '../config';
-import { useTogglePasswordVisibility } from '../hooks';
-import { signupValidationSchema } from '../utils';
-import axios from 'axios';
+import {
+  View,
+  TextInput,
+  Logo,
+  Button,
+  FormErrorMessage,
+} from "../components/login_components";
+import { Images, Colors, auth } from "../config";
+import { useTogglePasswordVisibility } from "../hooks";
+import { signupValidationSchema } from "../utils";
+import axios from "axios";
 import { ENDPOINT } from "../endpoint";
 
 export const SignupScreen = ({ navigation }) => {
-  const [errorState, setErrorState] = useState('');
+  const [errorState, setErrorState] = useState("");
 
   const {
     passwordVisibility,
@@ -20,27 +26,27 @@ export const SignupScreen = ({ navigation }) => {
     rightIcon,
     handleConfirmPasswordVisibility,
     confirmPasswordIcon,
-    confirmPasswordVisibility
+    confirmPasswordVisibility,
   } = useTogglePasswordVisibility();
 
-  const handleSignup = async values => {
+  const handleSignup = async (values) => {
     const { email, password } = values;
 
     createUserWithEmailAndPassword(auth, email, password)
-
       .then((res) => {
-        console.log(res.user.uid)
-        axios.post(`${ENDPOINT}/signup`, {
-          uid: res.user.uid
-        }).then(res => {
-          // console.log(res)
-        }).catch(err => {
-          console.log(err, "err")
-        })
+        console.log(res.user.uid);
+        axios
+          .post(`${ENDPOINT}/signup`, {
+            uid: res.user.uid,
+          })
+          .then((res) => {
+            // console.log(res)
+          })
+          .catch((err) => {
+            console.log(err, "err");
+          });
       })
-      .catch(error =>
-        setErrorState(error.message)
-      );
+      .catch((error) => setErrorState(error.message));
   };
 
   return (
@@ -54,12 +60,12 @@ export const SignupScreen = ({ navigation }) => {
         {/* Formik Wrapper */}
         <Formik
           initialValues={{
-            email: '',
-            password: '',
-            confirmPassword: ''
+            email: "",
+            password: "",
+            confirmPassword: "",
           }}
           validationSchema={signupValidationSchema}
-          onSubmit={values => handleSignup(values)}
+          onSubmit={(values) => handleSignup(values)}
         >
           {({
             values,
@@ -67,61 +73,61 @@ export const SignupScreen = ({ navigation }) => {
             errors,
             handleChange,
             handleSubmit,
-            handleBlur
+            handleBlur,
           }) => (
             <>
               {/* Input fields */}
               <TextInput
-                name='email'
-                leftIconName='email'
-                placeholder='Enter email'
-                autoCapitalize='none'
-                keyboardType='email-address'
-                textContentType='emailAddress'
+                name="email"
+                leftIconName="email"
+                placeholder="Enter email"
+                autoCapitalize="none"
+                keyboardType="email-address"
+                textContentType="emailAddress"
                 autoFocus={true}
                 value={values.email}
-                onChangeText={handleChange('email')}
-                onBlur={handleBlur('email')}
+                onChangeText={handleChange("email")}
+                onBlur={handleBlur("email")}
               />
               <FormErrorMessage error={errors.email} visible={touched.email} />
               <TextInput
-                name='password'
-                leftIconName='key-variant'
-                placeholder='Enter password'
-                autoCapitalize='none'
+                name="password"
+                leftIconName="key-variant"
+                placeholder="Enter password"
+                autoCapitalize="none"
                 autoCorrect={false}
                 secureTextEntry={passwordVisibility}
-                textContentType='newPassword'
+                textContentType="newPassword"
                 rightIcon={rightIcon}
                 handlePasswordVisibility={handlePasswordVisibility}
                 value={values.password}
-                onChangeText={handleChange('password')}
-                onBlur={handleBlur('password')}
+                onChangeText={handleChange("password")}
+                onBlur={handleBlur("password")}
               />
               <FormErrorMessage
                 error={errors.password}
                 visible={touched.password}
               />
               <TextInput
-                name='confirmPassword'
-                leftIconName='key-variant'
-                placeholder='Enter password'
-                autoCapitalize='none'
+                name="confirmPassword"
+                leftIconName="key-variant"
+                placeholder="Enter password"
+                autoCapitalize="none"
                 autoCorrect={false}
                 secureTextEntry={confirmPasswordVisibility}
-                textContentType='password'
+                textContentType="password"
                 rightIcon={confirmPasswordIcon}
                 handlePasswordVisibility={handleConfirmPasswordVisibility}
                 value={values.confirmPassword}
-                onChangeText={handleChange('confirmPassword')}
-                onBlur={handleBlur('confirmPassword')}
+                onChangeText={handleChange("confirmPassword")}
+                onBlur={handleBlur("confirmPassword")}
               />
               <FormErrorMessage
                 error={errors.confirmPassword}
                 visible={touched.confirmPassword}
               />
               {/* Display Screen Error Mesages */}
-              {errorState !== '' ? (
+              {errorState !== "" ? (
                 <FormErrorMessage error={errorState} visible={true} />
               ) : null}
               {/* Signup button */}
@@ -135,8 +141,8 @@ export const SignupScreen = ({ navigation }) => {
         <Button
           style={styles.borderlessButtonContainer}
           borderless
-          title={'Already have an account?'}
-          onPress={() => navigation.navigate('Login')}
+          title={"Already have an account?"}
+          onPress={() => navigation.navigate("Login")}
         />
       </KeyboardAwareScrollView>
     </View>
@@ -146,35 +152,35 @@ export const SignupScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.white,
-    paddingHorizontal: 12
+    backgroundColor: Colors.light,
+    paddingHorizontal: 12,
   },
   logoContainer: {
-    alignItems: 'center'
+    alignItems: "center",
   },
   screenTitle: {
     fontSize: 23,
-    fontWeight: '500',
-    color: Colors.black,
-    paddingTop: 20
+    fontWeight: "500",
+    color: Colors.navy,
+    paddingTop: 20,
   },
   button: {
-    width: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
     marginTop: 8,
     backgroundColor: Colors.red,
     padding: 10,
-    borderRadius: 8
+    borderRadius: 8,
   },
   buttonText: {
     fontSize: 20,
     color: Colors.white,
-    fontWeight: '700'
+    fontWeight: "700",
   },
   borderlessButtonContainer: {
     marginTop: 16,
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
+    alignItems: "center",
+    justifyContent: "center",
+  },
 });

@@ -1,10 +1,11 @@
 import { useState, useContext } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Input, Button } from "@rneui/themed";
-import axios from 'axios';
+import axios from "axios";
 import { ENDPOINT } from "../endpoint";
 import { AuthenticatedUserContext } from "../providers";
 import { useEffect } from "react";
+import { Colors } from "../config";
 
 function CreateReview({ route, navigation: { goBack } }) {
   const { user, setUser } = useContext(AuthenticatedUserContext);
@@ -16,9 +17,8 @@ function CreateReview({ route, navigation: { goBack } }) {
     (async () => {
       try {
         const data = await axios.get(`${ENDPOINT}/approved/${id}`);
-        setApproved(data.data.some(clinic => clinic.user_id === user.uid));
-      }
-      catch (err) {
+        setApproved(data.data.some((clinic) => clinic.user_id === user.uid));
+      } catch (err) {
         console.error(err);
       }
     })();
@@ -31,41 +31,43 @@ function CreateReview({ route, navigation: { goBack } }) {
         text: text,
         clinic_id: id,
         user_id: user.uid,
-        approved: approved
-      })
-      setText("")
-      goBack()
+        approved: approved,
+      });
+      setText("");
+      goBack();
+    } catch (err) {
+      console.log(err);
     }
-    catch (err) {
-      console.log(err)
-    }
-  }
+  };
 
   return (
     <View style={styles.container}>
       <Input
         placeholder="レビュー"
-        leftIcon={{ type: 'font-awesome', name: 'comment' }}
+        leftIcon={{ type: "font-awesome", name: "comment", color: Colors.navy }}
         value={text}
         onChangeText={setText}
       />
       <Button
-        color="warning"
         style={styles.addButton}
-        buttonStyle={{ backgroundColor: 'rgb(212, 91, 18)' }}
+        buttonStyle={{ backgroundColor: Colors.red }}
         onPress={addReview}
-      >レビューを追加</Button>
+      >
+        レビューを追加
+      </Button>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
-    margin: 10
+    flex: 1,
+    padding: 10,
+    backgroundColor: Colors.light,
   },
   addButton: {
-    margin: 5
-  }
+    margin: 5,
+  },
 });
 
 export default CreateReview;

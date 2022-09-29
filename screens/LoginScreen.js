@@ -119,11 +119,11 @@ export const LoginScreen = ({ navigation }) => {
       </View>
 
       {/* App info footer */}
-      <View style={styles.footer}>
+      {/* <View style={styles.footer}>
         <Text style={styles.footerText}>
           Expo Firebase Starter App (based on managed workflow)
         </Text>
-      </View>
+      </View> */}
     </>
   );
 };
@@ -131,7 +131,7 @@ export const LoginScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.light,
     paddingHorizontal: 12,
   },
   logoContainer: {
@@ -140,11 +140,11 @@ const styles = StyleSheet.create({
   screenTitle: {
     fontSize: 25,
     fontWeight: "500",
-    color: Colors.black,
+    color: Colors.navy,
     paddingTop: 20,
   },
   footer: {
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.light,
     paddingHorizontal: 12,
     paddingBottom: 48,
     alignItems: "center",
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "700",
     // color: Colors.orange,
-    color: "#fc1c1c",
+    color: Colors.red,
   },
   button: {
     width: "100%",
