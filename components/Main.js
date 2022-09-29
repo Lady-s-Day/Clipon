@@ -12,6 +12,8 @@ import CreateReview from "./CrateReview";
 import ClinicName from "./ClinicName";
 import { Colors } from "../config";
 import { CheckedContext } from "../providers/CheckedProvider";
+import { Approval } from "./Approval";
+import MyPage from "./MyPage";
 // import "expo-dev-client";
 // import LoginAndroid from "./components/LoginAndroid";
 
@@ -56,11 +58,12 @@ export default function Main() {
         component={ClinicName}
         options={{ headerTitleAlign: "center", title: "病院名" }}
       />
-      {/* <Stack.Screen
+      <Stack.Screen
         name="Approval"
         component={Approval}
-        options={{headerTitleAlign: "center", title: "承認"}}
-      /> */}
+        options={{ headerTitleAlign: "center", title: "承認" }}
+      />
+      <Stack.Screen name="MyPage" component={MyPage} />
     </Stack.Navigator>
     // </NavigationContainer>
   );

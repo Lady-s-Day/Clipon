@@ -6,6 +6,7 @@ import {
   ScrollView,
   TouchableOpacity,
   Image,
+  Linking,
 } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 import { Button, Card, Icon } from "@rneui/themed";
@@ -14,6 +15,7 @@ import { ENDPOINT } from "../endpoint";
 import CheckBox from "./CheckBox";
 import { Colors } from "../config";
 import { CheckedContext } from "../providers/CheckedProvider";
+import Hyperlink from "react-native-hyperlink";
 
 function Search({ navigation }) {
   const [isChecked, setChecked] = useState({});
@@ -113,7 +115,7 @@ function Search({ navigation }) {
                     })
                   }
                 >
-                  <Card>
+                  <Card containerStyle={{ borderRadius: 8 }}>
                     <Image
                       style={{ width: "100%", height: 100, marginBottom: 10 }}
                       resizeMode="cover"
@@ -121,17 +123,39 @@ function Search({ navigation }) {
                     />
                     <View style={{ flex: 1, flexDirection: "row" }}>
                       <View style={{ flex: 3 }}>
-                        <Text style={{ fontWeight: "bold", fontSize: 16 }}>
+                        <Text
+                          style={{
+                            fontWeight: "bold",
+                            fontSize: 16,
+                            color: Colors.navy,
+                          }}
+                        >
                           {clinic.clinic_name}
                         </Text>
                         <View>
-                          <Text>{clinic.url}</Text>
+                          <Hyperlink
+                            linkStyle={{
+                              color: Colors.navy,
+                              fontWeight: "bold",
+                            }}
+                            onPress={(url, text) => {
+                              Linking.canOpenURL(url).then((supported) => {
+                                if (!supported) {
+                                  console.log("無効なURLです: " + url);
+                                } else {
+                                  return Linking.openURL(url);
+                                }
+                              });
+                            }}
+                          >
+                            <Text>{clinic.url}</Text>
+                          </Hyperlink>
                         </View>
                       </View>
                       <View style={{ flex: 1 }}>
                         <Icon
                           name="favorite-outline"
-                          color="#f50"
+                          color={Colors.red}
                           onPress={() => console.log("favorite!")}
                         />
                       </View>
@@ -149,15 +173,18 @@ function Search({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     margin: 10,
+    backgroundColor: Colors.light,
   },
   dropDown: {
     marginBottom: 10,
+    color: Colors.navy,
   },
   searchButton: {
     margin: 5,
   },
   scrollArea: {
     marginBottom: 50,
+    backgroundColor: Colors.light,
   },
 });
 

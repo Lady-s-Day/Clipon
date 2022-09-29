@@ -12,13 +12,13 @@ import axios from "axios";
 import { ENDPOINT } from "../endpoint";
 import Hyperlink from "react-native-hyperlink";
 import { Colors } from "../config";
-import { format, parseISO } from 'date-fns';
+import { format, parseISO } from "date-fns";
 
 function Clinic({ route, navigation }) {
   const [selectedClinic, setSelectedClinic] = useState();
   const [reviews, setReviews] = useState([]);
   const { id } = route.params;
-  const formatDate = 'yyyy-MM-dd HH:mm';
+  const formatDate = "yyyy-MM-dd HH:mm";
 
   useEffect(() => {
     (async () => {
@@ -38,13 +38,19 @@ function Clinic({ route, navigation }) {
       {selectedClinic && (
         <>
           <Image
-            style={{ width: "100%", height: 100, backgroundColor: "#fff" }}
+            style={{
+              width: "100%",
+              height: 100,
+              backgroundColor: Colors.light,
+            }}
             resizeMode="cover"
             source={{ uri: selectedClinic.image }}
           />
           <View style={styles.container}>
             <View style={{ flex: 3 }}>
-              <Text style={{ fontWeight: "bold", fontSize: 16 }}>
+              <Text
+                style={{ fontWeight: "bold", fontSize: 16, color: Colors.navy }}
+              >
                 {selectedClinic.clinic_name}
               </Text>
               <View>
@@ -67,12 +73,12 @@ function Clinic({ route, navigation }) {
             <View style={{ flex: 1 }}>
               <Icon
                 name="favorite-outline"
-                color="#f50"
+                color={Colors.red}
                 onPress={() => console.log("favorite!")}
               />
               <Icon
                 name="add"
-                color="black"
+                color={Colors.navy}
                 onPress={() =>
                   navigation.navigate("CreateReview", {
                     id: id,
@@ -83,22 +89,24 @@ function Clinic({ route, navigation }) {
           </View>
         </>
       )}
-      <ScrollView>
-        {reviews && reviews.map((review, index) => {
-          return (
-            <Card key={index}>
-              <Text style={styles.text}>{review.text}</Text>
-              <View style={{ marginTop: 5 }}>
-                <Text>{review.user_name}
-                  {review.approved && <Badge
-                    status="error"
-                    value={"Approved"}
-                  />}</Text>
-              </View>
-              <Text>{format(parseISO(review.date), formatDate)}</Text>
-            </Card>
-          )
-        })}
+      <ScrollView style={{ backgroundColor: Colors.light }}>
+        {reviews &&
+          reviews.map((review, index) => {
+            return (
+              <Card key={index}>
+                <Text style={styles.text}>{review.text}</Text>
+                <View style={{ marginTop: 5 }}>
+                  <Text>
+                    {review.user_name}
+                    {review.approved && (
+                      <Badge status="error" value={"Approved"} />
+                    )}
+                  </Text>
+                </View>
+                <Text>{format(parseISO(review.date), formatDate)}</Text>
+              </Card>
+            );
+          })}
       </ScrollView>
     </>
   );
@@ -109,12 +117,13 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     padding: 20,
-    backgroundColor: "#fff",
+    backgroundColor: Colors.light,
   },
   text: {
     fontSize: 14,
     fontWeight: "bold",
     marginBottom: 10,
+    color: Colors.navy,
   },
 });
 

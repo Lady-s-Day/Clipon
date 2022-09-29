@@ -32,7 +32,7 @@ function SaveList({ navigation }) {
   ]);
 
   return (
-    <View>
+    <View style={{ flex: 1, backgroundColor: Colors.light }}>
       <ScrollView>
         {clinics &&
           clinics.map((clinic, index) => {
@@ -45,7 +45,7 @@ function SaveList({ navigation }) {
                   })
                 }
               >
-                <Card>
+                <Card containerStyle={{ borderRadius: 8 }}>
                   <Image
                     style={{ width: "100%", height: 100, marginBottom: 10 }}
                     resizeMode="cover"
@@ -53,7 +53,13 @@ function SaveList({ navigation }) {
                   />
                   <View style={{ flex: 1, flexDirection: "row" }}>
                     <View style={{ flex: 3 }}>
-                      <Text style={{ fontWeight: "bold", fontSize: 16 }}>
+                      <Text
+                        style={{
+                          fontWeight: "bold",
+                          fontSize: 16,
+                          color: Colors.navy,
+                        }}
+                      >
                         {clinic.clinic_name}
                       </Text>
                       <View>
@@ -76,7 +82,7 @@ function SaveList({ navigation }) {
                     <View style={{ flex: 1 }}>
                       <Icon
                         name="favorite-outline"
-                        color="#f50"
+                        color={Colors.red}
                         onPress={() => console.log("favorite!")}
                       />
                     </View>
