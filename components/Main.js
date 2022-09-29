@@ -10,6 +10,8 @@ import Clinic from "./Clinic";
 import Camera from "./Camera";
 import CreateReview from "./CrateReview";
 import ClinicName from "./ClinicName";
+import { Colors } from "../config";
+import { CheckedContext } from "../providers/CheckedProvider";
 import { Approval } from "./Approval";
 import MyPage from "./MyPage";
 // import "expo-dev-client";

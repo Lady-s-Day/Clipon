@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   View,
   Text,
@@ -12,10 +12,13 @@ import DropDownPicker from "react-native-dropdown-picker";
 import { Button, Card, Icon } from "@rneui/themed";
 import axios from "axios";
 import { ENDPOINT } from "../endpoint";
+import CheckBox from "./CheckBox";
 import { Colors } from "../config";
+import { CheckedContext } from "../providers/CheckedProvider";
 import Hyperlink from "react-native-hyperlink";
 
 function Search({ navigation }) {
+  const [isChecked, setChecked] = useState({});
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
   const [wardId, setWardId] = useState(null);
@@ -48,10 +51,16 @@ function Search({ navigation }) {
 
   const searchClinics = () => {
     if (wardId) {
+      const searchCondition = {
+        ...isChecked,
+      };
+      searchCondition.ward = wardId;
+      console.log(searchCondition);
       (async () => {
         try {
           const { data: response } = await axios.get(
-            `${ENDPOINT}/wards/${wardId}`
+            `${ENDPOINT}/searched-clinics`,
+            searchCondition
           );
           setClinics(response);
         } catch (err) {
@@ -76,15 +85,24 @@ function Search({ navigation }) {
           value={value}
           setValue={setValue}
         />
+      </View>
+      <View style={styles.container}>
+        <CheckedContext.Provider value={{ isChecked, setChecked }}>
+          <CheckBox />
+        </CheckedContext.Provider>
+      </View>
+      <View style={styles.container}>
         <Button
           radius={5}
-          color={Colors.red}
+          color="warning"
           style={styles.searchButton}
           buttonStyle={{ backgroundColor: Colors.red }}
           onPress={searchClinics}
         >
           検索
         </Button>
+      </View>
+      <View style={styles.container}>
         <ScrollView style={styles.scrollArea}>
           {clinics &&
             clinics.map((clinic, index) => {
