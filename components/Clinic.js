@@ -12,13 +12,13 @@ import axios from "axios";
 import { ENDPOINT } from "../endpoint";
 import Hyperlink from "react-native-hyperlink";
 import { Colors } from "../config";
-import { format, parseISO } from 'date-fns';
+import { format, parseISO } from "date-fns";
 
 function Clinic({ route, navigation }) {
   const [selectedClinic, setSelectedClinic] = useState();
   const [reviews, setReviews] = useState([]);
   const { id } = route.params;
-  const formatDate = 'yyyy-MM-dd HH:mm';
+  const formatDate = "yyyy-MM-dd HH:mm";
 
   useEffect(() => {
     (async () => {
@@ -84,21 +84,23 @@ function Clinic({ route, navigation }) {
         </>
       )}
       <ScrollView>
-        {reviews && reviews.map((review, index) => {
-          return (
-            <Card key={index}>
-              <Text style={styles.text}>{review.text}</Text>
-              <View style={{ marginTop: 5 }}>
-                <Text>{review.user_name}
-                  {review.approved && <Badge
-                    status="error"
-                    value={"Approved"}
-                  />}</Text>
-              </View>
-              <Text>{format(parseISO(review.date), formatDate)}</Text>
-            </Card>
-          )
-        })}
+        {reviews &&
+          reviews.map((review, index) => {
+            return (
+              <Card key={index}>
+                <Text style={styles.text}>{review.text}</Text>
+                <View style={{ marginTop: 5 }}>
+                  <Text>
+                    {review.user_name}
+                    {review.approved && (
+                      <Badge status="error" value={"Approved"} />
+                    )}
+                  </Text>
+                </View>
+                <Text>{format(parseISO(review.date), formatDate)}</Text>
+              </Card>
+            );
+          })}
       </ScrollView>
     </>
   );
