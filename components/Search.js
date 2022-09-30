@@ -60,7 +60,7 @@ function Search({ navigation }) {
         try {
           const { data: response } = await axios.get(
             `${ENDPOINT}/searched-clinics`,
-            searchCondition
+            { params: searchCondition }
           );
           setClinics(response);
         } catch (err) {
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
   container: {
     margin: 10,
     backgroundColor: Colors.light,
-    zIndex: 1000
+    zIndex: 1000,
   },
   dropDown: {
     marginBottom: 10,
