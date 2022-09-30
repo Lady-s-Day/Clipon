@@ -30,8 +30,6 @@ const ClinicCard = ({ clinics, navigation }) => {
       for (const clinic of clinics) {
         sendingParams.ids.push(clinic.id);
       }
-      console.log(sendingParams);
-      console.log(typeof sendingParams.ids[1]);
       (async () => {
         try {
           const { data: response } = await axios.get(`${ENDPOINT}/types/ids`, {

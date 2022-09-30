@@ -60,7 +60,7 @@ function Search({ navigation }) {
         try {
           const { data: response } = await axios.get(
             `${ENDPOINT}/searched-clinics`,
-            searchCondition
+            { params: searchCondition }
           );
           setClinics(response);
         } catch (err) {
@@ -72,7 +72,7 @@ function Search({ navigation }) {
 
   return (
     <View style={{ flex: 1, backgroundColor: Colors.light }}>
-      <View style={styles.container}>
+      <View style={styles.searchCondition}>
         <DropDownPicker
           style={styles.dropDown}
           placeholder="区を選択してください"
@@ -85,8 +85,6 @@ function Search({ navigation }) {
           value={value}
           setValue={setValue}
         />
-      </View>
-      <View style={styles.container}>
         <CheckedContext.Provider value={{ isChecked, setChecked }}>
           <CheckBox />
         </CheckedContext.Provider>
@@ -113,6 +111,11 @@ function Search({ navigation }) {
 }
 
 const styles = StyleSheet.create({
+  searchCondition: {
+    margin: 10,
+    backgroundColor: Colors.light,
+    zIndex: 1000,
+  },
   container: {
     margin: 10,
     backgroundColor: Colors.light,
