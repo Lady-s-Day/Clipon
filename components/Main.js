@@ -26,41 +26,53 @@ export default function Main() {
   return (
     // <NavigationContainer>
     <SavedContext.Provider value={{ favorite, setFavorite }}>
-    <Stack.Navigator>
-      <Stack.Screen
-        name="Tabs"
-        component={Tabs}
-      />
-      <Stack.Screen
-        name="ClinicCard"
-        component={ClinicCard}
-      />
-      <Stack.Screen
-        name="Clinic"
-        component={Clinic}
-      />
-      <Stack.Screen
-        name="Search"
-        component={Search}
-      />
-      <Stack.Screen
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Tabs"
+          component={Tabs}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="ClinicCard"
+          component={ClinicCard}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Clinic"
+          component={Clinic}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Search"
+          component={Search}
+          options={{ headerTitleAlign: "center", title: "検索" }}
+        />
+        <Stack.Screen
           name="CreateReview"
           component={CreateReview}
-      />
-      <Stack.Screen
-        name="Camera"
-        component={Camera}
-      />
-      <Stack.Screen
-        name="ClinicName"
-        component={ClinicName}
-      />
-      <Stack.Screen
-        name="Approval"
-        component={Approval}
-      />
-      <Stack.Screen name="MyPage" component={MyPage} />
-    </Stack.Navigator>
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Camera"
+          component={Camera}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="ClinicName"
+          component={ClinicName}
+          options={{ headerTitleAlign: "center", title: "承認" }}
+        />
+        <Stack.Screen
+          name="Approval"
+          component={Approval}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="MyPage"
+          component={MyPage}
+          options={{ headerShown: false }}
+        />
+      </Stack.Navigator>
     </SavedContext.Provider>
     // </NavigationContainer>
   );

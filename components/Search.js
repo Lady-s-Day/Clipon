@@ -85,8 +85,6 @@ function Search({ navigation }) {
           value={value}
           setValue={setValue}
         />
-      </View>
-      <View style={styles.container}>
         <CheckedContext.Provider value={{ isChecked, setChecked }}>
           <CheckBox />
         </CheckedContext.Provider>
@@ -116,6 +114,7 @@ const styles = StyleSheet.create({
   container: {
     margin: 10,
     backgroundColor: Colors.light,
+    zIndex: 1000
   },
   dropDown: {
     marginBottom: 10,
