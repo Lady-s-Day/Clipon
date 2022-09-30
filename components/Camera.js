@@ -117,6 +117,7 @@ const CameraComponent = ({ route, navigation }) => {
           await axios.post(`${ENDPOINT}/approved`, {
             clinic_name: hospName,
             uid: user.uid,
+            photo_uri: picture,
           });
         } catch (err) {
           console.error("Error posing into approved clinics", err);
