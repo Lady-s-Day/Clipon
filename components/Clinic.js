@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import {
   View,
   Text,
@@ -13,8 +13,13 @@ import { ENDPOINT } from "../endpoint";
 import Hyperlink from "react-native-hyperlink";
 import { Colors } from "../config";
 import { format, parseISO } from "date-fns";
+import { toggleFavorite } from "../utils/toggleFavorite";
+import { SavedContext } from "../providers/SavedContext";
+import { AuthenticatedUserContext } from "../providers";
 
 function Clinic({ route, navigation }) {
+  const { favorite, setFavorite } = useContext(SavedContext);
+  const { user, setUser } = useContext(AuthenticatedUserContext)
   const [selectedClinic, setSelectedClinic] = useState();
   const [reviews, setReviews] = useState([]);
   const { id } = route.params;
@@ -74,7 +79,10 @@ function Clinic({ route, navigation }) {
               <Icon
                 name="favorite-outline"
                 color={Colors.red}
-                onPress={() => console.log("favorite!")}
+                onPress={() => {
+                  toggleFavorite(id, favorite, setFavorite, user);
+                  console.log("favorite!")
+                }}
               />
               <Icon
                 name="add"

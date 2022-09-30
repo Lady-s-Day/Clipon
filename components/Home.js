@@ -13,6 +13,9 @@ import axios from "axios";
 import { ENDPOINT } from "../endpoint";
 import { Colors } from "../config";
 import Hyperlink from "react-native-hyperlink";
+import * as React from "react";
+import { Chip } from "react-native-paper";
+import ClinicCard from "./ClinicCard";
 
 function Home({ navigation }) {
   const [clinics, setClinics] = useState([]);
@@ -36,6 +39,7 @@ function Home({ navigation }) {
         onPress={() => navigation.navigate("Search")}
       />
       <ScrollView style={styles.scrollArea}>
+        <ClinicCard clinics={clinics} navigation={navigation} />
         {clinics.map((clinic, index) => {
           return (
             <TouchableOpacity
@@ -64,6 +68,12 @@ function Home({ navigation }) {
                       {clinic.clinic_name}
                     </Text>
                     <View>
+                      <Chip
+                        icon="information"
+                        onPress={() => console.log("Pressed")}
+                      >
+                        Example Chip
+                      </Chip>
                       <Hyperlink
                         linkStyle={{ color: Colors.navy, fontWeight: "bold" }}
                         onPress={(url, text) => {
