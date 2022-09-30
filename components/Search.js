@@ -6,6 +6,7 @@ import {
   ScrollView,
   TouchableOpacity,
   Image,
+  Linking,
 } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 import { Button, Card, Icon } from "@rneui/themed";
@@ -70,7 +71,7 @@ function Search({ navigation }) {
   };
 
   return (
-    <>
+    <View style={{ flex: 1, backgroundColor: Colors.light }}>
       <View style={styles.container}>
         <DropDownPicker
           style={styles.dropDown}
@@ -97,6 +98,7 @@ function Search({ navigation }) {
           style={styles.searchButton}
           buttonStyle={{ backgroundColor: Colors.red }}
           onPress={searchClinics}
+          titleStyle={{ fontSize: 20, fontWeight: "700" }}
         >
           検索
         </Button>
@@ -106,22 +108,25 @@ function Search({ navigation }) {
           <ClinicCard clinics={clinics} />
         </ScrollView>
       </View>
-    </>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     margin: 10,
+    backgroundColor: Colors.light,
   },
   dropDown: {
     marginBottom: 10,
+    color: Colors.navy,
   },
   searchButton: {
     margin: 5,
   },
   scrollArea: {
     marginBottom: 50,
+    backgroundColor: Colors.light,
   },
 });
 

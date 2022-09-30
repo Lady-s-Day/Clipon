@@ -8,7 +8,7 @@ import {
   StyleSheet,
   Linking,
 } from "react-native";
-import { Card, Icon, Button } from "@rneui/themed";
+import { Card, Icon } from "@rneui/themed";
 import axios from "axios";
 import { ENDPOINT } from "../endpoint";
 import { Colors } from "../config";

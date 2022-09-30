@@ -1,31 +1,37 @@
 import { useState } from "react";
 import { View, ScrollView } from "react-native";
 import ClinicCard from "./ClinicCard";
+import { useState, useEffect, useContext } from "react";
+import {
+  View,
+  ScrollView,
+} from "react-native";
+import { Colors } from "../config";
+import ClinicCard from "./ClinicCard";
+import { AuthenticatedUserContext } from "../providers";
+import { ENDPOINT } from "../endpoint";
+import axios from "axios";
 
 function SaveList({ navigation }) {
-  const [clinics, setClinics] = useState([
-    {
-      id: 10,
-      clinic_name: "池ノ上産婦人科",
-      stars: 0,
-      url: "http://www.sanfujin.com/",
-      image: "https://i.ibb.co/s63zDyS/ikenoue.jpg",
-      tokyo_ward_id: 14,
-    },
-    {
-      id: 11,
-      clinic_name: "三軒茶屋ウィメンズクリニック",
-      stars: 0,
-      url: "http://www.sangenjaya-wcl.com/index.html",
-      image: "https://i.ibb.co/VgRMfJ8/sancha-womens.jpg",
-      tokyo_ward_id: 14,
-    },
-  ]);
+  const { user, setUser } = useContext(AuthenticatedUserContext);
+  const [clinics, setClinics] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const data = await axios.get(`${ENDPOINT}/saved/${user.uid}`);
+        setClinics(data.data);
+      } catch (err) {
+        console.error(err);
+      }
+    })();
+  }, [clinics]);
+
 
   return (
-    <View>
+    <View style={{ flex: 1, backgroundColor: Colors.light }}>
       <ScrollView>
-        <ClinicCard clinics={clinics} />
+        <ClinicCard clinics={clinics} navigation={navigation} />
       </ScrollView>
     </View>
   );

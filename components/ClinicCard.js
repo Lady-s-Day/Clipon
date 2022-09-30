@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from "react";
+=======
+import React, { useContext, useState, useEffect } from 'react';
+>>>>>>> 029f2fed367cdc23856c014b0c7277d65573ded2
 import {
   View,
   Text,
@@ -14,11 +18,20 @@ import { ENDPOINT } from "../endpoint";
 import { Colors } from "../config";
 import Hyperlink from "react-native-hyperlink";
 import { Chip } from "react-native-paper";
-// import { Chip } from "@rneui/themed";
-// import { LinearGradient } from 'expo-linear-gradient';
+
+import { AuthenticatedUserContext } from "../providers";
+import { toggleFavorite } from '../utils/toggleFavorite';
+import { SavedContext } from '../providers/SavedContext';
 
 const ClinicCard = ({ clinics, navigation }) => {
   const [treatments, setTreatments] = useState({});
+  const { user, setUser } = useContext(AuthenticatedUserContext);
+  const { favorite, setFavorite } = useContext(SavedContext);
+
+  useEffect(() => {
+    console.log(favorite);
+  }, [favorite])
+
 
   useEffect(() => {
     (async () => {
@@ -29,7 +42,24 @@ const ClinicCard = ({ clinics, navigation }) => {
         console.error("Error getting treatement types (ClinicCard.js)", err);
       }
     })();
+
+    (async () => {
+      try {
+        const { data: response } = await axios.get(`${ENDPOINT}/saved/${user.uid}`);
+        const obj = {}
+        for (const clinic of response) {
+          obj[clinic.id] = true;
+        }
+        setFavorite(obj);
+      } catch (err) {
+        console.error("Error getting saved", err);
+      }
+    })();
   }, []);
+
+
+
+
 
   return (
     <>
@@ -83,20 +113,21 @@ const ClinicCard = ({ clinics, navigation }) => {
                     );
                   })}
                 </View>
-                <View style={{ flex: 1 }}>
-                  <Icon
-                    name="favorite-outline"
-                    color={Colors.red}
-                    onPress={() => console.log("favorite!")}
-                  />
-                </View>
+              <View style={{ flex: 1 }}>
+                <Icon
+                  name="favorite-outline"
+                  color={Colors.red}
+                  onPress={() => toggleFavorite(clinic.id, favorite, setFavorite, user)}
+                />
               </View>
-            </Card>
-          </TouchableOpacity>
-        );
-      })}
+            </View>
+          </Card>
+        </TouchableOpacity>
+      );
+    })}
     </>
   );
 };
 
-export default ClinicCard;
+
+export default ClinicCard

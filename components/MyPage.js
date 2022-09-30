@@ -22,7 +22,7 @@ function MyPage({ navigation }) {
       <Text
         style={{
           fontWeight: "bold",
-          fontSize: 16,
+          fontSize: 17,
           padding: 5,
           color: Colors.navy,
         }}
@@ -33,7 +33,7 @@ function MyPage({ navigation }) {
       <Text
         style={{
           fontWeight: "bold",
-          fontSize: 16,
+          fontSize: 17,
           padding: 5,
           color: Colors.navy,
         }}
@@ -46,14 +46,15 @@ function MyPage({ navigation }) {
           radius={5}
           buttonStyle={{ backgroundColor: Colors.red }}
           onPress={() => navigation.navigate("ClinicName")}
+          titleStyle={{ fontSize: 20, fontWeight: "700" }}
         >
-          認証する
+          認証
         </Button>
       </View>
       <CButton
         style={styles.borderlessButtonContainer}
         borderless
-        title={"Sign Out"}
+        title={"サインアウト"}
         onPress={handleLogout}
       />
     </View>

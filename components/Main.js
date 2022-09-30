@@ -13,14 +13,19 @@ import ClinicName from "./ClinicName";
 import ClinicCard from "./ClinicCard";
 import { Colors } from "../config";
 import { CheckedContext } from "../providers/CheckedProvider";
+import { Approval } from "./Approval";
+import MyPage from "./MyPage";
 // import "expo-dev-client";
 // import LoginAndroid from "./components/LoginAndroid";
+import { SavedContext } from "../providers/SavedContext";
 
 export default function Main() {
+  const [favorite, setFavorite] = useState({});
   const Stack = createNativeStackNavigator();
 
   return (
     // <NavigationContainer>
+    <SavedContext.Provider value={{ favorite, setFavorite }}>
     <Stack.Navigator>
       <Stack.Screen
         name="Tabs"
@@ -43,9 +48,9 @@ export default function Main() {
         options={{ headerTitleAlign: "center", title: "クリニックを検索" }}
       />
       <Stack.Screen
-        name="CreateReview"
-        component={CreateReview}
-        options={{ headerTitleAlign: "center", title: "レビューを追加" }}
+          name="CreateReview"
+          component={CreateReview}
+          options={{ headerTitleAlign: "center", title: "レビューを追加" }}
       />
       <Stack.Screen
         name="Camera"
@@ -57,12 +62,14 @@ export default function Main() {
         component={ClinicName}
         options={{ headerTitleAlign: "center", title: "病院名" }}
       />
-      {/* <Stack.Screen
+      <Stack.Screen
         name="Approval"
         component={Approval}
-        options={{headerTitleAlign: "center", title: "承認"}}
-      /> */}
+        options={{ headerTitleAlign: "center", title: "承認" }}
+      />
+      <Stack.Screen name="MyPage" component={MyPage} />
     </Stack.Navigator>
+    </SavedContext.Provider>
     // </NavigationContainer>
   );
 }

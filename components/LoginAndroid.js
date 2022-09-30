@@ -6,6 +6,7 @@ import {
 } from "@react-native-google-signin/google-signin";
 // import "expo-dev-client";
 import auth from "@react-native-firebase/auth";
+import { Colors } from "../config";
 
 function LoginAndroid() {
   // Set an initializing state whilst Firebase connects
@@ -61,22 +62,23 @@ function LoginAndroid() {
   }
   return (
     <View style={styles.container}>
-      <View style={{marginTop:100, alignItems:'center'}}>
+      <View style={{ marginTop: 100, alignItems: "center" }}>
         <Text style={styles.text}>Welcome, {user.displayName}</Text>
       </View>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
+    backgroundColor: Colors.light,
+    alignItems: "center",
   },
   text: {
     fontSize: 23,
-  }
-})
+    color: Colors.navy,
+  },
+});
 
 export default LoginAndroid;
