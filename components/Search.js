@@ -72,7 +72,7 @@ function Search({ navigation }) {
 
   return (
     <View style={{ flex: 1, backgroundColor: Colors.light }}>
-      <View style={styles.container}>
+      <View style={styles.searchCondition}>
         <DropDownPicker
           style={styles.dropDown}
           placeholder="区を選択してください"
@@ -111,10 +111,14 @@ function Search({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  searchCondition: {
     margin: 10,
     backgroundColor: Colors.light,
     zIndex: 1000,
+  },
+  container: {
+    margin: 10,
+    backgroundColor: Colors.light,
   },
   dropDown: {
     marginBottom: 10,
