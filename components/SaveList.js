@@ -1,11 +1,5 @@
-import { useState } from "react";
 import { View, ScrollView } from "react-native";
-import ClinicCard from "./ClinicCard";
 import { useState, useEffect, useContext } from "react";
-import {
-  View,
-  ScrollView,
-} from "react-native";
 import { Colors } from "../config";
 import ClinicCard from "./ClinicCard";
 import { AuthenticatedUserContext } from "../providers";
