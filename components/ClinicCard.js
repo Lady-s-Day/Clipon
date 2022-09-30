@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -14,8 +14,37 @@ import { ENDPOINT } from "../endpoint";
 import { Colors } from "../config";
 import Hyperlink from "react-native-hyperlink";
 import { Chip } from "react-native-paper";
+import { AuthenticatedUserContext } from "../providers";
+import { toggleFavorite } from '../utils/toggleFavorite';
+import { SavedContext } from '../providers/SavedContext';
 
 const ClinicCard = ({ clinics, navigation }) => {
+  const { user, setUser } = useContext(AuthenticatedUserContext);
+  const { favorite, setFavorite } = useContext(SavedContext);
+
+  useEffect(() => {
+    console.log(favorite);
+  }, [favorite])
+
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const { data: response } = await axios.get(`${ENDPOINT}/saved/${user.uid}`);
+        const obj = {}
+        for (const clinic of response) {
+          obj[clinic.id] = true;
+        }
+        setFavorite(obj);
+      } catch (err) {
+        console.error("Error getting saved", err);
+      }
+    })();
+  }, []);
+
+
+
+
 
   return (
     <>
@@ -59,7 +88,7 @@ const ClinicCard = ({ clinics, navigation }) => {
                 <Icon
                   name="favorite-outline"
                   color={Colors.red}
-                  onPress={() => console.log("favorite!")}
+                  onPress={() => toggleFavorite(clinic.id, favorite, setFavorite, user)}
                 />
               </View>
             </View>
@@ -70,5 +99,6 @@ const ClinicCard = ({ clinics, navigation }) => {
     </>
   );
 }
+
 
 export default ClinicCard

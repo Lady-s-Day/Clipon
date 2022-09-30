@@ -39,7 +39,7 @@ function Home({ navigation }) {
         onPress={() => navigation.navigate("Search")}
       />
       <ScrollView style={styles.scrollArea}>
-        <ClinicCard clinics={clinics} />
+        <ClinicCard clinics={clinics} navigation={navigation} />
         {clinics.map((clinic, index) => {
           return (
             <TouchableOpacity
