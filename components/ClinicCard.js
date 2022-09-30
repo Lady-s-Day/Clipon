@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -16,8 +16,8 @@ import Hyperlink from "react-native-hyperlink";
 import { Chip } from "react-native-paper";
 
 import { AuthenticatedUserContext } from "../providers";
-import { toggleFavorite } from '../utils/toggleFavorite';
-import { SavedContext } from '../providers/SavedContext';
+import { toggleFavorite } from "../utils/toggleFavorite";
+import { SavedContext } from "../providers/SavedContext";
 
 const ClinicCard = ({ clinics, navigation }) => {
   const [treatments, setTreatments] = useState({});
@@ -25,24 +25,33 @@ const ClinicCard = ({ clinics, navigation }) => {
   const { favorite, setFavorite } = useContext(SavedContext);
 
   useEffect(() => {
-    console.log(favorite);
-  }, [favorite])
-
+    if (clinics.length > 0) {
+      const sendingParams = { ids: [] };
+      for (const clinic of clinics) {
+        sendingParams.ids.push(clinic.id);
+      }
+      console.log(sendingParams);
+      console.log(typeof sendingParams.ids[1]);
+      (async () => {
+        try {
+          const { data: response } = await axios.get(`${ENDPOINT}/types/ids`, {
+            params: sendingParams,
+          });
+          setTreatments(response);
+        } catch (err) {
+          console.error("Error getting treatement types (ClinicCard.js)", err);
+        }
+      })();
+    }
+  }, [clinics]);
 
   useEffect(() => {
     (async () => {
       try {
-        // const { data: response } = await axios.get(`${ENDPOINT}/treatments`);
-        setTreatments({ 1: ["生理痛", "月経異常"], 2: ["PMS"], 3: ["PMS"] });
-      } catch (err) {
-        console.error("Error getting treatement types (ClinicCard.js)", err);
-      }
-    })();
-
-    (async () => {
-      try {
-        const { data: response } = await axios.get(`${ENDPOINT}/saved/${user.uid}`);
-        const obj = {}
+        const { data: response } = await axios.get(
+          `${ENDPOINT}/saved/${user.uid}`
+        );
+        const obj = {};
         for (const clinic of response) {
           obj[clinic.id] = true;
         }
@@ -52,10 +61,6 @@ const ClinicCard = ({ clinics, navigation }) => {
       }
     })();
   }, []);
-
-
-
-
 
   return (
     <>
@@ -88,7 +93,7 @@ const ClinicCard = ({ clinics, navigation }) => {
                   </Text>
                   {treatments[clinic.id]?.map((type, i) => {
                     return (
-                      <View key={i} style={{ width: 100, height: 27 }}>
+                      <View key={i} style={{ width: 70, height: 27 }}>
                         <Chip
                           onPress={() => console.log("Pressed")}
                           style={{
@@ -109,21 +114,22 @@ const ClinicCard = ({ clinics, navigation }) => {
                     );
                   })}
                 </View>
-              <View style={{ flex: 1 }}>
-                <Icon
-                  name="favorite-outline"
-                  color={Colors.red}
-                  onPress={() => toggleFavorite(clinic.id, favorite, setFavorite, user)}
-                />
+                <View style={{ flex: 1 }}>
+                  <Icon
+                    name="favorite-outline"
+                    color={Colors.red}
+                    onPress={() =>
+                      toggleFavorite(clinic.id, favorite, setFavorite, user)
+                    }
+                  />
+                </View>
               </View>
-            </View>
-          </Card>
-        </TouchableOpacity>
-      );
-    })}
+            </Card>
+          </TouchableOpacity>
+        );
+      })}
     </>
   );
 };
 
-
-export default ClinicCard
+export default ClinicCard;

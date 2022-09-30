@@ -9,7 +9,7 @@ const Stack = createStackNavigator();
 export const UsernameStack = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Username" component={UsernameScreen} />
+      <Stack.Screen name="ユーザーネーム" component={UsernameScreen} options={{ headerShown: false }}/>
     </Stack.Navigator>
   );
 };
