@@ -14,6 +14,7 @@ import { ENDPOINT } from "../endpoint";
 import CheckBox from "./CheckBox";
 import { Colors } from "../config";
 import { CheckedContext } from "../providers/CheckedProvider";
+import ClinicCard from "./ClinicCard";
 
 function Search({ navigation }) {
   const [isChecked, setChecked] = useState({});
@@ -102,44 +103,7 @@ function Search({ navigation }) {
       </View>
       <View style={styles.container}>
         <ScrollView style={styles.scrollArea}>
-          {clinics &&
-            clinics.map((clinic, index) => {
-              return (
-                <TouchableOpacity
-                  key={index}
-                  onPress={() =>
-                    navigation.navigate("Clinic", {
-                      id: clinic.id,
-                    })
-                  }
-                >
-                  <Card>
-                    <Image
-                      style={{ width: "100%", height: 100, marginBottom: 10 }}
-                      resizeMode="cover"
-                      source={{ uri: clinic.image }}
-                    />
-                    <View style={{ flex: 1, flexDirection: "row" }}>
-                      <View style={{ flex: 3 }}>
-                        <Text style={{ fontWeight: "bold", fontSize: 16 }}>
-                          {clinic.clinic_name}
-                        </Text>
-                        <View>
-                          <Text>{clinic.url}</Text>
-                        </View>
-                      </View>
-                      <View style={{ flex: 1 }}>
-                        <Icon
-                          name="favorite-outline"
-                          color="#f50"
-                          onPress={() => console.log("favorite!")}
-                        />
-                      </View>
-                    </View>
-                  </Card>
-                </TouchableOpacity>
-              );
-            })}
+          <ClinicCard clinics={clinics} />
         </ScrollView>
       </View>
     </>

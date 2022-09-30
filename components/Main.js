@@ -10,6 +10,7 @@ import Clinic from "./Clinic";
 import Camera from "./Camera";
 import CreateReview from "./CrateReview";
 import ClinicName from "./ClinicName";
+import ClinicCard from "./ClinicCard";
 import { Colors } from "../config";
 import { CheckedContext } from "../providers/CheckedProvider";
 // import "expo-dev-client";
@@ -27,6 +28,16 @@ export default function Main() {
         options={{ title: "ホーム", headerShown: false }}
       />
       <Stack.Screen
+        name="ClinicCard"
+        component={ClinicCard}
+        options={{ headerTitleAlign: "center", title: "クリニック一覧" }}
+      />
+      <Stack.Screen
+        name="Clinic"
+        component={Clinic}
+        options={{ headerTitleAlign: "center" }}
+      />
+      <Stack.Screen
         name="Search"
         component={Search}
         options={{ headerTitleAlign: "center", title: "クリニックを検索" }}
@@ -35,16 +46,6 @@ export default function Main() {
         name="CreateReview"
         component={CreateReview}
         options={{ headerTitleAlign: "center", title: "レビューを追加" }}
-      />
-      <Stack.Screen
-        name="Clinic"
-        component={Clinic}
-        options={{ headerTitleAlign: "center" }}
-      />
-      <Stack.Screen
-        name="Home"
-        component={Home}
-        options={{ headerTitleAlign: "center" }}
       />
       <Stack.Screen
         name="Camera"

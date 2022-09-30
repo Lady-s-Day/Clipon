@@ -39,69 +39,7 @@ function Home({ navigation }) {
         onPress={() => navigation.navigate("Search")}
       />
       <ScrollView style={styles.scrollArea}>
-        <ClinicCard clinics={clinics} />
-        {clinics.map((clinic, index) => {
-          return (
-            <TouchableOpacity
-              key={index}
-              onPress={() =>
-                navigation.navigate("Clinic", {
-                  id: clinic.id,
-                })
-              }
-            >
-              <Card>
-                <Image
-                  style={{ width: "100%", height: 100, marginBottom: 10 }}
-                  resizeMode="cover"
-                  source={{ uri: clinic.image }}
-                />
-                <View style={{ flex: 1, flexDirection: "row" }}>
-                  <View style={{ flex: 3 }}>
-                    <Text
-                      style={{
-                        fontWeight: "bold",
-                        fontSize: 16,
-                        color: Colors.navy,
-                      }}
-                    >
-                      {clinic.clinic_name}
-                    </Text>
-                    <View>
-                      <Chip
-                        icon="information"
-                        onPress={() => console.log("Pressed")}
-                      >
-                        Example Chip
-                      </Chip>
-                      <Hyperlink
-                        linkStyle={{ color: Colors.navy, fontWeight: "bold" }}
-                        onPress={(url, text) => {
-                          Linking.canOpenURL(url).then((supported) => {
-                            if (!supported) {
-                              console.log("無効なURLです: " + url);
-                            } else {
-                              return Linking.openURL(url);
-                            }
-                          });
-                        }}
-                      >
-                        <Text style={{ color: Colors.navy }}>{clinic.url}</Text>
-                      </Hyperlink>
-                    </View>
-                  </View>
-                  <View style={{ flex: 1 }}>
-                    <Icon
-                      name="favorite-outline"
-                      color={Colors.red}
-                      onPress={() => console.log("favorite!")}
-                    />
-                  </View>
-                </View>
-              </Card>
-            </TouchableOpacity>
-          );
-        })}
+        <ClinicCard clinics={clinics} navigation={navigation} />
       </ScrollView>
     </View>
   );
