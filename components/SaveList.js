@@ -1,14 +1,11 @@
+import { useState } from "react";
+import { View, ScrollView } from "react-native";
+import ClinicCard from "./ClinicCard";
 import { useState, useEffect, useContext } from "react";
 import {
   View,
-  Text,
-  Image,
   ScrollView,
-  TouchableOpacity,
-  Linking,
 } from "react-native";
-import { Card, Icon, Button } from "@rneui/themed";
-import Hyperlink from "react-native-hyperlink";
 import { Colors } from "../config";
 import ClinicCard from "./ClinicCard";
 import { AuthenticatedUserContext } from "../providers";

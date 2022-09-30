@@ -33,19 +33,19 @@ export default function Main() {
         options={{ title: "ホーム", headerShown: false }}
       />
       <Stack.Screen
-        name="Search"
-        component={Search}
-        options={{ headerTitleAlign: "center", title: "クリニックを検索" }}
-      />
-      <Stack.Screen
-          name="ClinicCard"
-          component={ClinicCard}
-          options={{ headerTitleAlign: "center", title: "クリニック一覧" }}
+        name="ClinicCard"
+        component={ClinicCard}
+        options={{ headerTitleAlign: "center", title: "クリニック一覧" }}
       />
       <Stack.Screen
         name="Clinic"
         component={Clinic}
         options={{ headerTitleAlign: "center" }}
+      />
+      <Stack.Screen
+        name="Search"
+        component={Search}
+        options={{ headerTitleAlign: "center", title: "クリニックを検索" }}
       />
       <Stack.Screen
           name="CreateReview"

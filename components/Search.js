@@ -15,7 +15,7 @@ import { ENDPOINT } from "../endpoint";
 import CheckBox from "./CheckBox";
 import { Colors } from "../config";
 import { CheckedContext } from "../providers/CheckedProvider";
-import Hyperlink from "react-native-hyperlink";
+import ClinicCard from "./ClinicCard";
 
 function Search({ navigation }) {
   const [isChecked, setChecked] = useState({});
@@ -105,66 +105,7 @@ function Search({ navigation }) {
       </View>
       <View style={styles.container}>
         <ScrollView style={styles.scrollArea}>
-          {clinics &&
-            clinics.map((clinic, index) => {
-              return (
-                <TouchableOpacity
-                  key={index}
-                  onPress={() =>
-                    navigation.navigate("Clinic", {
-                      id: clinic.id,
-                    })
-                  }
-                >
-                  <Card containerStyle={{ borderRadius: 8 }}>
-                    <Image
-                      style={{ width: "100%", height: 100, marginBottom: 10 }}
-                      resizeMode="cover"
-                      source={{ uri: clinic.image }}
-                    />
-                    <View style={{ flex: 1, flexDirection: "row" }}>
-                      <View style={{ flex: 3 }}>
-                        <Text
-                          style={{
-                            fontWeight: "bold",
-                            fontSize: 16,
-                            color: Colors.navy,
-                          }}
-                        >
-                          {clinic.clinic_name}
-                        </Text>
-                        <View>
-                          <Hyperlink
-                            linkStyle={{
-                              color: Colors.navy,
-                              fontWeight: "bold",
-                            }}
-                            onPress={(url, text) => {
-                              Linking.canOpenURL(url).then((supported) => {
-                                if (!supported) {
-                                  console.log("無効なURLです: " + url);
-                                } else {
-                                  return Linking.openURL(url);
-                                }
-                              });
-                            }}
-                          >
-                            <Text>{clinic.url}</Text>
-                          </Hyperlink>
-                        </View>
-                      </View>
-                      <View style={{ flex: 1 }}>
-                        <Icon
-                          name="favorite-outline"
-                          color={Colors.red}
-                          onPress={() => console.log("favorite!")}
-                        />
-                      </View>
-                    </View>
-                  </Card>
-                </TouchableOpacity>
-              );
-            })}
+          <ClinicCard clinics={clinics} />
         </ScrollView>
       </View>
     </View>
