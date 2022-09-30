@@ -30,42 +30,34 @@ export default function Main() {
       <Stack.Screen
         name="Tabs"
         component={Tabs}
-        options={{ title: "ホーム", headerShown: false }}
       />
       <Stack.Screen
         name="ClinicCard"
         component={ClinicCard}
-        options={{ headerTitleAlign: "center", title: "クリニック一覧" }}
       />
       <Stack.Screen
         name="Clinic"
         component={Clinic}
-        options={{ headerTitleAlign: "center" }}
       />
       <Stack.Screen
         name="Search"
         component={Search}
-        options={{ headerTitleAlign: "center", title: "クリニックを検索" }}
       />
       <Stack.Screen
           name="CreateReview"
           component={CreateReview}
-          options={{ headerTitleAlign: "center", title: "レビューを追加" }}
       />
       <Stack.Screen
         name="Camera"
         component={Camera}
-        options={{ headerTitleAlign: "center", title: "認証" }}
       />
       <Stack.Screen
         name="ClinicName"
         component={ClinicName}
-        options={{ headerTitleAlign: "center", title: "病院名" }}
       />
       <Stack.Screen
         name="Approval"
         component={Approval}
-        options={{ headerTitleAlign: "center", title: "承認" }}
       />
       <Stack.Screen name="MyPage" component={MyPage} />
     </Stack.Navigator>
