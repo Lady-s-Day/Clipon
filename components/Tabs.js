@@ -18,9 +18,12 @@ function Tabs() {
         name="ホーム"
         component={Home}
         options={{
+          // headerShown: false,
           title: "ホーム",
           headerTitleAlign: "center",
           tabBarIcon: ({ color }) => <Icon name="home" color={color} />,
+          headerStyle: { backgroundColor: Colors.beige },
+          // headerTintColor: Colors.white,
         }}
       />
       <Tab.Screen

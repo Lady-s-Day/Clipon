@@ -4,8 +4,12 @@ export const Colors = {
   black: "#222222",
   white: "#ffffff",
   mediumGray: "#6e6869",
+  // アイコンのハートの赤
+  // red: "#ff0e0e",
   red: "#fc5c65",
   light: "#f6f5ed",
   navy: "#265c6e",
   beige: "#e3decf",
+  brown: "#573b26",
+  green: "#01ab8d",
 };
