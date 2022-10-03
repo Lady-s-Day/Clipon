@@ -55,13 +55,13 @@ function Search({ navigation }) {
         ...isChecked,
       };
       searchCondition.ward = wardId;
-      console.log(searchCondition);
       (async () => {
         try {
           const { data: response } = await axios.get(
             `${ENDPOINT}/searched-clinics`,
             { params: searchCondition }
           );
+          // console.log(response);
           setClinics(response);
         } catch (err) {
           console.error(err);

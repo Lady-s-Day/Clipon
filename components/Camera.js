@@ -18,11 +18,16 @@ const CameraComponent = ({ route, navigation }) => {
   const [camera, setCamera] = useState(null);
   const [picture, setPicture] = useState();
   const [string, setString] = useState();
-  const [approve, setApprove] = useState(false);
+  const [approve, setApprove] = useState(null);
   const { user, setUser } = useContext(AuthenticatedUserContext);
 
   useEffect(() => {
-    console.log(approve);
+    console.log("approve: ", approve);
+    if (approve !== null) {
+      navigation.navigate("Approval", {
+        approval: approve,
+      });
+    }
   }, [approve]);
 
   useEffect(() => {
@@ -125,10 +130,11 @@ const CameraComponent = ({ route, navigation }) => {
       })();
       setApprove(true);
     }
-    navigation.navigate("Approval", {
-      approval: approve,
-    });
+    // navigation.navigate("Approval", {
+    //   approval: approve,
+    // });
   }
+
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
