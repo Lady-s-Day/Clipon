@@ -18,7 +18,7 @@ function Tabs() {
         name="ホーム"
         component={Home}
         options={{
-          headerShown: false,
+          title: "ホーム",
           headerTitleAlign: "center",
           tabBarIcon: ({ color }) => <Icon name="home" color={color} />,
         }}
@@ -27,7 +27,7 @@ function Tabs() {
         name="お気に入り"
         component={SaveList}
         options={{
-          headerShown: false,
+          title: "お気に入り",
           headerTitleAlign: "center",
           tabBarIcon: ({ color }) => <Icon name="favorite" color={color} />,
         }}
@@ -36,7 +36,7 @@ function Tabs() {
         name="マイページ"
         component={MyPage}
         options={{
-          headerShown: false,
+          title: "マイページ",
           headerTitleAlign: "center",
           tabBarIcon: ({ color }) => <Icon name="person" color={color} />,
         }}
