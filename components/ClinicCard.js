@@ -75,7 +75,11 @@ const ClinicCard = ({ clinics, navigation }) => {
             }
           >
             <Card
-              containerStyle={{ borderColor: Colors.brown, borderRadius: 8 }}
+              containerStyle={{
+                borderColor: Colors.brown,
+                borderRadius: 8,
+                borderWidth: 0.5,
+              }}
             >
               <Image
                 style={{ width: "100%", height: 100, marginBottom: 10 }}
