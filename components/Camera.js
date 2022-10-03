@@ -98,7 +98,7 @@ const CameraComponent = ({ route, navigation }) => {
 
     const keyWords = [
       "婦人科",
-      "受診日",
+      "発行日",
       "初診",
       "再診",
       "患者",
@@ -107,11 +107,13 @@ const CameraComponent = ({ route, navigation }) => {
       "領収書",
       "診療明細書",
       "投薬",
-      "受診料",
+      "受診科",
+      "負担額",
     ];
     let count = 0;
     for (const keyWord of keyWords) {
       if (string.includes(keyWord)) {
+        console.log(keyWord);
         count++;
       }
     }
@@ -128,7 +130,6 @@ const CameraComponent = ({ route, navigation }) => {
           console.error("Error posing into approved clinics", err);
         }
       })();
-      setApprove(true);
     }else{
       setApprove(false);
     }
@@ -136,7 +137,6 @@ const CameraComponent = ({ route, navigation }) => {
     //   approval: approve,
     // });
   }
-
 
   return (
     <SafeAreaView style={{ flex: 1 }}>

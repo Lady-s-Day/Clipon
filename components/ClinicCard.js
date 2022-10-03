@@ -91,28 +91,43 @@ const ClinicCard = ({ clinics, navigation }) => {
                   >
                     {clinic.clinic_name}
                   </Text>
-                  {treatments[clinic.id]?.map((type, i) => {
-                    return (
-                      <View key={i} style={{ width: 70, height: 27 }}>
-                        <Chip
-                          onPress={() => console.log("Pressed")}
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      flexWrap: "wrap",
+                    }}
+                  >
+                    {treatments[clinic.id]?.map((type, i) => {
+                      return (
+                        <View
+                          key={i}
                           style={{
-                            backgroundColor: Colors.light,
-                            size: "small",
+                            alignSelf: "flex-start",
+                            marginRight: 5,
+                            marginBottom: 5
                           }}
-                          textStyle={{
-                            fontSize: 10,
-                            includeFontPadding: false,
-                            textAlign: "center",
-                            textAlignVertical: "center",
-                          }}
-                          compact
                         >
-                          {type}
-                        </Chip>
-                      </View>
-                    );
-                  })}
+                          <Chip
+                            onPress={() => console.log("Pressed")}
+                            style={{
+                              backgroundColor: Colors.light,
+                              size: "small",
+                            }}
+                            textStyle={{
+                              fontSize: 10,
+                              includeFontPadding: false,
+                              textAlign: "center",
+                              textAlignVertical: "center",
+                            }}
+                            compact
+                          >
+                            {type}
+                          </Chip>
+                        </View>
+                      );
+                    })}
+                  </View>
                 </View>
                 <View style={{ flex: 1 }}>
                   {favorite[clinic.id] ?

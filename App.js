@@ -1,17 +1,25 @@
-import React from 'react';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import React, { useEffect } from "react";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
-import { RootNavigator } from './navigation/RootNavigator';
-import { AuthenticatedUserProvider } from './providers';
+import { RootNavigator } from "./navigation/RootNavigator";
+import { AuthenticatedUserProvider } from "./providers";
+import { useFonts } from "expo-font";
 
 const App = () => {
-  return (
-    <AuthenticatedUserProvider>
-      <SafeAreaProvider>
-        <RootNavigator />
-      </SafeAreaProvider>
-    </AuthenticatedUserProvider>
-  );
+  const [fontsLoaded] = useFonts({
+    font1: require("./assets/fonts/Kaisei_Opti/KaiseiOpti-Regular.ttf"),
+    font2: require("./assets/fonts/Zen_Maru_Gothic/ZenMaruGothic-Regular.ttf"),
+  });
+
+  if (fontsLoaded) {
+    return (
+      <AuthenticatedUserProvider>
+        <SafeAreaProvider>
+          <RootNavigator />
+        </SafeAreaProvider>
+      </AuthenticatedUserProvider>
+    );
+  }
 };
 
 export default App;

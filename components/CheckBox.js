@@ -49,6 +49,7 @@ const CheckBox = () => {
         return (
           <View style={styles.section} key={i}>
             <Checkbox
+              key={i}
               style={styles.checkbox}
               value={isChecked[type]}
               onValueChange={() => handleCheck(type)}
