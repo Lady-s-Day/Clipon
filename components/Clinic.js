@@ -132,6 +132,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 10,
     color: Colors.navy,
+    fontFamily: "KaiseiOpti-Regular" 
   },
 });
 

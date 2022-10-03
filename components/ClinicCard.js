@@ -24,6 +24,8 @@ const ClinicCard = ({ clinics, navigation }) => {
   const { user, setUser } = useContext(AuthenticatedUserContext);
   const { favorite, setFavorite } = useContext(SavedContext);
 
+  // console.log(clinics);
+
   useEffect(() => {
     if (clinics.length > 0) {
       const sendingParams = { ids: [] };
