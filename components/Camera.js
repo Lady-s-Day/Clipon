@@ -116,7 +116,7 @@ const CameraComponent = ({ route, navigation }) => {
       }
     }
 
-    if (string.includes(hospName) && count >= keyWords.length * 0.7) {
+    if (string.includes(hospName) && count >= keyWords.length * 0.2) {
       (async () => {
         try {
           await axios.post(`${ENDPOINT}/approved`, {
