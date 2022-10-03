@@ -131,6 +131,7 @@ const CameraComponent = ({ route, navigation }) => {
       setApprove(true);
     }else{
       setApprove(false);
+    }
     // navigation.navigate("Approval", {
     //   approval: approve,
     // });
