@@ -19,47 +19,12 @@ function MyPage({ navigation }) {
   return (
     <View style={styles.container}>
       <Icon raised name="person" color={Colors.navy} />
-      <Text
-        style={{
-          fontWeight: "bold",
-          fontSize: 17,
-          padding: 5,
-          color: Colors.navy,
-        }}
-      >
-        ユーザー名: {username}
-      </Text>
+      <Text style={styles.text}>ユーザー名: {username}</Text>
       <Divider />
-      <Text
-        style={{
-          fontWeight: "bold",
-          fontSize: 17,
-          padding: 5,
-          color: Colors.navy,
-        }}
-      >
-        メールアドレス: {user.email}
-      </Text>
+      <Text style={styles.text}>メールアドレス: {user.email}</Text>
       <Divider />
-      <Divider />
-      <Text
-        style={{
-          fontWeight: "bold",
-          fontSize: 17,
-          padding: 5,
-          color: Colors.navy,
-        }}
-      >
-        病院の承認について：
-      </Text>
-      <Text
-        style={{
-          fontWeight: "500",
-          fontSize: 17,
-          padding: 5,
-          color: Colors.navy,
-        }}
-      >
+      <Text style={styles.text}>病院の承認について：</Text>
+      <Text style={styles.text}>
         実際に利用された病院の明細書や領収書の{"\n"}
         承認を行い、口コミの精度を向上します。{"\n"}
         承認後は承認済みを示すバッチを表示します。
@@ -70,7 +35,7 @@ function MyPage({ navigation }) {
           radius={5}
           buttonStyle={{ backgroundColor: Colors.red }}
           onPress={() => navigation.navigate("ClinicName")}
-          titleStyle={{ fontSize: 20, fontWeight: "700" }}
+          titleStyle={{ fontSize: 20, fontFamily: "font2" }}
         >
           病院の承認を行う
         </Button>
@@ -97,6 +62,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     color: Colors.navy,
+  },
+  text: {
+    // fontWeight: "500",
+    fontSize: 17,
+    padding: 5,
+    color: Colors.navy,
+    fontFamily: "font2",
   },
 });
 

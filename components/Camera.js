@@ -98,7 +98,7 @@ const CameraComponent = ({ route, navigation }) => {
 
     const keyWords = [
       "婦人科",
-      "受診日",
+      "発行日",
       "初診",
       "再診",
       "患者",
@@ -107,16 +107,22 @@ const CameraComponent = ({ route, navigation }) => {
       "領収書",
       "診療明細書",
       "投薬",
-      "受診料",
+      "受診科",
+      "負担額",
     ];
     let count = 0;
     for (const keyWord of keyWords) {
       if (string.includes(keyWord)) {
+        console.log(keyWord);
         count++;
       }
     }
 
-    if (string.includes(hospName) && count >= keyWords.length * 0.7) {
+    console.log(string);
+    console.log(count);
+    console.log(string.includes(hospName));
+
+    if (string.includes(hospName) && count >= keyWords.length * 0.5) {
       (async () => {
         try {
           await axios.post(`${ENDPOINT}/approved`, {
@@ -129,12 +135,13 @@ const CameraComponent = ({ route, navigation }) => {
         }
       })();
       setApprove(true);
+    } else {
+      setApprove(false);
     }
     // navigation.navigate("Approval", {
     //   approval: approve,
     // });
   }
-
 
   return (
     <SafeAreaView style={{ flex: 1 }}>

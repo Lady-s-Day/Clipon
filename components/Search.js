@@ -85,9 +85,11 @@ function Search({ navigation }) {
           value={value}
           setValue={setValue}
         />
-        <CheckedContext.Provider value={{ isChecked, setChecked }}>
-          <CheckBox />
-        </CheckedContext.Provider>
+        <View style={{ flexDirection: "row", justifyContent: "flex-start", flexWrap:"wrap" }}>
+          <CheckedContext.Provider value={{ isChecked, setChecked }}>
+            <CheckBox />
+          </CheckedContext.Provider>
+        </View>
       </View>
       <View style={styles.container}>
         <Button
