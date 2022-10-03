@@ -19,7 +19,7 @@ import { AuthenticatedUserContext } from "../providers";
 
 function Clinic({ route, navigation }) {
   const { favorite, setFavorite } = useContext(SavedContext);
-  const { user, setUser } = useContext(AuthenticatedUserContext)
+  const { user, setUser } = useContext(AuthenticatedUserContext);
   const [selectedClinic, setSelectedClinic] = useState();
   const [reviews, setReviews] = useState([]);
   const { id } = route.params;
@@ -54,13 +54,21 @@ function Clinic({ route, navigation }) {
           <View style={styles.container}>
             <View style={{ flex: 3 }}>
               <Text
-                style={{ fontWeight: "bold", fontSize: 16, color: Colors.navy }}
+                style={{
+                  fontWeight: "bold",
+                  fontSize: 18,
+                  color: Colors.navy,
+                  marginBottom: 10,
+                }}
               >
                 {selectedClinic.clinic_name}
               </Text>
               <View>
+                <Text style={{ color: Colors.navy, fontWeight: "bold" }}>
+                  HP:
+                </Text>
                 <Hyperlink
-                  linkStyle={{ color: Colors.navy, fontWeight: "bold" }}
+                  linkStyle={{ color: Colors.blue }}
                   onPress={(url, text) => {
                     Linking.canOpenURL(url).then((supported) => {
                       if (!supported) {
@@ -71,7 +79,7 @@ function Clinic({ route, navigation }) {
                     });
                   }}
                 >
-                  <Text>{selectedClinic.url}</Text>
+                  <Text style={{ fontSize: 15 }}>{selectedClinic.url}</Text>
                 </Hyperlink>
               </View>
             </View>
@@ -81,7 +89,7 @@ function Clinic({ route, navigation }) {
                 color={Colors.red}
                 onPress={() => {
                   toggleFavorite(id, favorite, setFavorite, user);
-                  console.log("favorite!")
+                  console.log("favorite!");
                 }}
               />
               <Icon
@@ -101,7 +109,14 @@ function Clinic({ route, navigation }) {
         {reviews &&
           reviews.map((review, index) => {
             return (
-              <Card key={index}>
+              <Card
+                key={index}
+                containerStyle={{
+                  borderColor: Colors.brown,
+                  borderWidth: 0.5,
+                  borderRadius: 8,
+                }}
+              >
                 <Text style={styles.text}>{review.text}</Text>
                 <View style={{ marginTop: 5 }}>
                   <Text>
@@ -132,7 +147,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 10,
     color: Colors.navy,
-     
   },
 });
 
