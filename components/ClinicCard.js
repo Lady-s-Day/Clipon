@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import {
   View,
   Text,
@@ -6,7 +6,7 @@ import {
   ScrollView,
   TouchableOpacity,
   StyleSheet,
-  Linking,
+  Linking
 } from "react-native";
 import { Card, Icon, Button } from "@rneui/themed";
 import axios from "axios";
@@ -58,7 +58,7 @@ const ClinicCard = ({ clinics, navigation }) => {
         console.error("Error getting saved", err);
       }
     })();
-  }, []);
+  }, [clinics]);
 
   return (
     <>
@@ -113,13 +113,21 @@ const ClinicCard = ({ clinics, navigation }) => {
                   })}
                 </View>
                 <View style={{ flex: 1 }}>
-                  <Icon
-                    name="favorite-outline"
-                    color={Colors.red}
-                    onPress={() =>
-                      toggleFavorite(clinic.id, favorite, setFavorite, user)
-                    }
-                  />
+                  {favorite[clinic.id] ?
+                    <Icon
+                      name="favorite"
+                      color={Colors.red}
+                      onPress={() =>
+                        toggleFavorite(clinic.id, favorite, setFavorite, user)
+                      }
+                    /> :
+                    <Icon
+                      name="favorite-outline"
+                      color={Colors.red}
+                      onPress={() =>
+                        toggleFavorite(clinic.id, favorite, setFavorite, user)
+                      }
+                    />}
                 </View>
               </View>
             </Card>

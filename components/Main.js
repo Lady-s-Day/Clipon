@@ -30,7 +30,7 @@ export default function Main() {
         <Stack.Screen
           name="Tabs"
           component={Tabs}
-          options={{ headerShown: false }}
+          options={{ title: "ホーム" }}
         />
         <Stack.Screen
           name="ClinicCard"
@@ -40,17 +40,17 @@ export default function Main() {
         <Stack.Screen
           name="Clinic"
           component={Clinic}
-          options={{ headerShown: false }}
+          options={{ title: "クリニック" }}
         />
         <Stack.Screen
           name="Search"
           component={Search}
-          options={{ headerTitleAlign: "center", title: "検索" }}
+          options={{ headerTitleAlign: "center", title: "クリニックを検索" }}
         />
         <Stack.Screen
           name="CreateReview"
           component={CreateReview}
-          options={{ headerShown: false }}
+          options={{ title: "レビューを追加" }}
         />
         <Stack.Screen
           name="Camera"
