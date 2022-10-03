@@ -70,7 +70,7 @@ export default function Main() {
         <Stack.Screen
           name="MyPage"
           component={MyPage}
-          options={{ headerShown: false }}
+          options={{ title: "マイページ" }}
         />
       </Stack.Navigator>
     </SavedContext.Provider>
