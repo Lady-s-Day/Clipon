@@ -19,6 +19,7 @@ import ClinicCard from "./ClinicCard";
 
 function Search({ navigation }) {
   const [isChecked, setChecked] = useState({});
+  const [isSearched, setSearch] = useState(false);
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
   const [wardId, setWardId] = useState(null);
@@ -63,6 +64,7 @@ function Search({ navigation }) {
           );
           // console.log(response);
           setClinics(response);
+          setSearch(true);
         } catch (err) {
           console.error(err);
         }
@@ -70,46 +72,96 @@ function Search({ navigation }) {
     }
   };
 
-  return (
-    <View style={{ flex: 1, backgroundColor: Colors.light }}>
-      <View style={styles.searchCondition}>
-        <DropDownPicker
-          style={styles.dropDown}
-          placeholder="区を選択してください"
-          placeholderStyle={{ color: "grey" }}
-          onSelectItem={(item) => setWardId(item.id)}
-          items={items}
-          setItems={setItems}
-          open={open}
-          setOpen={setOpen}
-          value={value}
-          setValue={setValue}
-        />
-        <View style={{ flexDirection: "row", justifyContent: "flex-start", flexWrap:"wrap" }}>
-          <CheckedContext.Provider value={{ isChecked, setChecked }}>
-            <CheckBox />
-          </CheckedContext.Provider>
+  if (isSearched) {
+    return (
+      <ScrollView style={styles.scrollArea}>
+      <View style={{ flex: 1, backgroundColor: Colors.light }}>
+        <View style={styles.searchCondition}>
+          <DropDownPicker
+            style={styles.dropDown}
+            placeholder="区を選択してください"
+            placeholderStyle={{ color: "grey" }}
+            onSelectItem={(item) => setWardId(item.id)}
+            items={items}
+            setItems={setItems}
+            open={open}
+            setOpen={setOpen}
+            value={value}
+            setValue={setValue}
+          />
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "flex-start",
+              flexWrap: "wrap",
+            }}
+          >
+            <CheckedContext.Provider value={{ isChecked, setChecked }}>
+              <CheckBox />
+            </CheckedContext.Provider>
+          </View>
+        </View>
+        <View style={styles.container}>
+          <Button
+            radius={5}
+            color="warning"
+            style={styles.searchButton}
+            buttonStyle={{ backgroundColor: Colors.red }}
+            onPress={searchClinics}
+            titleStyle={{ fontSize: 20, fontWeight: "700" }}
+          >
+            検索
+          </Button>
+        </View>
+        <View style={styles.container}>
+            <ClinicCard clinics={clinics} />
         </View>
       </View>
-      <View style={styles.container}>
-        <Button
-          radius={5}
-          color="warning"
-          style={styles.searchButton}
-          buttonStyle={{ backgroundColor: Colors.red }}
-          onPress={searchClinics}
-          titleStyle={{ fontSize: 20, fontWeight: "700" }}
-        >
-          検索
-        </Button>
+      </ScrollView>
+    );
+  } else {
+    return (
+      <View style={{ flex: 1, backgroundColor: Colors.light }}>
+        <View style={styles.searchCondition}>
+          <DropDownPicker
+            style={styles.dropDown}
+            placeholder="区を選択してください"
+            placeholderStyle={{ color: "grey" }}
+            onSelectItem={(item) => setWardId(item.id)}
+            items={items}
+            setItems={setItems}
+            open={open}
+            setOpen={setOpen}
+            value={value}
+            setValue={setValue}
+          />
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "flex-start",
+              flexWrap: "wrap",
+            }}
+          >
+            <CheckedContext.Provider value={{ isChecked, setChecked }}>
+              <CheckBox />
+            </CheckedContext.Provider>
+          </View>
+        </View>
+        <View style={styles.container}>
+          <Button
+            radius={5}
+            color="warning"
+            style={styles.searchButton}
+            buttonStyle={{ backgroundColor: Colors.red }}
+            onPress={searchClinics}
+            titleStyle={{ fontSize: 20, fontWeight: "700" }}
+          >
+            検索
+          </Button>
+        </View>
       </View>
-      <View style={styles.container}>
-        <ScrollView style={styles.scrollArea}>
-          <ClinicCard clinics={clinics} />
-        </ScrollView>
-      </View>
-    </View>
-  );
+    );
+  }
 }
 
 const styles = StyleSheet.create({
