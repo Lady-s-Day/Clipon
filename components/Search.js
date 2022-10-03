@@ -49,7 +49,7 @@ function Search({ navigation }) {
     { label: "目黒区", value: "目黒区", id: 23 },
   ]);
 
-  const searchClinics = () => {
+  const searchClinics = ({ navigation }) => {
     if (wardId) {
       const searchCondition = {
         ...isChecked,
@@ -103,7 +103,7 @@ function Search({ navigation }) {
       </View>
       <View style={styles.container}>
         <ScrollView style={styles.scrollArea}>
-          <ClinicCard clinics={clinics} />
+          <ClinicCard clinics={clinics} navigation={navigation} />
         </ScrollView>
       </View>
     </View>

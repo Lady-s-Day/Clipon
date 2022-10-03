@@ -30,7 +30,7 @@ export default function Main() {
         <Stack.Screen
           name="Tabs"
           component={Tabs}
-          options={{ title: "ホーム" }}
+          options={{ headerShown: false, title: "ホーム" }}
         />
         <Stack.Screen
           name="ClinicCard"
