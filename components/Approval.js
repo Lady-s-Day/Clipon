@@ -16,7 +16,7 @@ export const Approval = ({ route, navigation }) => {
           color: Colors.navy,
         }}
       >
-        <Text style={{ fontSize: 20 }}>認証できました</Text>
+        <Text style={{ fontSize: 20 }}>承認できました</Text>
         <View style={{ marginTop: 20 }}>
           <Button
             radius={5}
@@ -41,7 +41,7 @@ export const Approval = ({ route, navigation }) => {
           color: Colors.navy,
         }}
       >
-        <Text style={{ fontSize: 20 }}>認証できませんでした</Text>
+        <Text style={{ fontSize: 20 }}>承認できませんでした</Text>
         <View style={{ marginTop: 20 }}>
           <Button
             radius={5}
