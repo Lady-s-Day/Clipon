@@ -6,7 +6,7 @@ import {
   ScrollView,
   TouchableOpacity,
   StyleSheet,
-  Linking
+  Linking,
 } from "react-native";
 import { Card, Icon, Button } from "@rneui/themed";
 import axios from "axios";
@@ -74,7 +74,9 @@ const ClinicCard = ({ clinics, navigation }) => {
               })
             }
           >
-            <Card>
+            <Card
+              containerStyle={{ borderColor: Colors.brown, borderRadius: 8 }}
+            >
               <Image
                 style={{ width: "100%", height: 100, marginBottom: 10 }}
                 resizeMode="cover"
@@ -85,8 +87,9 @@ const ClinicCard = ({ clinics, navigation }) => {
                   <Text
                     style={{
                       fontWeight: "bold",
-                      fontSize: 16,
+                      fontSize: 18,
                       color: Colors.navy,
+                      marginBottom: 10,
                     }}
                   >
                     {clinic.clinic_name}
@@ -105,20 +108,23 @@ const ClinicCard = ({ clinics, navigation }) => {
                           style={{
                             alignSelf: "flex-start",
                             marginRight: 5,
-                            marginBottom: 5
+                            marginBottom: 5,
                           }}
                         >
                           <Chip
                             onPress={() => console.log("Pressed")}
                             style={{
-                              backgroundColor: Colors.light,
+                              backgroundColor: Colors.white,
                               size: "small",
+                              borderColor: Colors.red,
+                              borderWidth: 1,
                             }}
                             textStyle={{
                               fontSize: 10,
                               includeFontPadding: false,
                               textAlign: "center",
                               textAlignVertical: "center",
+                              color: Colors.navy,
                             }}
                             compact
                           >
@@ -130,21 +136,23 @@ const ClinicCard = ({ clinics, navigation }) => {
                   </View>
                 </View>
                 <View style={{ flex: 1 }}>
-                  {favorite[clinic.id] ?
+                  {favorite[clinic.id] ? (
                     <Icon
                       name="favorite"
                       color={Colors.red}
                       onPress={() =>
                         toggleFavorite(clinic.id, favorite, setFavorite, user)
                       }
-                    /> :
+                    />
+                  ) : (
                     <Icon
                       name="favorite-outline"
                       color={Colors.red}
                       onPress={() =>
                         toggleFavorite(clinic.id, favorite, setFavorite, user)
                       }
-                    />}
+                    />
+                  )}
                 </View>
               </View>
             </Card>
