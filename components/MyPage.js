@@ -41,6 +41,30 @@ function MyPage({ navigation }) {
         メールアドレス: {user.email}
       </Text>
       <Divider />
+      <Divider />
+      <Text
+        style={{
+          fontWeight: "bold",
+          fontSize: 17,
+          padding: 5,
+          color: Colors.navy,
+        }}
+      >
+        病院の承認について：
+      </Text>
+      <Text
+        style={{
+          fontWeight: "500",
+          fontSize: 17,
+          padding: 5,
+          color: Colors.navy,
+        }}
+      >
+        実際に利用された病院の明細書や領収書の{"\n"}
+        承認を行い、口コミの精度を向上します。{"\n"}
+        承認後は承認済みを示すバッチを表示します。
+      </Text>
+      <Divider />
       <View style={{ marginTop: 20 }}>
         <Button
           radius={5}
@@ -48,7 +72,7 @@ function MyPage({ navigation }) {
           onPress={() => navigation.navigate("ClinicName")}
           titleStyle={{ fontSize: 20, fontWeight: "700" }}
         >
-          認証
+          病院の承認を行う
         </Button>
       </View>
       <CButton
