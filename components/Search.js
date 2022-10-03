@@ -50,7 +50,7 @@ function Search({ navigation }) {
     { label: "目黒区", value: "目黒区", id: 23 },
   ]);
 
-  const searchClinics = () => {
+  const searchClinics = ({ navigation }) => {
     if (wardId) {
       const searchCondition = {
         ...isChecked,

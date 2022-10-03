@@ -1,4 +1,3 @@
-
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Icon } from "@rneui/themed";
 import Home from "./Home";
@@ -11,7 +10,6 @@ function Tabs() {
   return (
     <Tab.Navigator
       screenOptions={() => ({
-
         tabBarActiveTintColor: Colors.red,
         tabBarInactiveTintColor: Colors.navy,
       })}
@@ -20,6 +18,7 @@ function Tabs() {
         name="ホーム"
         component={Home}
         options={{
+          title: "ホーム",
           headerTitleAlign: "center",
           tabBarIcon: ({ color }) => <Icon name="home" color={color} />,
         }}
@@ -28,6 +27,7 @@ function Tabs() {
         name="お気に入り"
         component={SaveList}
         options={{
+          title: "お気に入り",
           headerTitleAlign: "center",
           tabBarIcon: ({ color }) => <Icon name="favorite" color={color} />,
         }}
@@ -36,6 +36,7 @@ function Tabs() {
         name="マイページ"
         component={MyPage}
         options={{
+          title: "マイページ",
           headerTitleAlign: "center",
           tabBarIcon: ({ color }) => <Icon name="person" color={color} />,
         }}

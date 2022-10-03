@@ -118,11 +118,7 @@ const CameraComponent = ({ route, navigation }) => {
       }
     }
 
-    console.log(string);
-    console.log(count);
-    console.log(string.includes(hospName));
-
-    if (string.includes(hospName) && count >= keyWords.length * 0.5) {
+    if (string.includes(hospName) && count >= keyWords.length * 0.2) {
       (async () => {
         try {
           await axios.post(`${ENDPOINT}/approved`, {
@@ -134,8 +130,7 @@ const CameraComponent = ({ route, navigation }) => {
           console.error("Error posing into approved clinics", err);
         }
       })();
-      setApprove(true);
-    } else {
+    }else{
       setApprove(false);
     }
     // navigation.navigate("Approval", {
