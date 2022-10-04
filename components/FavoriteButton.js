@@ -6,13 +6,13 @@ import Animated, {
   interpolate,
   useSharedValue,
   useAnimatedStyle,
-  withSpring
+  withSpring,
 } from "react-native-reanimated";
 import { StyleSheet, Pressable } from "react-native";
 import { Colors } from "../config";
 
-const FavoriteButton = ({clinic_id, favorite, setFavorite, user}) => {
-  const liked = useSharedValue(0);
+const FavoriteButton = ({ clinic_id, favorite, setFavorite, user }) => {
+  const liked = useSharedValue(Number(favorite[clinic_id] || false));
 
   const outlineStyle = useAnimatedStyle(() => {
     return {
@@ -37,6 +37,7 @@ const FavoriteButton = ({clinic_id, favorite, setFavorite, user}) => {
   return (
     <Pressable
       onPress={() => {
+        console.log(favorite[clinic_id], " >>> ", !favorite[clinic_id]);
         toggleFavorite(clinic_id, favorite, setFavorite, user);
         liked.value = withSpring(liked.value ? 0 : 1);
       }}
@@ -56,4 +57,4 @@ const FavoriteButton = ({clinic_id, favorite, setFavorite, user}) => {
   );
 };
 
-export default FavoriteButton
+export default FavoriteButton;

@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect, } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -26,6 +26,7 @@ const ClinicCard = ({ clinics, navigation }) => {
   const { user, setUser } = useContext(AuthenticatedUserContext);
   const { favorite, setFavorite } = useContext(SavedContext);
 
+  // console.log(favorite)
 
   useEffect(() => {
     if (clinics.length > 0) {
@@ -62,7 +63,6 @@ const ClinicCard = ({ clinics, navigation }) => {
       }
     })();
   }, [clinics]);
-
 
   return (
     <>
@@ -101,7 +101,12 @@ const ClinicCard = ({ clinics, navigation }) => {
                     {clinic.clinic_name}
                   </Text>
                 </View>
-                <FavoriteButton clinic_id={clinic.id} favorite={favorite} setFavorite={setFavorite} user={user}/>
+                  <FavoriteButton
+                    clinic_id={clinic.id}
+                    favorite={favorite}
+                    setFavorite={setFavorite}
+                    user={user}
+                  />
                 {/* <View style={{ flex: 1 }}>
                   {favorite[clinic.id] ? (
                     <Icon
