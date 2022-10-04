@@ -33,6 +33,7 @@ function Tabs() {
         options={{
           title: "お気に入り",
           headerTitleAlign: "center",
+          headerStyle: { backgroundColor: Colors.beige },
           tabBarIcon: ({ color }) => <Icon name="favorite" color={color} />,
           tabBarLabelStyle: {
             fontFamily: "font2"
@@ -46,6 +47,7 @@ function Tabs() {
           title: "マイページ",
           headerTitleAlign: "center",
           tabBarIcon: ({ color }) => <Icon name="person" color={color} />,
+          headerStyle: { backgroundColor: Colors.beige },
           tabBarLabelStyle: {
             fontFamily: "font2"
           }

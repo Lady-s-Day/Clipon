@@ -118,7 +118,7 @@ function Search({ navigation }) {
           </Button>
         </View>
         <View style={styles.container}>
-            <ClinicCard clinics={clinics} />
+            <ClinicCard clinics={clinics} navigation={navigation} />
         </View>
       {/* </ScrollView> */}
       </View>

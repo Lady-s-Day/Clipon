@@ -7,7 +7,7 @@ import {
   ScrollView,
   Linking,
 } from "react-native";
-import { Card, Icon, Badge } from "@rneui/themed";
+import { Card, Icon, Badge, Button } from "@rneui/themed";
 import axios from "axios";
 import { ENDPOINT } from "../endpoint";
 import Hyperlink from "react-native-hyperlink";
@@ -16,8 +16,10 @@ import { format, parseISO } from "date-fns";
 import { toggleFavorite } from "../utils/toggleFavorite";
 import { SavedContext } from "../providers/SavedContext";
 import { AuthenticatedUserContext } from "../providers";
+import { Chip } from "react-native-paper";
 
 function Clinic({ route, navigation }) {
+  const [treatments, setTreatments] = useState({});
   const { favorite, setFavorite } = useContext(SavedContext);
   const { user, setUser } = useContext(AuthenticatedUserContext);
   const [selectedClinic, setSelectedClinic] = useState();
@@ -38,76 +40,154 @@ function Clinic({ route, navigation }) {
     })();
   }, [reviews]);
 
+  useEffect(() => {
+    const sendingParams = { ids: [] };
+    sendingParams.ids.push(id);
+    (async () => {
+      try {
+        const { data: response } = await axios.get(`${ENDPOINT}/types/ids`, {
+          params: sendingParams,
+        });
+        setTreatments(response);
+      } catch (err) {
+        console.error("Error getting treatement types (ClinicCard.js)", err);
+      }
+    })();
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const { data: response } = await axios.get(
+          `${ENDPOINT}/saved/${user.uid}`
+        );
+        const obj = {};
+        for (const clinic of response) {
+          obj[clinic.id] = true;
+        }
+        setFavorite(obj);
+        console.log(obj)
+      } catch (err) {
+        console.error("Error getting saved", err);
+      }
+    })();
+  }, []);
+
+
+
   return (
-    <>
-      {selectedClinic && (
+    <View style={{ flex: 1, backgroundColor: Colors.light }}>
+      {selectedClinic &&
         <>
-          <Image
-            style={{
-              width: "100%",
-              height: 100,
-              backgroundColor: Colors.light,
-            }}
-            resizeMode="cover"
-            source={{ uri: selectedClinic.image }}
-          />
-          <View style={styles.container}>
-            <View style={{ flex: 3 }}>
-              <Text
-                style={{
-                  fontSize: 18,
-                  color: Colors.navy,
-                  marginBottom: 10,
-                  fontFamily: "font2bold"
-                }}
-              >
-                {selectedClinic.clinic_name}
-              </Text>
-              <View>
-                <Text style={{ color: Colors.navy, fontFamily: "font2bold" }}>
-                  HP:
-                </Text>
-                <Hyperlink
-                  linkStyle={{ color: Colors.blue, fontFamily: "font2" }}
-                  onPress={(url, text) => {
-                    Linking.canOpenURL(url).then((supported) => {
-                      if (!supported) {
-                        console.log("無効なURLです: " + url);
-                      } else {
-                        return Linking.openURL(url);
-                      }
-                    });
-                  }}
-                >
-                  <Text style={{ fontSize: 15, fontFamily: "font2" }}>{selectedClinic.url}</Text>
-                </Hyperlink>
-              </View>
-            </View>
-            <View style={{ flex: 1 }}>
+        <Image
+          style={{
+            width: "100%",
+            height: 100,
+            backgroundColor: Colors.light,
+          }}
+          resizeMode="cover"
+          source={{ uri: selectedClinic.image }}
+        />
+        <View style={{ flex: 1, flexDirection: "row", paddingTop: 15, paddingLeft: 15, paddingRight: 10 }}>
+          <View style={{ flex: 3 }}>
+            <Text
+              style={{
+                fontFamily: "font2bold"
+                fontSize: 22,
+                color: Colors.navy,
+              }}
+            >
+              {selectedClinic.clinic_name}
+            </Text>
+          </View>
+          <View style={{ flex: 1, paddingLeft: 15, paddingRight: 10 }}>
+            {favorite[id] ? (
               <Icon
-                name="favorite-outline"
+                size={30}
+                name="favorite"
                 color={Colors.red}
-                onPress={() => {
-                  toggleFavorite(id, favorite, setFavorite, user);
-                  console.log("favorite!");
-                }}
-              />
-              <Icon
-                name="add"
-                color={Colors.navy}
                 onPress={() =>
-                  navigation.navigate("CreateReview", {
-                    id: id,
-                  })
+                  toggleFavorite(id, favorite, setFavorite, user)
                 }
               />
-            </View>
+            ) : (
+              <Icon
+                size={30}
+                name="favorite-outline"
+                color={Colors.red}
+                onPress={() =>
+                  toggleFavorite(id, favorite, setFavorite, user)
+                }
+              />
+            )}
           </View>
-        </>
-      )}
-      <ScrollView style={{ backgroundColor: Colors.light }}>
-        {reviews &&
-          reviews.map((review, index) => {
+        </View>
+        <View style={{ flex: 16, padding: 10 }}>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "flex-start",
+              flexWrap: "wrap"
+            }}
+          >
+            {treatments[id]?.map((type, i) => {
+              return (
+                <View key={i} style={{
+                  alignSelf: "flex-start",
+                  marginRight: 5,
+                  marginBottom: 5
+                }}>
+                  <Chip
+                    onPress={() => console.log("Pressed")}
+                    style={{
+                      backgroundColor: Colors.white,
+                      size: "small",
+                      borderColor: Colors.red,
+                      borderWidth: 1,
+                    }}
+                    textStyle={{
+                      fontSize: 10,
+                      includeFontPadding: false,
+                      textAlign: "center",
+                      textAlignVertical: "center",
+                    }}
+                    compact
+                  >
+                    {type}
+                  </Chip>
+                </View>
+              );
+            })}
+          </View>
+          <View style={{ padding: 5 }}>
+            <Text style={{ color: Colors.navy, fontWeight: "bold" }}>HP:</Text>
+            <Hyperlink
+              linkStyle={{ color: Colors.blue }}
+              onPress={(url, text) => {
+                Linking.canOpenURL(url).then((supported) => {
+                  if (!supported) {
+                    console.log("無効なURLです: " + url);
+                  } else {
+                    return Linking.openURL(url);
+                  }
+                });
+              }}
+            >
+              <Text style={{ fontSize: 15 }}>{selectedClinic.url}</Text>
+            </Hyperlink>
+          </View>
+          <Button
+            radius={5}
+            style={{ marginTop: 15, marginBottom: 10 }}
+            color={Colors.red}
+            onPress={() =>
+              navigation.navigate("CreateReview", {
+                id: id,
+              })
+            }
+          >レビューを投稿する</Button>
+          <ScrollView style={{ backgroundColor: Colors.light }}>
+            {reviews?.map((review, index) => {
             return (
               <Card
                 key={index}
@@ -130,17 +210,18 @@ function Clinic({ route, navigation }) {
               </Card>
             );
           })}
-      </ScrollView>
-    </>
+          </ScrollView>
+        </View>
+      </>
+      }
+    </View >
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    flexDirection: "row",
     padding: 20,
-    backgroundColor: Colors.light,
+    backgroundColor: Colors.white
   },
   text: {
     fontSize: 14,
