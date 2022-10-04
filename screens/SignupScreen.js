@@ -163,6 +163,7 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     color: Colors.navy,
     paddingTop: 20,
+    fontFamily: "font2",
   },
   button: {
     width: "100%",
@@ -176,7 +177,7 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 20,
     color: Colors.white,
-    fontWeight: "700",
+    fontFamily: "font2bold",
   },
   borderlessButtonContainer: {
     marginTop: 16,

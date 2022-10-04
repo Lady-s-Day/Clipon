@@ -18,12 +18,13 @@ function Tabs() {
         name="ホーム"
         component={Home}
         options={{
-          // headerShown: false,
           title: "ホーム",
           headerTitleAlign: "center",
           tabBarIcon: ({ color }) => <Icon name="home" color={color} />,
           headerStyle: { backgroundColor: Colors.beige },
-          // headerTintColor: Colors.white,
+          tabBarLabelStyle: {
+            fontFamily: "font2"
+          }
         }}
       />
       <Tab.Screen
@@ -33,6 +34,9 @@ function Tabs() {
           title: "お気に入り",
           headerTitleAlign: "center",
           tabBarIcon: ({ color }) => <Icon name="favorite" color={color} />,
+          tabBarLabelStyle: {
+            fontFamily: "font2"
+          }
         }}
       />
       <Tab.Screen
@@ -42,6 +46,9 @@ function Tabs() {
           title: "マイページ",
           headerTitleAlign: "center",
           tabBarIcon: ({ color }) => <Icon name="person" color={color} />,
+          tabBarLabelStyle: {
+            fontFamily: "font2"
+          }
         }}
       />
     </Tab.Navigator>

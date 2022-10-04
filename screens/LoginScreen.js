@@ -109,6 +109,7 @@ export const LoginScreen = ({ navigation }) => {
               alignSelf: "center",
               fontSize: 16,
               color: Colors.navy,
+              fontFamily: "font2"
             }}
           >
             初めてのご利用の場合は
@@ -156,6 +157,7 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     color: Colors.navy,
     paddingTop: 20,
+    fontFamily: "font2"
   },
   footer: {
     backgroundColor: Colors.light,
@@ -168,6 +170,7 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     // color: Colors.orange,
     color: Colors.red,
+    fontFamily: "font2"
   },
   button: {
     width: "100%",
@@ -181,7 +184,8 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 20,
     color: Colors.white,
-    fontWeight: "700",
+    // fontWeight: "700",
+    fontFamily: "font2bold"
   },
   borderlessButtonContainer: {
     marginTop: 20,

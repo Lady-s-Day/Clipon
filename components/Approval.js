@@ -16,7 +16,9 @@ export const Approval = ({ route, navigation }) => {
           color: Colors.navy,
         }}
       >
-        <Text style={{ fontSize: 20 }}>承認できました</Text>
+        <Text style={{ fontSize: 20, fontFamily: "font2" }}>
+          承認できました
+        </Text>
         <View style={{ marginTop: 20 }}>
           <Button
             radius={5}
@@ -41,14 +43,25 @@ export const Approval = ({ route, navigation }) => {
           color: Colors.navy,
         }}
       >
-        <Text style={{ fontSize: 20 }}>承認できませんでした</Text>
+        <Text style={{ fontSize: 20, fontFamily: "font2" }}>
+          承認できませんでした
+        </Text>
         <View style={{ marginTop: 20 }}>
           <Button
             radius={5}
             buttonStyle={{ backgroundColor: Colors.red }}
             onPress={() => navigation.navigate("MyPage")}
           >
-            マイページに戻る
+            <Text
+              style={{
+                fontSize: 18,
+                color: Colors.white,
+                fontFamily: "font2bold",
+                padding:2
+              }}
+            >
+              マイページに戻る
+            </Text>
           </Button>
         </View>
       </View>

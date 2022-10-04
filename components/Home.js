@@ -38,7 +38,7 @@ function Home({ navigation }) {
         name="search"
         onPress={() => navigation.navigate("Search")}
       />
-      <ScrollView style={styles.scrollArea}>
+      <ScrollView contentContainerStyle={styles.scrollArea}>
         <ClinicCard clinics={clinics} navigation={navigation} />
       </ScrollView>
     </View>
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     color: Colors.navy,
   },
   scrollArea: {
-    marginBottom: 50,
+    paddingBottom: 50,
   },
 });
 

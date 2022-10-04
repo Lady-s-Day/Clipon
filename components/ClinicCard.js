@@ -90,54 +90,14 @@ const ClinicCard = ({ clinics, navigation }) => {
                 <View style={{ flex: 3 }}>
                   <Text
                     style={{
-                      fontWeight: "bold",
                       fontSize: 18,
                       color: Colors.navy,
                       marginBottom: 10,
+                      fontFamily: "font2bold",
                     }}
                   >
                     {clinic.clinic_name}
                   </Text>
-                  <View
-                    style={{
-                      flexDirection: "row",
-                      justifyContent: "flex-start",
-                      flexWrap: "wrap",
-                    }}
-                  >
-                    {treatments[clinic.id]?.map((type, i) => {
-                      return (
-                        <View
-                          key={i}
-                          style={{
-                            alignSelf: "flex-start",
-                            marginRight: 5,
-                            marginBottom: 5,
-                          }}
-                        >
-                          <Chip
-                            onPress={() => console.log("Pressed")}
-                            style={{
-                              backgroundColor: Colors.white,
-                              size: "small",
-                              borderColor: Colors.red,
-                              borderWidth: 1,
-                            }}
-                            textStyle={{
-                              fontSize: 10,
-                              includeFontPadding: false,
-                              textAlign: "center",
-                              textAlignVertical: "center",
-                              color: Colors.navy,
-                            }}
-                            compact
-                          >
-                            {type}
-                          </Chip>
-                        </View>
-                      );
-                    })}
-                  </View>
                 </View>
                 <View style={{ flex: 1 }}>
                   {favorite[clinic.id] ? (
@@ -158,6 +118,47 @@ const ClinicCard = ({ clinics, navigation }) => {
                     />
                   )}
                 </View>
+              </View>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "flex-start",
+                  flexWrap: "wrap",
+                }}
+              >
+                {treatments[clinic.id]?.map((type, i) => {
+                  return (
+                    <View
+                      key={i}
+                      style={{
+                        alignSelf: "flex-start",
+                        marginRight: 5,
+                        marginBottom: 5,
+                      }}
+                    >
+                      <Chip
+                        onPress={() => console.log("Pressed")}
+                        style={{
+                          backgroundColor: Colors.white,
+                          size: "small",
+                          borderColor: Colors.red,
+                          borderWidth: 1,
+                        }}
+                        textStyle={{
+                          fontSize: 10,
+                          includeFontPadding: false,
+                          textAlign: "center",
+                          textAlignVertical: "center",
+                          color: Colors.navy,
+                          fontFamily: "font2"
+                        }}
+                        compact
+                      >
+                        {type}
+                      </Chip>
+                    </View>
+                  );
+                })}
               </View>
             </Card>
           </TouchableOpacity>
