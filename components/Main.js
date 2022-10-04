@@ -44,6 +44,8 @@ export default function Main() {
             title: "クリニック",
             headerBackTitle: "ホーム",
             headerStyle: { backgroundColor: Colors.beige },
+            headerBackTitleStyle: { fontFamily: "font2" },
+            headerTitleStyle: { fontFamily: "font2bold" }
           }}
         />
         <Stack.Screen
@@ -52,7 +54,10 @@ export default function Main() {
           options={{
             headerTitleAlign: "center",
             title: "クリニックを検索",
+            headerBackTitle: "ホーム",
             headerStyle: { backgroundColor: Colors.beige },
+            headerBackTitleStyle: { fontFamily: "font2" },
+            headerTitleStyle: { fontFamily: "font2bold" }
           }}
         />
         <Stack.Screen
@@ -61,6 +66,8 @@ export default function Main() {
           options={{
             title: "レビューを追加",
             headerStyle: { backgroundColor: Colors.beige },
+            headerBackTitleStyle: { fontFamily: "font2" },
+            headerTitleStyle: { fontFamily: "font2bold" }
           }}
         />
         <Stack.Screen
@@ -75,20 +82,15 @@ export default function Main() {
             headerTitleAlign: "center",
             title: "承認",
             headerStyle: { backgroundColor: Colors.beige },
+            headerBackTitle: "マイページ",
+            headerBackTitleStyle: { fontFamily: "font2" },
+            headerTitleStyle: { fontFamily: "font2bold" }
           }}
         />
         <Stack.Screen
           name="Approval"
           component={Approval}
           options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="MyPage"
-          component={MyPage}
-          options={{
-            title: "マイページ",
-            headerStyle: { backgroundColor: Colors.beige },
-          }}
         />
       </Stack.Navigator>
     </SavedContext.Provider>
