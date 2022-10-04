@@ -12,6 +12,7 @@ function Tabs() {
       screenOptions={() => ({
         tabBarActiveTintColor: Colors.red,
         tabBarInactiveTintColor: Colors.navy,
+        tabBarStyle: { backgroundColor: Colors.beige }
       })}
     >
       <Tab.Screen
