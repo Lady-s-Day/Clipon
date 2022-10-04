@@ -53,7 +53,9 @@ export const Approval = ({ route, navigation }) => {
           <Button
             radius={5}
             buttonStyle={{ backgroundColor: Colors.red }}
-            onPress={() => navigation.navigate("Tabs", { screen: "Feed" })}
+            onPress={() =>
+              navigation.navigate("Tabs", { screen: "マイページ" })
+            }
           >
             <Text
               style={{
