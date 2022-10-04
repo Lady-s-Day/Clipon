@@ -9,7 +9,7 @@ import { auth, Colors } from "../config";
 import { UsernameContext } from "../providers/UsernameProvider";
 import axios from "axios";
 import { ENDPOINT } from "../endpoint";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 
 function MyPage({ navigation }) {
   const { user, setUser } = useContext(AuthenticatedUserContext);
@@ -33,6 +33,7 @@ function MyPage({ navigation }) {
 
   return (
     <View style={styles.container}>
+      <ScrollView>
       <Avatar
         margin={10}
         size={72}
@@ -88,6 +89,7 @@ function MyPage({ navigation }) {
         title={"サインアウト"}
         onPress={handleLogout}
       />
+      </ScrollView>
     </View>
   );
 }
