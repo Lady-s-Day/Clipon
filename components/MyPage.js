@@ -23,7 +23,9 @@ function MyPage({ navigation }) {
   useEffect(() => {
     (async () => {
       try {
-        const { data: clinic } = await axios.get(`${ENDPOINT}/approvedClinics/${user.uid}`);
+        const { data: clinic } = await axios.get(
+          `${ENDPOINT}/approvedClinics/${user.uid}`
+        );
         setClinics(clinic);
       } catch (err) {
         console.error("Error getting approved clinics", err);
@@ -34,61 +36,65 @@ function MyPage({ navigation }) {
   return (
     <View style={styles.container}>
       <ScrollView>
-      <Avatar
-        margin={10}
-        size={72}
-        rounded
-        source={require('../assets/plant.png')}
-        containerStyle={{
-          borderColor: 'grey',
-          borderStyle: 'solid',
-          borderWidth: 1,
-        }}
-      />
-      <Text style={styles.text}>ユーザー名: {username}</Text>
-      <Divider />
-      <Text style={styles.text}>メールアドレス: {user.email}</Text>
-      <Divider />
-      <View>
-        <Text style={styles.text}>承認された病院:</Text>
-        {clinics?.map((clinic, index) => {
-          return (
-            <TouchableOpacity
-              key={index}
-              onPress={() => {
-                navigation.navigate("Clinic", {
-                  id: clinic.id,
-                })
-              }}>
-              <Text style={styles.list}><Text style={styles.text}>✔︎ </Text>{clinic.clinic_name}</Text>
-            </TouchableOpacity>
-          )
-        })}
-      </View>
-      <Divider />
-      <Text style={styles.text}>病院の承認について：</Text>
-      <Text style={styles.text}>
-        実際に利用された病院の明細書や領収書の{"\n"}
-        承認を行い、口コミの精度を向上します。{"\n"}
-        承認後は承認済みを示すバッチを表示します。
-      </Text>
-      <Divider />
-      <View style={{ marginTop: 20 }}>
-        <Button
-          radius={5}
-          buttonStyle={{ backgroundColor: Colors.red }}
-          onPress={() => navigation.navigate("ClinicName")}
-          titleStyle={{ fontSize: 20, fontFamily: "font2" }}
-        >
-          病院の承認を行う
-        </Button>
-      </View>
-      <CButton
-        style={styles.borderlessButtonContainer}
-        borderless
-        title={"サインアウト"}
-        onPress={handleLogout}
-      />
+        <Avatar
+          margin={10}
+          size={72}
+          rounded
+          source={require("../assets/plant.png")}
+          containerStyle={{
+            borderColor: "grey",
+            borderStyle: "solid",
+            borderWidth: 1,
+          }}
+        />
+        <Text style={styles.text}>ユーザー名: {username}</Text>
+        <Divider />
+        <Text style={styles.text}>メールアドレス: {user.email}</Text>
+        <Divider />
+        <View>
+          <Text style={styles.text}>承認された病院:</Text>
+          {clinics?.map((clinic, index) => {
+            return (
+              <TouchableOpacity
+                key={index}
+                onPress={() => {
+                  navigation.navigate("Clinic", {
+                    id: clinic.id,
+                  });
+                }}
+              >
+                <Text style={styles.list}>
+                  <Text style={styles.text}>✔︎ </Text>
+                  {clinic.clinic_name}
+                </Text>
+              </TouchableOpacity>
+            );
+          })}
+        </View>
+        <Divider />
+        <Text style={styles.text}>病院の承認について：</Text>
+        <Text style={styles.text}>
+          実際に利用された病院の明細書や領収書の{"\n"}
+          承認を行い、口コミの精度を向上します。{"\n"}
+          承認後は承認済みを示すバッチを表示します。
+        </Text>
+        <Divider />
+        <View style={{ marginTop: 20 }}>
+          <Button
+            radius={5}
+            buttonStyle={{ backgroundColor: Colors.red }}
+            onPress={() => navigation.navigate("ClinicName")}
+            titleStyle={{ fontSize: 20, fontFamily: "font2" }}
+          >
+            病院の承認を行う
+          </Button>
+        </View>
+        <CButton
+          style={styles.borderlessButtonContainer}
+          borderless
+          title={"サインアウト"}
+          onPress={handleLogout}
+        />
       </ScrollView>
     </View>
   );
@@ -106,6 +112,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     color: Colors.navy,
+    marginBottom: 20,
   },
   text: {
     fontSize: 17,
@@ -118,7 +125,7 @@ const styles = StyleSheet.create({
     padding: 5,
     color: Colors.red,
     fontFamily: "font2",
-  }
+  },
 });
 
 export default MyPage;
