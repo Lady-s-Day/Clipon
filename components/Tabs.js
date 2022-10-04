@@ -33,6 +33,7 @@ function Tabs() {
           title: "お気に入り",
           headerTitleAlign: "center",
           tabBarIcon: ({ color }) => <Icon name="favorite" color={color} />,
+          headerStyle: { backgroundColor: Colors.beige },
         }}
       />
       <Tab.Screen
@@ -42,6 +43,7 @@ function Tabs() {
           title: "マイページ",
           headerTitleAlign: "center",
           tabBarIcon: ({ color }) => <Icon name="person" color={color} />,
+          headerStyle: { backgroundColor: Colors.beige },
         }}
       />
     </Tab.Navigator>
