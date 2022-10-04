@@ -40,17 +40,28 @@ export default function Main() {
         <Stack.Screen
           name="Clinic"
           component={Clinic}
-          options={{ title: "クリニック" }}
+          options={{
+            title: "クリニック",
+            headerBackTitle: "ホーム",
+            headerStyle: { backgroundColor: Colors.beige },
+          }}
         />
         <Stack.Screen
           name="Search"
           component={Search}
-          options={{ headerTitleAlign: "center", title: "クリニックを検索" }}
+          options={{
+            headerTitleAlign: "center",
+            title: "クリニックを検索",
+            headerStyle: { backgroundColor: Colors.beige },
+          }}
         />
         <Stack.Screen
           name="CreateReview"
           component={CreateReview}
-          options={{ title: "レビューを追加" }}
+          options={{
+            title: "レビューを追加",
+            headerStyle: { backgroundColor: Colors.beige },
+          }}
         />
         <Stack.Screen
           name="Camera"
@@ -60,7 +71,11 @@ export default function Main() {
         <Stack.Screen
           name="ClinicName"
           component={ClinicName}
-          options={{ headerTitleAlign: "center", title: "承認" }}
+          options={{
+            headerTitleAlign: "center",
+            title: "承認",
+            headerStyle: { backgroundColor: Colors.beige },
+          }}
         />
         <Stack.Screen
           name="Approval"
@@ -70,7 +85,10 @@ export default function Main() {
         <Stack.Screen
           name="MyPage"
           component={MyPage}
-          options={{ title: "マイページ" }}
+          options={{
+            title: "マイページ",
+            headerStyle: { backgroundColor: Colors.beige },
+          }}
         />
       </Stack.Navigator>
     </SavedContext.Provider>
