@@ -74,7 +74,7 @@ function Search({ navigation }) {
 
   if (isSearched) {
     return (
-      <ScrollView style={styles.scrollArea}>
+      <ScrollView constentContainerStyle={styles.scrollArea}>
       <View style={{ flex: 1, backgroundColor: Colors.light }}>
         <View style={styles.searchCondition}>
           <DropDownPicker
@@ -162,6 +162,7 @@ function Search({ navigation }) {
       </View>
     );
   }
+
 }
 
 const styles = StyleSheet.create({
@@ -182,7 +183,6 @@ const styles = StyleSheet.create({
     margin: 5,
   },
   scrollArea: {
-    marginBottom: 50,
     backgroundColor: Colors.light,
   },
 });

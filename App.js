@@ -9,6 +9,7 @@ const App = () => {
   const [fontsLoaded] = useFonts({
     font1: require("./assets/fonts/Kaisei_Opti/KaiseiOpti-Regular.ttf"),
     font2: require("./assets/fonts/Zen_Maru_Gothic/ZenMaruGothic-Regular.ttf"),
+    font2bold: require("./assets/fonts/Zen_Maru_Gothic/ZenMaruGothic-Bold.ttf"),
   });
 
   if (fontsLoaded) {

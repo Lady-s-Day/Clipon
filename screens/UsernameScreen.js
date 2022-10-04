@@ -138,6 +138,7 @@ const styles = StyleSheet.create({
     color: Colors.navy,
     paddingTop: 20,
     marginBottom: 10,
+    fontFamily: "font2"
   },
   footer: {
     backgroundColor: Colors.white,
@@ -162,7 +163,7 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 20,
     color: Colors.white,
-    fontWeight: "700",
+    fontFamily: "font2bold"
   },
   borderlessButtonContainer: {
     marginTop: 16,

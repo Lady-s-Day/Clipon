@@ -40,6 +40,7 @@ export const TextInput = ({
           width: "100%",
           fontSize: 18,
           color: Colors.navy,
+          fontFamily: "font2",
         }}
         placeholderTextColor={Colors.mediumGray}
         {...otherProps}
