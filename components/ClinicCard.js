@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect, useRef } from "react";
+import React, { useContext, useState, useEffect, } from "react";
 import {
   View,
   Text,
@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   Linking,
+  Pressable,
 } from "react-native";
 import { Card, Icon, Button } from "@rneui/themed";
 import axios from "axios";
@@ -18,13 +19,13 @@ import { Chip } from "react-native-paper";
 import { AuthenticatedUserContext } from "../providers";
 import { toggleFavorite } from "../utils/toggleFavorite";
 import { SavedContext } from "../providers/SavedContext";
+import FavoriteButton from "./FavoriteButton";
 
 const ClinicCard = ({ clinics, navigation }) => {
   const [treatments, setTreatments] = useState({});
   const { user, setUser } = useContext(AuthenticatedUserContext);
   const { favorite, setFavorite } = useContext(SavedContext);
 
-  // console.log(clinics);
 
   useEffect(() => {
     if (clinics.length > 0) {
@@ -61,6 +62,7 @@ const ClinicCard = ({ clinics, navigation }) => {
       }
     })();
   }, [clinics]);
+
 
   return (
     <>
@@ -99,7 +101,8 @@ const ClinicCard = ({ clinics, navigation }) => {
                     {clinic.clinic_name}
                   </Text>
                 </View>
-                <View style={{ flex: 1 }}>
+                <FavoriteButton clinic_id={clinic.id} favorite={favorite} setFavorite={setFavorite} user={user}/>
+                {/* <View style={{ flex: 1 }}>
                   {favorite[clinic.id] ? (
                     <Icon
                       name="favorite"
@@ -117,7 +120,7 @@ const ClinicCard = ({ clinics, navigation }) => {
                       }
                     />
                   )}
-                </View>
+                </View> */}
               </View>
               <View
                 style={{
@@ -150,7 +153,7 @@ const ClinicCard = ({ clinics, navigation }) => {
                           textAlign: "center",
                           textAlignVertical: "center",
                           color: Colors.navy,
-                          fontFamily: "font2"
+                          fontFamily: "font2",
                         }}
                         compact
                       >
