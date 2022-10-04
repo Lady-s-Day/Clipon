@@ -17,7 +17,7 @@ import CheckBox from "./CheckBox";
 import { Colors } from "../config";
 import { CheckedContext } from "../providers/CheckedProvider";
 import ClinicCard from "./ClinicCard";
-import { Audio } from 'expo-av'
+import { sound } from "../utils/sound";
 
 function Search({ navigation }) {
   const [isChecked, setChecked] = useState({});
@@ -69,15 +69,7 @@ function Search({ navigation }) {
           console.error(err);
         }
       })();
-      (async () => {
-        try {
-          const soundObject = new Audio.Sound();
-          await soundObject.loadAsync(require("../assets/sound1.mp3"));
-          await soundObject.playAsync();
-        } catch (err) {
-          console.error("Error with sound", err);
-        }
-      })();
+      sound();
     }
   };
 

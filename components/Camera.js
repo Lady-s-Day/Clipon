@@ -12,6 +12,7 @@ import Environment from "../config/environments";
 import { AuthenticatedUserContext } from "../providers";
 import axios from "axios";
 import { ENDPOINT } from "../endpoint";
+import { sound } from "../utils/sound";
 
 const CameraComponent = ({ route, navigation }) => {
   const [permission, requestPermission] = Camera.useCameraPermissions();
@@ -27,6 +28,7 @@ const CameraComponent = ({ route, navigation }) => {
       navigation.navigate("Approval", {
         approval: approve,
       });
+      sound();
     }
   }, [approve]);
 
