@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
   },
   paragraph: {
     fontSize: 15,
+    fontFamily: "font2",
   },
   checkbox: {
     margin: 8,

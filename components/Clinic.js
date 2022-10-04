@@ -55,20 +55,20 @@ function Clinic({ route, navigation }) {
             <View style={{ flex: 3 }}>
               <Text
                 style={{
-                  fontWeight: "bold",
                   fontSize: 18,
                   color: Colors.navy,
                   marginBottom: 10,
+                  fontFamily: "font2bold"
                 }}
               >
                 {selectedClinic.clinic_name}
               </Text>
               <View>
-                <Text style={{ color: Colors.navy, fontWeight: "bold" }}>
+                <Text style={{ color: Colors.navy, fontFamily: "font2bold" }}>
                   HP:
                 </Text>
                 <Hyperlink
-                  linkStyle={{ color: Colors.blue }}
+                  linkStyle={{ color: Colors.blue, fontFamily: "font2" }}
                   onPress={(url, text) => {
                     Linking.canOpenURL(url).then((supported) => {
                       if (!supported) {
@@ -79,7 +79,7 @@ function Clinic({ route, navigation }) {
                     });
                   }}
                 >
-                  <Text style={{ fontSize: 15 }}>{selectedClinic.url}</Text>
+                  <Text style={{ fontSize: 15, fontFamily: "font2" }}>{selectedClinic.url}</Text>
                 </Hyperlink>
               </View>
             </View>
@@ -119,14 +119,14 @@ function Clinic({ route, navigation }) {
               >
                 <Text style={styles.text}>{review.text}</Text>
                 <View style={{ marginTop: 5 }}>
-                  <Text>
+                  <Text style={{fontFamily: "font2"}}>
                     {review.user_name}
                     {review.approved && (
                       <Badge status="error" value={"Approved"} />
                     )}
                   </Text>
                 </View>
-                <Text>{format(parseISO(review.date), formatDate)}</Text>
+                <Text style={{fontFamily: "font2"}}>{format(parseISO(review.date), formatDate)}</Text>
               </Card>
             );
           })}
@@ -144,9 +144,9 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 14,
-    fontWeight: "bold",
     marginBottom: 10,
     color: Colors.navy,
+    fontFamily: "font2bold"
   },
 });
 
