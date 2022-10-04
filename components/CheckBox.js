@@ -72,6 +72,7 @@ const styles = StyleSheet.create({
   section: {
     flexDirection: "row",
     alignItems: "center",
+    marginBottom: 5
   },
   paragraph: {
     fontSize: 15,
