@@ -24,7 +24,8 @@ function Tabs() {
           headerStyle: { backgroundColor: Colors.beige },
           tabBarLabelStyle: {
             fontFamily: "font2"
-          }
+          },
+          headerTitleStyle: { fontFamily: "font2bold" }
         }}
       />
       <Tab.Screen
@@ -37,7 +38,8 @@ function Tabs() {
           tabBarIcon: ({ color }) => <Icon name="favorite" color={color} />,
           tabBarLabelStyle: {
             fontFamily: "font2"
-          }
+          },
+          headerTitleStyle: { fontFamily: "font2bold" }
         }}
       />
       <Tab.Screen
@@ -50,7 +52,8 @@ function Tabs() {
           headerStyle: { backgroundColor: Colors.beige },
           tabBarLabelStyle: {
             fontFamily: "font2"
-          }
+          },
+          headerTitleStyle: { fontFamily: "font2bold" }
         }}
       />
     </Tab.Navigator>
