@@ -17,6 +17,7 @@ import CheckBox from "./CheckBox";
 import { Colors } from "../config";
 import { CheckedContext } from "../providers/CheckedProvider";
 import ClinicCard from "./ClinicCard";
+import { Audio } from 'expo-av'
 
 function Search({ navigation }) {
   const [isChecked, setChecked] = useState({});
@@ -64,62 +65,22 @@ function Search({ navigation }) {
           );
           // console.log(response);
           setClinics(response);
-          setSearch(true);
         } catch (err) {
           console.error(err);
+        }
+      })();
+      (async () => {
+        try {
+          const soundObject = new Audio.Sound();
+          await soundObject.loadAsync(require("../assets/sound1.mp3"));
+          await soundObject.playAsync();
+        } catch (err) {
+          console.error("Error with sound", err);
         }
       })();
     }
   };
 
-  const ListFooterComponent = (
-    <>
-      <View style={styles.searchCondition}>
-        <DropDownPicker
-          style={styles.dropDown}
-          placeholder="区を選択してください"
-          placeholderStyle={{ color: "grey", fontFamily: "font2" }}
-          onSelectItem={(item) => setWardId(item.id)}
-          items={items}
-          setItems={setItems}
-          open={open}
-          setOpen={setOpen}
-          value={value}
-          setValue={setValue}
-          labelStyle={{ fontFamily: "font2" }}
-          dropDownStyle={{ fontFamily: "font2" }}
-          itemStyle={{ fontFamily: "font2" }}
-        />
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "flex-start",
-            flexWrap: "wrap",
-            marginBottom: 5,
-          }}
-        >
-          <CheckedContext.Provider value={{ isChecked, setChecked }}>
-            <CheckBox />
-          </CheckedContext.Provider>
-        </View>
-        {/* </View>
-        <View style={styles.container}> */}
-        <Button
-          radius={5}
-          color="warning"
-          style={styles.searchButton}
-          buttonStyle={{ backgroundColor: Colors.red }}
-          onPress={searchClinics}
-          titleStyle={{ fontSize: 20, fontFamily: "font2bold" }}
-        >
-          検索
-        </Button>
-        {/* </View>
-        <View style={styles.container}> */}
-        <ClinicCard clinics={clinics} navigation={navigation} />
-      </View>
-    </>
-  );
 
   return (
     <View style={{ flex: 1, backgroundColor: Colors.light }}>
