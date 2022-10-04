@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Divider } from "@rneui/themed";
-import { Icon, Button } from "@rneui/themed";
+import { Icon, Button, Avatar } from "@rneui/themed";
 import { View, Text, StyleSheet } from "react-native";
 import { AuthenticatedUserContext } from "../providers";
 import { signOut } from "firebase/auth";
@@ -18,7 +18,17 @@ function MyPage({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Icon raised name="person" color={Colors.navy} />
+      <Avatar
+        margin={10}
+        size={72}
+        rounded
+        source={require('../assets/plant.png')}
+        containerStyle={{
+          borderColor: 'grey',
+          borderStyle: 'solid',
+          borderWidth: 1,
+        }}
+      />
       <Text style={styles.text}>ユーザー名: {username}</Text>
       <Divider />
       <Text style={styles.text}>メールアドレス: {user.email}</Text>

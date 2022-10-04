@@ -90,16 +90,14 @@ function Clinic({ route, navigation }) {
             style={{
               flex: 1,
               flexDirection: "row",
-              paddingTop: 15,
-              paddingLeft: 15,
-              paddingRight: 10,
+              padding: 15
             }}
           >
-            <View style={{ flex: 3 }}>
+            <View style={{ flex: 5, flexWrap: "wrap", flexDirection: "row" }}>
               <Text
                 style={{
                   fontFamily: "font2bold",
-                  fontSize: 22,
+                  fontSize: 20,
                   color: Colors.navy,
                 }}
               >
@@ -128,7 +126,7 @@ function Clinic({ route, navigation }) {
               )}
             </View>
           </View>
-          <View style={{ flex: 16, padding: 10 }}>
+          <View style={{ flex: 17, padding: 10 }}>
             <View
               style={{
                 flexDirection: "row",
@@ -143,6 +141,7 @@ function Clinic({ route, navigation }) {
                     style={{
                       alignSelf: "flex-start",
                       marginRight: 5,
+                      marginLeft: 5,
                       marginBottom: 5,
                     }}
                   >
@@ -169,7 +168,7 @@ function Clinic({ route, navigation }) {
                 );
               })}
             </View>
-            <View style={{ padding: 5 }}>
+            <View style={{ padding: 10 }}>
               <Text style={{ color: Colors.navy, fontFamily: "font2" }}>
                 HP:
               </Text>
@@ -190,7 +189,7 @@ function Clinic({ route, navigation }) {
             </View>
             <Button
               radius={5}
-              style={{ marginTop: 15, marginBottom: 10 }}
+              style={{ marginTop: 15, marginBottom: 10, marginLeft: 5, marginRight: 5 }}
               color={Colors.red}
               onPress={() =>
                 navigation.navigate("CreateReview", {
@@ -218,6 +217,8 @@ function Clinic({ route, navigation }) {
                       borderColor: Colors.brown,
                       borderWidth: 0.5,
                       borderRadius: 8,
+                      marginLeft: 7,
+                      marginRight: 7
                     }}
                   >
                     <Text style={styles.text}>{review.text}</Text>
