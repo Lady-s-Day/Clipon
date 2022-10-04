@@ -1,6 +1,7 @@
 import { View, Text } from "react-native";
 import { Colors } from "../config";
 import { Button } from "@rneui/themed";
+import Tabs from "./Tabs";
 
 export const Approval = ({ route, navigation }) => {
   const { approval: approval } = route.params;
@@ -23,7 +24,9 @@ export const Approval = ({ route, navigation }) => {
           <Button
             radius={5}
             buttonStyle={{ backgroundColor: Colors.red }}
-            onPress={() => navigation.navigate("MyPage")}
+            onPress={() =>
+              navigation.navigate("Tabs", { screen: "マイページ" })
+            }
           >
             マイページに戻る
           </Button>
@@ -50,14 +53,14 @@ export const Approval = ({ route, navigation }) => {
           <Button
             radius={5}
             buttonStyle={{ backgroundColor: Colors.red }}
-            onPress={() => navigation.navigate("MyPage")}
+            onPress={() => navigation.navigate("Tabs", { screen: "Feed" })}
           >
             <Text
               style={{
                 fontSize: 18,
                 color: Colors.white,
                 fontFamily: "font2bold",
-                padding:2
+                padding: 2,
               }}
             >
               マイページに戻る

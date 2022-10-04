@@ -130,7 +130,8 @@ const CameraComponent = ({ route, navigation }) => {
           console.error("Error posing into approved clinics", err);
         }
       })();
-    }else{
+      setApprove(true);
+    } else {
       setApprove(false);
     }
     // navigation.navigate("Approval", {
