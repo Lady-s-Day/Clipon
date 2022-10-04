@@ -92,7 +92,7 @@ function Clinic({ route, navigation }) {
           <View style={{ flex: 3 }}>
             <Text
               style={{
-                fontWeight: "bold",
+                fontFamily: "font2bold"
                 fontSize: 22,
                 color: Colors.navy,
               }}
@@ -199,14 +199,14 @@ function Clinic({ route, navigation }) {
               >
                 <Text style={styles.text}>{review.text}</Text>
                 <View style={{ marginTop: 5 }}>
-                  <Text>
+                  <Text style={{fontFamily: "font2"}}>
                     {review.user_name}
                     {review.approved && (
                       <Badge status="error" value={"Approved"} />
                     )}
                   </Text>
                 </View>
-                <Text>{format(parseISO(review.date), formatDate)}</Text>
+                <Text style={{fontFamily: "font2"}}>{format(parseISO(review.date), formatDate)}</Text>
               </Card>
             );
           })}
@@ -225,9 +225,9 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 14,
-    fontWeight: "bold",
     marginBottom: 10,
     color: Colors.navy,
+    fontFamily: "font2bold"
   },
 });
 

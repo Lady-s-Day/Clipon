@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Image,
   Linking,
+  SafeAreaView
 } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 import { Button, Card, Icon } from "@rneui/themed";
@@ -72,15 +73,15 @@ function Search({ navigation }) {
     }
   };
 
-  if (isSearched) {
+  // if (isSearched) {
     return (
-      <ScrollView constentContainerStyle={styles.scrollArea}>
       <View style={{ flex: 1, backgroundColor: Colors.light }}>
-        <View style={styles.searchCondition}>
+        {/* <ScrollView constentContainerStyle={styles.scrollArea}> */}
+        <SafeAreaView style={styles.searchCondition}>
           <DropDownPicker
             style={styles.dropDown}
             placeholder="区を選択してください"
-            placeholderStyle={{ color: "grey" }}
+            placeholderStyle={{ color: "grey", fontFamily: "font2", }}
             onSelectItem={(item) => setWardId(item.id)}
             items={items}
             setItems={setItems}
@@ -88,6 +89,9 @@ function Search({ navigation }) {
             setOpen={setOpen}
             value={value}
             setValue={setValue}
+            labelStyle={{fontFamily: "font2",}}
+            dropDownStyle={{fontFamily: "font2",}}
+            itemStyle={{fontFamily: "font2",}}
           />
           <View
             style={{
@@ -100,7 +104,7 @@ function Search({ navigation }) {
               <CheckBox />
             </CheckedContext.Provider>
           </View>
-        </View>
+        </SafeAreaView>
         <View style={styles.container}>
           <Button
             radius={5}
@@ -108,7 +112,7 @@ function Search({ navigation }) {
             style={styles.searchButton}
             buttonStyle={{ backgroundColor: Colors.red }}
             onPress={searchClinics}
-            titleStyle={{ fontSize: 20, fontWeight: "700" }}
+            titleStyle={{ fontSize: 20, fontFamily: "font2bold", }}
           >
             検索
           </Button>
@@ -116,52 +120,52 @@ function Search({ navigation }) {
         <View style={styles.container}>
             <ClinicCard clinics={clinics} navigation={navigation} />
         </View>
-      </View>
-      </ScrollView>
-    );
-  } else {
-    return (
-      <View style={{ flex: 1, backgroundColor: Colors.light }}>
-        <View style={styles.searchCondition}>
-          <DropDownPicker
-            style={styles.dropDown}
-            placeholder="区を選択してください"
-            placeholderStyle={{ color: "grey" }}
-            onSelectItem={(item) => setWardId(item.id)}
-            items={items}
-            setItems={setItems}
-            open={open}
-            setOpen={setOpen}
-            value={value}
-            setValue={setValue}
-          />
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "flex-start",
-              flexWrap: "wrap",
-            }}
-          >
-            <CheckedContext.Provider value={{ isChecked, setChecked }}>
-              <CheckBox />
-            </CheckedContext.Provider>
-          </View>
-        </View>
-        <View style={styles.container}>
-          <Button
-            radius={5}
-            color="warning"
-            style={styles.searchButton}
-            buttonStyle={{ backgroundColor: Colors.red }}
-            onPress={searchClinics}
-            titleStyle={{ fontSize: 20, fontWeight: "700" }}
-          >
-            検索
-          </Button>
-        </View>
+      {/* </ScrollView> */}
       </View>
     );
-  }
+  // } else {
+  //   return (
+  //     <View style={{ flex: 1, backgroundColor: Colors.light }}>
+  //       <View style={styles.searchCondition}>
+  //         <DropDownPicker
+  //           style={styles.dropDown}
+  //           placeholder="区を選択してください"
+  //           placeholderStyle={{ color: "grey" }}
+  //           onSelectItem={(item) => setWardId(item.id)}
+  //           items={items}
+  //           setItems={setItems}
+  //           open={open}
+  //           setOpen={setOpen}
+  //           value={value}
+  //           setValue={setValue}
+  //         />
+  //         <View
+  //           style={{
+  //             flexDirection: "row",
+  //             justifyContent: "flex-start",
+  //             flexWrap: "wrap",
+  //           }}
+  //         >
+  //           <CheckedContext.Provider value={{ isChecked, setChecked }}>
+  //             <CheckBox />
+  //           </CheckedContext.Provider>
+  //         </View>
+  //       </View>
+  //       <View style={styles.container}>
+  //         <Button
+  //           radius={5}
+  //           color="warning"
+  //           style={styles.searchButton}
+  //           buttonStyle={{ backgroundColor: Colors.red }}
+  //           onPress={searchClinics}
+  //           titleStyle={{ fontSize: 20, fontWeight: "700" }}
+  //         >
+  //           検索
+  //         </Button>
+  //       </View>
+  //     </View>
+  //   );
+  // }
 
 }
 
@@ -178,6 +182,7 @@ const styles = StyleSheet.create({
   dropDown: {
     marginBottom: 10,
     color: Colors.navy,
+    fontFamily: "font2",
   },
   searchButton: {
     margin: 5,

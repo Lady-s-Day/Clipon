@@ -47,6 +47,7 @@ function CreateReview({ route, navigation: { goBack } }) {
         leftIcon={{ type: "font-awesome", name: "comment", color: Colors.navy }}
         value={text}
         onChangeText={setText}
+        style={{ fontFamily: "font2" }}
       />
       <Button
         radius={5}
@@ -55,7 +56,10 @@ function CreateReview({ route, navigation: { goBack } }) {
         onPress={addReview}
         titleStyle={{ fontSize: 18, fontWeight: "700" }}
       >
-        レビューを追加
+        <Text style={{ fontSize: 18,
+                color: Colors.white,
+                fontFamily: "font2bold",
+                padding:2 }}>レビューを追加</Text>
       </Button>
     </View>
   );
