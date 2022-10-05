@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
 import { Divider } from "@rneui/themed";
-import { Icon, Button, Avatar } from "@rneui/themed";
+import { Icon, Button, Avatar, Badge } from "@rneui/themed";
 import { View, Text, StyleSheet, ViewBase } from "react-native";
 import { AuthenticatedUserContext } from "../providers";
 import { signOut } from "firebase/auth";
@@ -76,12 +76,18 @@ function MyPage({ navigation }) {
         <Text style={styles.text}>
           実際に利用された病院の明細書や領収書の{"\n"}
           承認を行い、口コミの精度を向上します。{"\n"}
-          承認後は承認済みを示すバッチ
+          承認後は承認済みを示すバッジ
+          {/* <Badge
+            status="primary"
+            value={10}
+            containerStyle={{ position: 'absolute', top: 5, left: 60 }}
+          /> */}
           <Icon
             size={20}
             name="verified"
-            iconStyle={styles.icon}
-            color={Colors.red} />を表示します。
+            style={{ paddingLeft: 5, marginTop: 10 }}
+            color={Colors.red} />
+          を表示します。
         </Text>
         <Divider />
         <View style={{ marginTop: 20 }}>
@@ -130,12 +136,6 @@ const styles = StyleSheet.create({
     padding: 5,
     color: Colors.red,
     fontFamily: "font2",
-  },
-  icon: {
-    padding: 3,
-    position: "absolute",
-    top: 3,
-    left: 4
   }
 });
 
