@@ -6,6 +6,7 @@ import {
   StyleSheet,
   ScrollView,
   Linking,
+  Pressable,
 } from "react-native";
 import { Card, Icon, Badge, Button } from "@rneui/themed";
 import axios from "axios";
@@ -17,7 +18,8 @@ import { toggleFavorite } from "../utils/toggleFavorite";
 import { SavedContext } from "../providers/SavedContext";
 import { AuthenticatedUserContext } from "../providers";
 import { Chip } from "react-native-paper";
-import FavoriteButton from "./FavoriteButton";
+// import FavoriteButton from "./FavoriteButton";
+import React from "react";
 
 function Clinic({ route, navigation }) {
   const [treatments, setTreatments] = useState({});
@@ -105,8 +107,13 @@ function Clinic({ route, navigation }) {
                 {selectedClinic.clinic_name}
               </Text>
             </View>
-            <FavoriteButton clinic_id={id} favorite={favorite} setFavorite={setFavorite} user={user} />
-            {/* <View style={{ flex: 1, paddingLeft: 15, paddingRight: 10 }}>
+              {/* <FavoriteButton
+                clinic_id={id}
+                favorite={favorite}
+                setFavorite={setFavorite}
+                user={user}
+              /> */}
+            <View style={{ flex: 1, paddingLeft: 15, paddingRight: 10 }}>
               {favorite[id] ? (
                 <Icon
                   size={30}
@@ -126,7 +133,7 @@ function Clinic({ route, navigation }) {
                   }
                 />
               )}
-            </View> */}
+            </View>
           </View>
           <View style={{ flex: 17, padding: 10 }}>
             <View
