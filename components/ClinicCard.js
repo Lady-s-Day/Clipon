@@ -3,30 +3,23 @@ import {
   View,
   Text,
   Image,
-  ScrollView,
   TouchableOpacity,
-  StyleSheet,
-  Linking,
-  Pressable,
 } from "react-native";
 import { Card, Icon, Button } from "@rneui/themed";
 import axios from "axios";
 import { ENDPOINT } from "../endpoint";
 import { Colors } from "../config";
-import Hyperlink from "react-native-hyperlink";
 import { Chip } from "react-native-paper";
 
 import { AuthenticatedUserContext } from "../providers";
 import { toggleFavorite } from "../utils/toggleFavorite";
 import { SavedContext } from "../providers/SavedContext";
-import FavoriteButton from "./FavoriteButton";
+// import FavoriteButton from "./FavoriteButton";
 
 const ClinicCard = ({ clinics, navigation }) => {
   const [treatments, setTreatments] = useState({});
   const { user, setUser } = useContext(AuthenticatedUserContext);
   const { favorite, setFavorite } = useContext(SavedContext);
-
-  // console.log(favorite)
 
   useEffect(() => {
     if (clinics.length > 0) {
@@ -101,13 +94,13 @@ const ClinicCard = ({ clinics, navigation }) => {
                     {clinic.clinic_name}
                   </Text>
                 </View>
-                  <FavoriteButton
+                  {/* <FavoriteButton
                     clinic_id={clinic.id}
                     favorite={favorite}
                     setFavorite={setFavorite}
                     user={user}
-                  />
-                {/* <View style={{ flex: 1 }}>
+                  /> */}
+                <View style={{ flex: 1 }}>
                   {favorite[clinic.id] ? (
                     <Icon
                       name="favorite"
@@ -125,7 +118,7 @@ const ClinicCard = ({ clinics, navigation }) => {
                       }
                     />
                   )}
-                </View> */}
+                </View>
               </View>
               <View
                 style={{

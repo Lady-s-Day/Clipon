@@ -18,16 +18,8 @@ import { toggleFavorite } from "../utils/toggleFavorite";
 import { SavedContext } from "../providers/SavedContext";
 import { AuthenticatedUserContext } from "../providers";
 import { Chip } from "react-native-paper";
-import FavoriteButton from "./FavoriteButton";
+// import FavoriteButton from "./FavoriteButton";
 import React from "react";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import Animated, {
-  Extrapolate,
-  interpolate,
-  useSharedValue,
-  useAnimatedStyle,
-  withSpring,
-} from "react-native-reanimated";
 
 function Clinic({ route, navigation }) {
   const [treatments, setTreatments] = useState({});
@@ -117,13 +109,13 @@ function Clinic({ route, navigation }) {
                 {selectedClinic.clinic_name}
               </Text>
             </View>
-              <FavoriteButton
+              {/* <FavoriteButton
                 clinic_id={id}
                 favorite={favorite}
                 setFavorite={setFavorite}
                 user={user}
-              />
-            {/* <View style={{ flex: 1, paddingLeft: 15, paddingRight: 10 }}>
+              /> */}
+            <View style={{ flex: 1, paddingLeft: 15, paddingRight: 10 }}>
               {favorite[id] ? (
                 <Icon
                   size={30}
@@ -143,7 +135,7 @@ function Clinic({ route, navigation }) {
                   }
                 />
               )}
-            </View> */}
+            </View>
           </View>
           <View style={{ flex: 16, padding: 10 }}>
             <View
