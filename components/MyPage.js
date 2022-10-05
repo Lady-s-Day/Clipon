@@ -76,7 +76,12 @@ function MyPage({ navigation }) {
         <Text style={styles.text}>
           実際に利用された病院の明細書や領収書の{"\n"}
           承認を行い、口コミの精度を向上します。{"\n"}
-          承認後は承認済みを示すバッチを表示します。
+          承認後は承認済みを示すバッチ
+          <Icon
+            size={20}
+            name="verified"
+            iconStyle={styles.icon}
+            color={Colors.red} />を表示します。
         </Text>
         <Divider />
         <View style={{ marginTop: 20 }}>
@@ -126,6 +131,12 @@ const styles = StyleSheet.create({
     color: Colors.red,
     fontFamily: "font2",
   },
+  icon: {
+    padding: 3,
+    position: "absolute",
+    top: 3,
+    left: 4
+  }
 });
 
 export default MyPage;

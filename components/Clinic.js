@@ -224,11 +224,15 @@ function Clinic({ route, navigation }) {
                     }}
                   >
                     <Text style={styles.text}>{review.text}</Text>
-                    <View style={{ marginTop: 5 }}>
+                    <View style={{ paddingTop: 5, paddingBottom: 5 }}>
                       <Text style={{ fontFamily: "font2" }}>
                         {review.user_name}
                         {review.approved && (
-                          <Badge status="error" value={"Approved"} />
+                          <Icon
+                            size={25}
+                            name="verified"
+                            iconStyle={styles.icon}
+                            color={Colors.red} />
                         )}
                       </Text>
                     </View>
@@ -256,7 +260,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     color: Colors.navy,
     fontFamily: "font2bold",
-  },
+  }
 });
 
 export default Clinic;
