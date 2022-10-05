@@ -1,7 +1,8 @@
-import { View, Text } from "react-native";
+import { View, Text, Image } from "react-native";
 import { Colors } from "../config";
 import { Button } from "@rneui/themed";
 import Tabs from "./Tabs";
+import { Avatar } from "@rneui/base";
 
 export const Approval = ({ route, navigation }) => {
   const { approval: approval } = route.params;
@@ -17,9 +18,14 @@ export const Approval = ({ route, navigation }) => {
           color: Colors.navy,
         }}
       >
-        <Text style={{ fontSize: 20, fontFamily: "font2" }}>
-          承認できました
+        <Text style={{ fontSize: 20, fontFamily: "font2", color: Colors.navy }}>
+          承認できました。{"\n"}是非レビューしてね♪
         </Text>
+        <Image
+          style={{ height: 250, width: 300, marginTop: 20, marginBottom: 20 }}
+          resizeMode="contain"
+          source={require("../assets/meditating.png")}
+        />
         <View style={{ marginTop: 20 }}>
           <Button
             radius={5}
@@ -46,9 +52,14 @@ export const Approval = ({ route, navigation }) => {
           color: Colors.navy,
         }}
       >
-        <Text style={{ fontSize: 20, fontFamily: "font2" }}>
-          承認できませんでした
+        <Text style={{ fontSize: 20, fontFamily: "font2", color: Colors.navy }}>
+          承認できませんでした。{"\n"}ごめんね・・・
         </Text>
+        <Image
+          style={{ height: 250, width: 270, marginTop: 20, marginBottom: 20 }}
+          resizeMode="contain"
+          source={require("../assets/loving.png")}
+        />
         <View style={{ marginTop: 20 }}>
           <Button
             radius={5}
